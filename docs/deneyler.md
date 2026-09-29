@@ -39,3 +39,18 @@ Sonnet /50 körlemesine:
 
 - Kurumsal/resmî metin temizliğinde **güçlü bir uygulayıcı** (ör. DeepSeek) tercih edin.
 - Sohbet ve teknik metinde skil her modelde tutarlı katkı sağlar (register ve terim koruması).
+
+## Deney 4 — Çok-modelli kırmızı-takım + iyileştirme turu
+
+8 tuzaklı metin (kurumsal/sohbet/teknik+kod/akademik/dilekçe/deyim/temiz/tespit), iki uygulayıcı (DeepSeek, Qwen), Sonnet hakem, **Opus 4.8 kırmızı-takım**. Opus 7 sistematik kusur buldu (P1–P7); en kritiği: *"koruma kısa bir listeye, düzeltme uzun bir listeye yaslanmış; çeliştiklerinde uzun liste kazanıyor."*
+
+Uygulanan düzeltmeler: (P1) korumalı türlerde kalıp/sözlük açıkça DEVRE DIŞI, (P2) "sadeleştirme ≠ özetleme" + cümle atma yasağı, (P3) çıplak İngilizce süreç-adı 3. kategorisi, (P4) sohbette kalıp 8/30 devre dışı + yumuşatıcı koruması, (P5) uzunluğu niteliğe çevirme, (P6) edilgende "biz" uydurma yasağı, (P7) tespit modunda kalıp-yığma yasağı.
+
+Aynı bataryayla ikinci tur (Sonnet /10 ortalama):
+
+| Model | Önce | Sonra | Δ |
+|-------|-----:|------:|--:|
+| DeepSeek | 7.98 | **9.53** | +1.55 |
+| Qwen | 8.40 | **9.00** | +0.60 |
+
+Dilekçe aşırı düzenleme, "deploy" çevirisi, aşırı sıkıştırma, "biz" uydurma ve kalıp-yığma hatalarının tümü kapandı; regresyon gözlenmedi.

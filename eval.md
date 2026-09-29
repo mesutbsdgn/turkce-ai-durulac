@@ -20,7 +20,9 @@ Düzenleme sonrasında her soruya **Evet/Hayır** de. Bir yanıt Hayır ise metn
 - Tekrarı azalttım ama yazarın ritmini ve yapısını korudum mu?
 - Dolgu/bağlaç silince akışı yeniden bağladım mı; art arda kopuk kısa cümle (telgraf tonu) bırakmadım mı?
 - Gramer şahsını metin boyunca tutarlı tuttum mu (3. tekil ↔ 1. çoğul arası kaymadım mı)?
-- Uzunluk anlamsız çökmedi mi; “Ne değiştirdim” listesine uzunluk (X→Y kelime) satırını ekledim mi?
+- Bilgi taşıyan bir cümleyi/birimini tümüyle atmadım mı (sadeleştirme yaptım, özetleme değil)?
+- Niteliksel kısalma satırını ekledim mi; kelime sayısı verdiysem “yaklaşık” dedim mi (sayıyı uydurup kesin gibi sunmadım)?
+- Korumalı türde (resmî/akademik/hukuk) devre dışı kalıpları uygulamadım mı; bürokratik edatı başka edatla değiştirmedim mi?
 - Temizle modunda tam metni ve “Ne değiştirdim” listesini verdim mi?
 - Tespit modunda kalıp adını ve alıntıyı verdim; yazarlık tahmini yapmadım mı?
 
@@ -54,10 +56,12 @@ Bu örneklerde kalıp GÖRÜNÜR ama tür/bağlam nedeniyle DOĞRUDUR; değişti
 7. **Sohbet — devrik cümle:** “Geldi sonunda.” → dokunma. (“Sonunda geldi.” yapmak vurguyu ve konuşma ritmini bozar.)
 8. **Sohbet — eksilti + doğrudan hitap:** “Bak şimdi, bana da bir tane.” → dokunma. (Bağlam yüklemi veriyor; hitap işlevsel.)
 9. **Sohbet — retorik soru + kişisel ses:** “Son dakika golü yedik ya, of. Bence kalecinin hatasıydı.” → dokunma. (Edilgene/rapor tonuna çevirme.)
+10. **Sohbet — konuşma yumuşatıcısı + doğal “bir”:** “Çok etkileyici bir yapımdı diyebilirim.” → dokunma. (“diyebilirim” ihtiyat değil yumuşatıcı; “bir” doğal — kalıp 8/30 sohbette devre dışı.)
+11. **Resmî dilekçe — edat swap yok:** “…çerçevesinde gereğini arz ederim.” → dokunma. (“çerçevesinde → doğrultusunda” aynı derece resmî; temizlik değil, gereksiz müdahale.)
 
 ## Tespit modu çıktı şablonu
 
-Her bulgu: **[kalıp adı]** · “<alıntı>” · düzeltme yönü. Sonda: kaç kalıp / metin uzunluğu ve “tek kalıp kanıt değildir; yoğunluk anlamlıdır” notu. Yazarlık tahmini yapma.
+Her bulgu: **[kalıp adı]** · “<alıntı>” · düzeltme yönü. **Her alıntıya EN uygun TEK kalıp adı ver; aynı ifadeye kalıp yığma — bulgu SAYISI kanıt gücü değildir, yapay yoğunluk oluşturma.** Sonda: kaç kalıp / metin uzunluğu (yaklaşık) ve “tek kalıp kanıt değildir; yoğunluk anlamlıdır” notu. Yazarlık tahmini yapma.
 
 ## Son okuma — Evet/Hayır kapısı
 

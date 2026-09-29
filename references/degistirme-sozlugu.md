@@ -1,6 +1,6 @@
 # Değiştirme sözlüğü
 
-> **NOT:** Bunlar KÖR bul-değiştir DEĞİL; bağlama ve sese göre uygula. Kaynak: Denomas/Turkce-yazim-denetimi (MIT), petergyang/no-ai-slop (MIT). Eşleme yönü “kullanım → öneri”dir. Teknik özel adları, yerleşik terimleri ve yazarın bilinçli seçimini sırf listede var diye değiştirme.
+> **NOT:** Bunlar KÖR bul-değiştir DEĞİL; bağlama ve sese göre uygula. Kaynak: Denomas/Turkce-yazim-denetimi (MIT), petergyang/no-ai-slop (MIT). Eşleme yönü “kullanım → öneri”dir. Teknik özel adları, yerleşik terimleri ve yazarın bilinçli seçimini sırf listede var diye değiştirme. **Resmî yazı, dilekçe, hukuk ve akademik metinde bu sözlük VARSAYILAN OLARAK devre dışıdır (bkz. SKILL tür kapısı).**
 
 ## Yardımcı fiil şişmesi
 
@@ -8,7 +8,7 @@
 - `umut etmek` → `ummak`
 - `sevk etmek` → `göndermek`
 - `talep etmek` → `istemek`
-- `arz etmek` → `sunmak`
+- `arz etmek` → `sunmak` **[resmî/hukuk/akademikte DOKUNMA — “arz ederim” zorunlu kalıp]**
 - `teşkil etmek` → `oluşturmak`
 - `ihtiva etmek` → `içermek`
 - `refakat etmek` → `eşlik etmek`
@@ -25,7 +25,7 @@
 - `tarafından` → `(aktif cümle kurun)`
 - `noktasında` → `konusunda`
 - `bağlamında` → `bu konuda`
-- `çerçevesinde` → `kapsamında`
+- `çerçevesinde` → `kapsamında` **[resmî/hukukta DOKUNMA; başka bürokratik edatla değiştirme]**
 - `nezdinde` → `-de, gözünde`
 
 ## -mekte-makta
@@ -74,7 +74,7 @@
 - `focuslanmak` → `odaklanmak`
 - `done olmak` → `bitmek`
 - `over-engineer etmek` → `gereğinden fazla karmaşıklaştırmak`
-- `deploy etmek` → `yayına almak`
+- `deploy etmek` → `yayına almak`  (çıplak AD “deploy sonrası” da süreç-adıdır → “yayına alma/dağıtım”; yerleşik nesne adı değil, çevrilebilir)
 - `pushlamak` → `göndermek`
 - `pull etmek` → `çekmek`
 - `merge etmek` → `birleştirmek`
