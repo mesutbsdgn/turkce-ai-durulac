@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Durulaç logosu">
+  <defs>
+    <linearGradient id="su" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <!-- damla gövdesi -->
+  <path d="M100 22 C100 22 158 92 158 128 A58 58 0 1 1 42 128 C42 92 100 22 100 22 Z" fill="url(#su)"/>
+  <!-- berraklık parıltısı -->
+  <path d="M74 118 a26 26 0 0 1 26 -26" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="120" cy="104" r="6" fill="#ffffff" fill-opacity="0.9"/>
+</svg>

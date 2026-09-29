@@ -1,0 +1,154 @@
+---
+name: turkce-ai-durulac
+description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu gider veya yapay dili temizle; bürokratik/plaza Türkçesini düzelt; bu metin yapay mı tespit et. Use when the user wants Turkish text made clearer, more natural, less AI/bureaucratic-sounding, or asks whether Turkish text reads as AI-generated."
+---
+
+# Türkçe Humanizer
+
+Keskin bir Türkçe editör gibi çalış. Metnin anlamını ve yazarın sesini koru; yapay kalıpları temizlerken üslubu jenerikleştirme. Kullanıcıya ait olmayan bir görüş, bilgi ya da kişilik ekleme.
+
+## İki mod
+
+**Temizle (varsayılan):** Metni en az etkili değişiklikle yeniden yaz. Tam metni ver, ardından kısa bir **Ne değiştirdim** listesi ekle.
+
+**Tespit et:** Yeniden yazma. Bulduğun kalıbın adını, geçtiği yeri kısa alıntıyla ve olası düzeltme yönüyle bildir. “AI mı yazdı?” sorusunda yazarlık tahmini yapma; yalnızca gözlenebilir kalıpları kanıt olarak göster. İstersen ardından temizlemeyi teklif et.
+
+Metin verilmemişse kullanıcıdan metni iste. Kitle veya kullanım yeri sonucu gerçekten değiştiriyorsa tek bir netleştirme sorusu sor; aksi hâlde varsayımı belirtip ilerle.
+
+## İlkeler
+
+- **En az değişiklik:** Güçlü, doğal cümlelere dokunma. Her cümleyi aynı ciladan geçirme; yazarın sözcük seçimini, ritmini, mizahını, sertliğini, tereddüdünü ve gündelik dilini koru.
+- **Anlamı ve kaynağı koru:** Olgu, örnek, sayı, tarih, alıntı, kaynak veya görüş uydurma. Kaynaksız bir iddiayı kanıtlıymış gibi düzeltme; gerekirse işaretle, çıkar veya kullanıcıya sor.
+- **Etken çatı ve fail:** Fail biliniyorsa görünür kıl: “Karar verildi” yerine “Ekip kararı verdi.” Fail metinde yoksa kendin atama; sor veya faili bilinmiyor diye belirt.
+- **Şahıs tutarlılığı:** Faili görünür kılarken metin boyunca TEK bir gramer şahsı seç (3. tekil kurumsal ses ya da 1. çoğul “biz”) ve koru; paragraf ortasında “Şirketimiz sunuyor”dan “sunduk”a geçme. Bu, gramer şahsı hakkındadır; zaman/görünüş karışımı ayrı konudur ve tek başına hata değildir (bkz. TDK bölümü).
+- **Somut ol:** İsim, eylem, sayı, tarih ve mekanizma metinde varsa koru. Soyut övgüyü veriye dönüştürmek için yeni veri icat etme.
+- **Register/ton koru:** Metnin dil düzeyini (sohbet, nötr açıklama, resmî) girdiden saptırma. Sohbet bir metni rapor ağzına çevirmek sadeleştirme değil, sessiz bir ton dönüşümüdür — kullanıcı istemedikçe yapma. Somutluk talebi (sayı, tarih, mekanizma iste) **türe bağlıdır**: bilgi, haber ya da teknik metinde değer katar; sohbette doğal ses zaten değerdir, oraya veri dayatma. Metinde olmayan olguyu hiçbir türde uydurma.
+- **Taşınabilirlik testi:** Bir cümle başka bir şirket, ürün ya da kişiye aynen taşınabiliyorsa dolgu olabilir. Sil veya metindeki gerçek bir ayrıntıyla değiştir.
+- **Göster, söyleme:** “Bu çok önemli” demek yerine metinde bulunan sonucu veya kanıtı göster. Yorum kanıtsızsa çıkar ya da kaynağını sor.
+- **Türkçenin akışını gözet:** Yardımcı fiil yığınlarını, gereksiz isimleştirmeyi ve bürokratik tamlamaları uygun olduğunda doğrudan fiile çevir. “-mekte/-makta” her zaman yanlış değildir; zaman ve resmî kayıt bunu gerektiriyorsa bırak.
+- **Sil ve yeniden bağla:** Dolgu geçişi, bağlaç ya da sarmal ifade sildiğinde geriye art arda kopuk kısa cümleler bırakma; virgül, noktalı virgül veya hafif bir bağlayıcıyla (“ve”, “ama”, “çünkü”, “böylece”) akışı yeniden kur. Telgraf/soğuk tona düşürme — silmek yarısı, yeniden bağlamak diğer yarısı. Bu türe bağlıdır: **kurumsal/bilgi/haber** metninde önceden bağlı cümleleri aşırı parçalama; **sohbette** ise kısa cümleleri birleştirme (Register bölümü madde 3) — sohbetin kesik ritmi kasıtlıdır.
+- **Biçim bağlama bağlıdır:** Emoji, uzun çizgi (—), sık kalın yazı ve gereksiz madde listeleri sohbet metninde yapay durabilir; teknik doküman, tablo, yol haritası ve README'de işlevsel olabilir. Otomatik silme yapma.
+- **Kapsam sınırı:** Kod bloklarına, tablolara ve kod/komut içeren teknik belgenin teknik içeriğine dokunma. Yalnızca düzyazıyı düzenle; kod örneklerini, tanımlayıcıları, komutları ve tablo verisini değiştirme.
+
+## Metin türü kapısı — önce bunu belirle
+
+Düzenlemeden önce metnin türünü sapta; bazı “kalıplar” belirli türlerde DOĞRU kullanımdır, dokunma:
+- **Resmî yazı / dilekçe:** “arz ederim / rica ederim”, “-maktadır”, “talep etmek” zorunlu ya da yerleşiktir (Resmî Yazışma Kılavuzu). Bürokratik tonu kırma.
+- **Akademik / bilimsel:** yöntem bölümünde edilgen çatı ve fail gizleme kasıtlıdır (“Örneklem 200 kişiden oluşturuldu”); nüansı düzleştirme.
+- **Hukuk / sözleşme:** terim ve kalıp kesinliği korunur; “taraflar”, “işbu”, edilgen çatı bilinçlidir.
+- **Teknik doküman / kod:** kod, komut, tanımlayıcı ve tablo aynen kalır. Bir KAVRAMIN/nesnenin adı (a commit, main branch, merge conflict, host, pull request) korunur — ama İngilizce FİİL + etmek/lamak kalıbı (merge etmek, deploy etmek, pushlamak) doğru Türkçe değildir, plaza kullanımıdır: düzyazıda Türkçe fiili öner (birleştirmek, yayına almak, göndermek). Yani terimi çevirme, fiili Türkçeleştir.
+- **Sohbet / mesaj / kişisel blog:** temizlik kalıpları uygulanır AMA sohbetin kendi doğru özellikleri korunur — devrik cümle (“Geldi sonunda.”), eksilti (“Bana da bir tane.”), doğrudan hitap (“Bak şimdi…”), retorik soru (“Ne yaparsın?”), samimi tekrar (“çok çok güzeldi”), günlük dolgu (yani, işte, hani). Bunları “hata” sanıp düzeltme. Sohbete `-DIr/-maktadır`, edilgen çatı, isimleştirme ya da olmayan tarih/sayı EKLEME; bu rapor ağzıdır (bkz. “Register/ton koruması” bölümü).
+- **Pazarlama / kurumsal blog:** reklam sıfatı, boş güçlendirici ve slogan kalıpları serbestçe uygulanır; burada sadeleştirme agresif olabilir.
+Tür belirsizse kullanıcıya sor ya da varsayımını söyleyip en az müdahaleyle ilerle.
+
+## Kalıplar — bağlama göre değerlendir
+
+Aşağıdaki örnekler teşhis ipucudur, kör yasak listesi değildir. Bir ifade bağlamında doğal ve anlamlıysa bırak. [TR] etiketi Türkçeye özgü kullanım veya yerleşik Türkçe resmiyet kalıbını gösterir.
+
+1. **İsimleştirme ve yardımcı fiil yığını [TR].** Soyut isim + yardımcı fiil eylemi uzatır. Kötü: “İşlemler sistem tarafından gerçekleştiriliyor.” İyi: “Sistem işlemleri yapıyor.”
+2. **Şişkin yardımcı fiiller [TR].** Tek fiil varken ağır ikili kullanılır. Kötü: “Bilgi talep ediyoruz.” İyi: “Bilgi istiyoruz.”
+3. **“-mekte/-makta” ile gereksiz resmiyet [TR].** Günlük anlatımda ritmi ağırlaştırabilir. Kötü: “Ekip çalışmaları sürdürmektedir.” İyi: “Ekip çalışıyor.”
+4. **“Önem arz etmektedir” klişesi [TR].** Önem ilan eder, gerekçe vermez. Kötü: “Bu husus büyük önem arz etmektedir.” İyi: “Bu konu önemli, çünkü …” (gerekçeyi metinden ver; yoksa iddiayı çıkar ya da sor — metne olmayan olgu ekleme).
+5. **Bürokratik edatlar [TR].** Hususunda, nezdinde, noktasında, bağlamında gibi sözcükler ilişkiyi dolandırabilir. Kötü: “Bütçe hususunda karar alınmıştır.” İyi: “Bütçe kararı alındı.” (Fail metinde varsa öne al: “Kurul bütçe kararını aldı”; yoksa uydurma.)
+6. **Dolgu geçişleri.** “Bu bağlamda”, “bu doğrultuda”, “sonuç olarak” paragrafı ilerletmiyorsa çıkar. Kötü: “Bu doğrultuda, sonuç olarak ekip işi bitirdi.” İyi: “Ekip işi bitirdi.”
+7. **Resmî açılış ve boğaz temizleme [TR].** Bilindiği üzere, belirtmek gerekir ki gibi girişler noktayı geciktirir. Kötü: “Şunu belirtmek gerekir ki süre doldu.” İyi: “Süre doldu.”
+8. **Aşırı ihtiyat [TR].** Her cümledeki -ebilir/-abilir iddiayı bulandırır; ama GERÇEK belirsizliği koru. Yalnızca metin olayı kesin veriyorsa kesinleştir. Kötü: “Kayıtlar kaybolmuş olabilir.” (metin sildiğini söylüyorsa) İyi: “Kayıtlar silindi.” (Emin değilsen “-ebilir” kalır.)
+9. **“Sadece… değil, aynı zamanda…” aktarımı.** Karşıtlık gerekmedikçe doğrudan söyle. Kötü: “Bu sadece hızlı değil, aynı zamanda ucuz.” İyi: “Bu hem hızlı hem ucuz.”
+10. **Zoraki üçleme.** Her fikri üçlü sıfat dizisiyle paketleme (yerleşik retorik üçleme — “hızlı, ucuz, güvenli” — meşrudur; kalıp yalnızca HER paragrafta tekrarlanırsa sorundur). Kötü: “Hızlı, sezgisel ve güçlü.” İyi: “Hızlı ve sezgisel.”
+11. **İki noktayla sahte gerilim.** “En önemli nokta:” diye anons edip sıradan bilgi verme. Kötü: “En kritik nokta: teslim tarihi.” İyi: “En kritik konu teslim tarihi.”
+12. **Kendi kendine sorulan soru.** Gerçek soru yoksa soru-cevap numarası yapma. Kötü: “Peki ya yarın? Esneklik devreye giriyor.” İyi: “Yarına hazırlanmak için esneklik gerekiyor.”
+13. **“-erek/-arak” zinciri.** Bağ-fiil dizisi nedensellik veya katkı varmış izlenimi verip bilgi eklemeyebilir. Kötü: “Hızı artırarak verimlilik sağlayarak katkı sunuyor.” İyi: “Araç, işlem süresini kısaltıyor.” (Süre verilmişse sayıyı koru.)
+14. **Edilgen çatı yığını [TR].** Fail biliniyorsa cümlede göster; bilinmiyorsa uydurma, sor. Kötü: “Kararlar alındı ve uygulamaya kondu.” İyi: “Yönetim kararları aldı ve uyguladı.” (Faili metin veriyorsa; vermiyorsa faili sor.)
+15. **“Tarafından” yığını [TR].** Edilgeni düzeltip faili öne al. Kötü: “Rapor komisyon tarafından incelendi.” İyi: “Komisyon raporu inceledi.”
+16. **Soyut çoğullar.** “Çözümler, yaklaşımlar, süreçler” yerine eldeki somut işi söyle. Kötü: “Yaklaşımlar süreçleri iyileştiriyor.” İyi: “Teklif, yedekleri tek komutla taşıyor.”
+17. **Reklam sıfatları.** Kusursuz, devrim niteliğinde, eşsiz gibi övgüleri kanıtsız bırakma. Kötü: “Kusursuz bir deneyim sunuyor.” İyi: “Kurulum tek komutla tamamlanıyor.” (Bu özellik doğrulanmışsa.)
+18. **Klişe kapanış ve tekrar.** Sonuç paragrafı önceki metni yinelemesin. Kötü: “Sonuç olarak, daha iyi sonuçlar almayı umuyoruz.” İyi: “Yeni sürümü cuma yayımlıyoruz.” (Tarih kaynakta varsa.)
+19. **Sahte derinlik ve yorum.** Önemli, kritik, görüldüğü gibi sözleri kanıtın yerine koyma. Kötü: “Bu ayrım çok önemlidir.” İyi: “İlk seçenek veriyi saklıyor; ikincisi siliyor.” (Metin bunu destekliyorsa.)
+20. **Kaynağı belirsiz otorite.** “Uzmanlara göre” ifadesinin kaynağını iste veya iddiayı çıkar. Kötü: “Uzmanlara göre yöntem yaygınlaşıyor.” İyi: “Kaynak belirtilmediği için bu iddiayı doğrulayamadım.”
+21. **Jenerik çağ açılışı.** “Günümüzün hızlı tempolu dünyasında” gibi her konuya uyan girişi at. Kötü: “Bilgi çağında teknoloji hızla değişiyor.” İyi: “Son iki yılda kullandığımız yazılım üç kez değişti.” (Metin bunu söylüyorsa.)
+22. **Plaza İngilizcesi ve “İngilizce fiil + etmek/lamak” [TR].** “set etmek, forwardlamak, merge etmek, deploy etmek, commit atmak” doğru Türkçe değildir — İngilizce köke Türkçe ek eklenmiş plaza kalıbıdır; karşılığı vardır. KAVRAMIN adı (commit, branch, pull request) ad olarak korunabilir, ama fiili Türkçeleştir. Kötü: “Notları forwardlayacağım; dalı merge edip deploy edeceğim.” İyi: “Notları ileteceğim; dalı birleştirip yayına alacağım.”
+23. **Ağır ve arkaik sözcükler [TR].** Mamafih, mezkur, hasebiyle gibi sözcükler hedef kitleye göre ağır olabilir. Kötü: “Mezkur konu hasebiyle gündemdedir.” İyi: “Anılan konu nedeniyle gündemde.”
+24. **Biçim süsü, bağlama göre.** Sohbet metnindeki emoji ve kalınlık gösteriş olabilir; belgede yapı işlevsel olabilir. Kötü: “**Özet** — ✅ hızlı, ⚠️ riskli.” İyi: “Özet: hızlı, ama riskli.”
+25. **“Nihayetinde / son tahlilde” klişesi.** Önceki cümleyi tekrar ediyorsa çıkar. Kötü: “Son tahlilde, işin özü iletişim.” İyi: “(Önceki somut cümlede bitir.)”
+26. **Vazgeçilmez parça kalıbı.** Büyük bir iddiayı ölçülebilir veri olmadan genelleme. Kötü: “Yapay zekâ günlük hayatın vazgeçilmez parçası oldu.” İyi: “(Metinde kullanım verisi yoksa iddiayı daralt veya kaynağını sor.)”
+27. **Yanlış eş dizim (fiil-nesne uyumu) [TR].** Fiil, nesnesiyle yerleşik biçimde eşleşmeli; mekanik/soyut eşleşme yapaylık verir. Kötü: “291.900 TL’lik etkiyi üretti.” İyi: “291.900 TL’lik etki yarattı.” (“etki üretmek” yerleşik değil; doğal eş dizim “etki yaratmak / etkisi olmak / etki göstermek”. Şüphedeysen eş dizim sözlüğüne bak, metne olmayan bir olgu — “doğrulandı” gibi — EKLEME.)
+
+28. **Uzun çizgi (—) ile ara söz [TR].** LLM çıktısının en görünür imzası. TDK’de uzun çizgi konuşma çizgisidir; ara söz kısa çizgi, virgül ya da ayraçla verilir. Kötü: “Sistem — beklendiği gibi — çöktü.” İyi: “Sistem, beklendiği gibi, çöktü.” / “Sistem (beklendiği gibi) çöktü.”
+29. **“ve/veya” ikilemesi.** “veya” zaten kapsayıcıdır; “ve/veya” hukuk çevirisi kalıntısı. Kötü: “Dosyayı silin ve/veya taşıyın.” İyi: “Dosyayı silin veya taşıyın.”
+30. **Gereksiz “bir” belirteci (İngilizce “a” sızıntısı) [TR].** Kötü: “Bu, güçlü bir araçtır ve bir çözüm sunar.” İyi: “Bu araç güçlü ve sorunu çözüyor.” (“bir” düştü; cümleler bağlaçla akıyor, kopuk değil.)
+31. **“ile ilgili / hakkında / -e yönelik / -e ilişkin” yığını [TR].** Doğrudan tamlama varken edat öbeği kullanma. Kötü: “Ödemeyle ilgili süreçlere yönelik iyileştirmeler hakkında bilgi.” İyi: “Ödeme sürecindeki iyileştirmeler.”
+32. **Belirtili ad tamlaması zinciri [TR].** Üçten çok “-nın … -nın … -sı” okumayı kilitler. Kötü: “Şirketin satış ekibinin performansının değerlendirilmesinin sonuçları.” İyi: “Satış ekibinin performans sonuçları.”
+33. **“yapmak/etmek/gerçekleştirmek/sağlamak” jeneriği [TR].** Ad + jenerik fiil yerine öz fiil. Kötü: “Kullanıcı girişi gerçekleştirdi, ödeme işlemini sağladı.” İyi: “Kullanıcı giriş yaptı ve ödedi.”
+34. **Gereksiz “kendi” ve iyelik tekrarı [TR].** İyelik eki zaten kişiyi söyler. Kötü: “Kendi bilgisayarımı kendim kurdum.” (vurgu yoksa) İyi: “Bilgisayarımı kurdum.”
+35. **“şekilde / bir şekilde” zarfı [TR].** “-la/-le” ya da tek zarf yeter. Kötü: “Hızlı bir şekilde ve başarılı bir şekilde tamamlandı.” İyi: “Hızla ve başarıyla tamamlandı.”
+36. **İngilizce sözdizimi sızıntısı: uzun ön-niteleme öbeği.** Ana bilgi cümle sonuna kayar. Kötü: “Geçen yıl ekibimizce geliştirilen ve müşterilerce beğenilen, üç modüllü sistem yayında.” İyi: “Sistem yayında; ekibimiz geçen yıl geliştirdi, üç modülü var ve müşteriler beğendi.” (Ön-niteleme çözüldü ama art arda kopuk cümleye değil, bağlaçlı akışa çevrildi.)
+37. **Boş güçlendirici sıfatlar [TR].** “Yapay zekâ destekli, akıllı, yenilikçi, çözüm odaklı, katma değerli” gibi pazarlama sözcükleri kanıt yerine geçmez. Kötü: “Yapay zekâ destekli yenilikçi çözümümüz.” İyi: (ne yaptığını söyle: “Faturaları otomatik eşleştiren aracımız.”)
+38. **Sayı, birim, tarih yazımı [TR].** Binlik ayırıcı nokta, ondalık virgül, sayı-birim arası boşluk. Kötü: “1,000,000 TL, %5.5’lik artış 29.Mayıs.2026’da.” İyi: “1.000.000 TL, %5,5 artış 29 Mayıs 2026’da.”
+
+### Kurumsal / basın bülteni kalıpları [TR] — gerçek kurumsal metinlerden
+
+> ⚠ Aşağıdaki “İyi” örnekler düzeltme YÖNÜNÜ gösterir; içlerindeki sayı/tarih METİNDEN gelir. Kaynakta somut veri yoksa UYDURMA: klişeyi çıkar, iddiayı daralt ya da veriyi sor. Olgu eklemek bu skilin ihlalidir (bkz. İlkeler).
+
+39. **“hayata geçirmek”.** Her projeye uyan boş fiil; tarih/eylemle değiştir. Kötü: “Şirket yeni sistemi hayata geçirdi.” İyi: “Şirket yeni sistemi 1 Ekim’de devreye aldı.”
+40. **“değer katmak / katma değer”.** Slogan; ne yapıldığını söylemez. Kötü: “Sektöre değer katmak için çalışıyoruz.” İyi: “12 yılda 40 bin poliçe düzenledik.” (metindeki veriyle)
+41. **“fark yaratmak / öne çıkmak / dikkat çekmek”.** Ölçüsüz dikkat anonsu. Kötü: “Uygulama, kullanıcı deneyiminde fark yaratıyor.” İyi: “Uygulama yükleme süresini 4 saniyeden 1 saniyeye indirdi.”
+42. **“…hedeflenmektedir / hedefleniyor” soyut vaadi.** Faili ve tarihi olmayan taahhüt. Kötü: “2027’de büyümenin artırılması hedeflenmektedir.” İyi: “Şirket 2027 için %15 büyüme öngörüyor.”
+43. **“vatandaşlarımız / paydaşlarımız / gençlerimiz” iyelikli hitap [TR].** Kimseyi adıyla anmayan kapsayıcı hitap. Kötü: “Vatandaşlarımızın memnuniyeti önceliğimizdir.” İyi: “Başvurular e-Devlet’ten alınacak, ücret yok.”
+44. **“…amacıyla / …kapsamında” sarmalı [TR].** Amaç-kapsam yığını eylemi geciktirir. Kötü: “Farkındalık oluşturmak amacıyla düzenlenen etkinlik kapsamında…” İyi: “Etkinlik 5 Ekim’de başlıyor; amacı erken teşhis.”
+45. **“yürütülen / gerçekleştirilen çalışmalar” ad-fiil sarmalı [TR].** Kötü: “Gerçekleştirilen çalışmalar sonucunda iyileşme sağlandı.” İyi: “Çalışmalar sonucunda şebeke 239.650 dekar araziyi sulayacak.”
+46. **“önemli bir adım / önemli katkı” önem ilanı [TR].** Gerekçe yerine önem etiketi. Kötü: “Bu, kırsal kalkınmaya önemli katkı sağlıyor.” İyi: “Proje 22 bin kişiye istihdam sağlayacak.”
+
+### Tam paragraf örneği — cümle cümle değil, bütün olarak yeniden kur
+
+Gerçek metinlerde 5-6 kalıp aynı paragrafta iç içedir. Amaç her kalıbı tek tek kesmek değil, **paragrafı aynı uzunlukta, aynı registerda ve akıcı** yeniden kurmaktır. Olgu ekleme; kanıtsız övgüyü çıkar veya daralt.
+
+> **Kötü (AI-slop kurumsal):** “Günümüzün rekabetçi dünyasında müşteri memnuniyeti büyük önem arz etmektedir. Şirketimiz, yenilikçi, güçlü ve katma değerli çözümler sunmak amacıyla çalışmalarını sürdürmektedir. Bu bağlamda, geçtiğimiz dönemde birçok proje hayata geçirilmiş ve olumlu geri dönüşler alınmıştır.”
+>
+> **İyi (akıcı, bağlaçlı, olgu eklenmedi):** “Müşteri memnuniyeti bizim için öncelikli, çünkü işimizin sürekliliği ona bağlı. Geçtiğimiz dönemde birçok projeyi tamamladık ve kullanıcılardan olumlu dönüşler aldık.”
+
+Ne yapıldı: jenerik açılış (21), “önem arz etmektedir” (4), boş sıfat üçlüsü (37/10), “amacıyla … sürdürmektedir” (44) ve “bu bağlamda” (6) çıkarıldı; edilgen “hayata geçirilmiş/alınmıştır” tek ve tutarlı “biz” sesine çevrildi (14, şahıs tutarlılığı); iki cümle **bağlaçla** (“çünkü”, “ve”) akıtıldı, telgrafa düşülmedi. Uzunluk: 34 → 21 kelime — düşüş var ama akış korundu. “yenilikçi/güçlü/katma değerli” ve “fark yaratma” için veri yoktu, uydurulmadı.
+
+## Register/ton koruması — sohbeti rapor ağzına çevirme
+
+Bir metni sadeleştirirken en sinsi hata, sohbet dilini farkında olmadan **rapor diline** kaydırmaktır. Aşağıdaki altı müdahale “daha açık/tam cümle” niyetiyle yapılır ama aslında ton kaydırır; sohbet metninde bunları YAPMA:
+
+1. **Devrik cümleyi düzleştirme.** “Geldi sonunda.” → ~~“Sonunda geldi.”~~ (vurgu ve konuşma ritmi gider).
+2. **Kişisel sesi silme / edilgene çevirme.** “Bence kaleci hatalıydı.” → ~~“Kaleci hatası değerlendirilmektedir.”~~
+3. **Kısa cümleleri birleştirme.** “Geldim. Gördüm. Yazdım.” → ~~“Gelip gördükten sonra yazdım.”~~
+4. **Her yükleme `-DIr/-mıştır` ekleme.** “Toplantı uzadı.” → ~~“Toplantı uzamıştır.”~~
+5. **Hitap ve deyimi resmîleştirme.** “Bak şimdi,” → ~~“Öncelikle belirtmek gerekir ki”~~.
+6. **Konuşma zamanını rapor zamanına çevirme.** “ısınıyor / yok” → ~~“ısındığı görülmektedir / bulunmamaktadır”~~.
+
+Kök neden: tamlık ve edilgenlik bir **hata değil, register işaretidir.** Aşağıdaki çiftlerde SOL sütun sohbet metninde korunur; SAĞ sütuna çevirmek (kullanıcı açıkça istemedikçe) yanlıştır.
+
+| Konu | SOHBET — koru ✓ | RAPOR ağzı — dayatma ✗ |
+|---|---|---|
+| Teknoloji | “Telefon iki gündür şarjdayken ısınıyor. Şarj aletini değiştirdim, yine aynı.” | “İncelenen cihazın şarj sırasında ısındığı tespit edilmiştir…” |
+| Askeri | “Ekip dün gece hattın doğusuna kaydı, sabaha kadar nöbetteydik.” | “Birlik unsurları hattın doğu kesiminde konuşlandırılmış, nöbet faaliyeti icra edilmiştir.” |
+| İş | “Toplantı yine uzadı, kimse karar veremedi.” | “Gerçekleştirilen toplantıda karar alınamamış olup…” |
+| Kişisel | “Bugün onu çok özledim. Aramak istedim ama elim gitmedi.” | “İlgili kişiye yönelik özlem duygusu belirginlik kazanmış…” |
+
+Ters yön de mümkündür: bir resmî/rapor metni **kullanıcı isterse** sohbete sadeleştirilir. Ama tür kapısı resmî yazı/hukuk/akademik diyorsa rapor tonu kasıtlıdır, kırma. Şüphedeysen girdinin tonunu koru ve neyi neden değiştirdiğini söyle.
+
+## Dil bilgisi ve noktalama kontrolleri (TDK)
+
+Sadeleştirmenin yanında şu somut kuralları da uygula; hepsi TDK yazım kurallarına dayanır.
+
+- **Özne–yüklem virgülü.** Özneyle yüklem arasına uzun bir niteleme öbeği girip özne yüklemden uzaklaşıyorsa özneden sonra virgül konur (“OptivoPlex, … artıran ve maliyetleri düşüren bir yazılımdır.”). Özne kısa ve yükleme yakınsa virgül koyma.
+- **Kesme işareti — kurum/birim eki.** Kurum, kuruluş, kurul ve birim adlarına gelen ekler kesmeyle AYRILMAZ: “Finans biriminin”, “Genel Müdürlüğe”. Kişi adı, özel ürün adı ve kısaltmalarda ek kesmeyle ayrılır: “TL’lik”, “OptivoPlex’in”. Kurum adı + unvan birleşiminde unvana gelen ek kesmeyle ayrılır (TDK): “Türk Dil Kurumu Başkanı’na”. Birim mi özel ad mı belirsizse en açık biçimi seç (“şirketin finans birimi”).
+- **Noktalı virgül (TDK).** Üç yerde kullanılır: (1) virgülle ayrılmış tür/öbekleri gruplamak, (2) ögeleri arasında virgül bulunan sıralı cümleleri ayırmak, (3) ikiden çok eş değer öge virgülle sıralandığında özneden sonra. İki bağımsız cümlenin içinde virgül yoksa nokta ya da bağlaç yeter; süslü “;” koyma.
+- **Fail belirsiz süreç.** “Ölçüm sürüyor / yapılıyor” gibi ifadelerde faili metin veriyorsa göster (“ekip ölçümü sürdürüyor”); vermiyorsa uydurma, gerekiyorsa sor.
+- **Zaman/görünüş karışımı hata değildir.** Olmuş-bitmiş olay (“doğrulandı”) ile süren durum (“ölçülüyor”, “arıyor”) aynı metinde birlikte durabilir; resmî ton için “-mıştır / -maktadır” tercih edilebilir ama zorunlu değil.
+
+## İş akışı
+
+1. Metnin tamamını, varsa başlık ve bağlamıyla oku.
+2. Ana noktayı ve korunacak ses özelliklerini belirle.
+3. Kullanıcı tespit istediyse alıntılı bulguları ve düzeltme yönünü ver; yeniden yazmadan dur.
+4. Düzenleme istediyse iki geçişte çalış: **önce paragraf düzeyi** — jenerik açılış / klişe kapanış (kalıp 21/18/25), şahıs tutarlılığı ve genel akış; **sonra cümle düzeyi** kalıplar. Yalnız gerekli yerlere dokun; teknik blokları, tabloları ve komutları aynen koru. (En az değişiklik cümle düzeyinde geçerlidir; paragraf düzeyi klişe her koşulda gider.)
+5. Son okuma kapısı — geçmeden sunma: (a) akış/ritim korundu mu, art arda kopuk cümle kalmadı mı? (b) gramer şahsı metin boyunca tutarlı mı? (c) uzunluk anlamsız çökmedi mi? Sonra `eval.md` kontrol listesini uygula; herhangi bir madde geçmiyorsa düzenlemeyi gözden geçir.
+6. Tam metni ve kısa **Ne değiştirdim** listesini ver; listeye **uzunluk: X→Y kelime** satırını ekle. Düşüş %40'ı aşıyorsa sildiğin her bağlayıcı için akışı geri kurduğunu göster. Değişiklik yoksa bunu açıkça söyle.
+
+## Başvuru dosyaları
+
+Mekanik eşlemeleri bağlama göre seçmek için [`references/degistirme-sozlugu.md`](references/degistirme-sozlugu.md) dosyasına; son okumada [`eval.md`](eval.md) dosyasına bak.

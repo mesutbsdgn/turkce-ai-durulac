@@ -1,0 +1,406 @@
+# Değiştirme sözlüğü
+
+> **NOT:** Bunlar KÖR bul-değiştir DEĞİL; bağlama ve sese göre uygula. Kaynak: Denomas/Turkce-yazim-denetimi (MIT), petergyang/no-ai-slop (MIT). Eşleme yönü “kullanım → öneri”dir. Teknik özel adları, yerleşik terimleri ve yazarın bilinçli seçimini sırf listede var diye değiştirme.
+
+## Yardımcı fiil şişmesi
+
+- `etki etmek` → `etkilemek`
+- `umut etmek` → `ummak`
+- `sevk etmek` → `göndermek`
+- `talep etmek` → `istemek`
+- `arz etmek` → `sunmak`
+- `teşkil etmek` → `oluşturmak`
+- `ihtiva etmek` → `içermek`
+- `refakat etmek` → `eşlik etmek`
+- `icra etmek` → `yapmak` (hukuk/müzik bağlamında koru)
+- `temin etmek` → `sağlamak`
+- `tespit etmek` → `saptamak`
+- `ilave etmek` → `eklemek`
+- `muhafaza etmek` → `korumak`
+- `müdafaa etmek` → `savunmak`
+- `istişare etmek` → `danışmak`
+
+## Bürokratik edat
+
+- `tarafından` → `(aktif cümle kurun)`
+- `noktasında` → `konusunda`
+- `bağlamında` → `bu konuda`
+- `çerçevesinde` → `kapsamında`
+- `nezdinde` → `-de, gözünde`
+
+## -mekte-makta
+
+- `yapılmakta olan` → `yapılan`
+- `edilmekte olan` → `edilen`
+- `gerçekleştirilmekte` → `yapılıyor`
+- `bulunmaktadır` → `bulunuyor`
+- `yer almaktadır` → `var`
+- `görülmektedir` → `görülüyor`
+- `bilinmektedir` → `biliniyor`
+- `sağlanmaktadır` → `sağlanıyor`
+- `sunulmaktadır` → `sunuluyor`
+
+## Arkaik
+
+- `addetmek` → `saymak`
+- `atfetmek` → `-e bağlamak`
+- `binaen` → `dayanarak`
+- `bilumum` → `bütün`
+- `derpiş etmek` → `öngörmek`
+- `haiz` → `sahip`
+- `hasebiyle` → `nedeniyle`
+- `istifade etmek` → `yararlanmak`
+- `izale etmek` → `gidermek`
+- `mamafih` → `bununla birlikte`
+- `mezkur` → `anılan`
+- `müteakip` → `sonraki/-den sonra`
+- `müspet` → `olumlu`
+- `menfi` → `olumsuz`
+- `namütenahi` → `sonsuz`
+- `sarfınazar etmek` → `vazgeçmek`
+- `tayin etmek` → `belirlemek`
+- `tetkik etmek` → `incelemek`
+
+## Plaza kalıpları
+
+- `align olmak` → `uzlaşmak`
+- `aksiyon almak` → `harekete geçmek`
+- `brainstorm` → `beyin fırtınası yapmak`
+- `insight` → `içgörü`
+- `kpi` → `performans göstergesi`
+- `asap` → `en kısa sürede`
+- `onboard etmek` → `işe başlatmak`
+- `onboard olmak` → `işe başlamak`
+- `focuslanmak` → `odaklanmak`
+- `done olmak` → `bitmek`
+- `over-engineer etmek` → `gereğinden fazla karmaşıklaştırmak`
+- `deploy etmek` → `yayına almak`
+- `pushlamak` → `göndermek`
+- `pull etmek` → `çekmek`
+- `merge etmek` → `birleştirmek`
+- `assign etmek` → `atamak`
+- `forwardlamak` → `iletmek`
+- `feedback` → `geri bildirim`
+- `brainstorming` → `beyin fırtınası`
+- `meeting` → `toplantı`
+- `toplantı set etmek` → `toplantı ayarlamak`
+- `set etmek` → `ayarlamak`
+- `check etmek` → `kontrol etmek`
+- `confirm etmek` → `onaylamak`
+- `approve etmek` → `onaylamak`
+- `reject etmek` → `reddetmek`
+- `cancel etmek` → `iptal etmek`
+- `deadline` → `son tarih`
+- `best practice` → `en iyi uygulama`
+- `use case` → `kullanım durumu`
+- `roadmap` → `yol haritası`
+- `milestone` → `kilometre taşı`
+- `feature` → `özellik`
+- `bug` → `hata`
+- `issue` → `sorun`
+- `task` → `görev`
+- `backlog` → `iş listesi`
+- `touchbase yapmak` → `görüşmek`
+
+## İngilizce terim (yalnız kullanıcı isterse; teknik metinde DOKUNMA)
+
+> Teknik metinde ve kod çevresindeki düzyazıda bu terimleri otomatik değiştirme. Yalnız kullanıcı açıkça Türkçe karşılık istediğinde, bağlama göre kullan.
+
+- `align` → `uyumlanmak`
+- `brief` → `özet bilgi`
+- `touchbase` → `temas kurmak`
+- `know-how` → `teknik bilgi`
+- `focus` → `odak`
+- `monitoring` → `izleme`
+- `recovery` → `kurtarma`
+- `scaling` → `ölçeklendirme`
+- `failover` → `yük devri`
+- `rollback` → `geri alma`
+- `pipeline` → `iş hattı`
+- `dashboard` → `kontrol paneli`
+- `endpoint` → `uç nokta`
+- `runtime` → `çalışma zamanı`
+- `middleware` → `ara katman`
+- `workflow` → `iş akışı`
+- `vulnerability` → `güvenlik açığı`
+- `incident` → `olay`
+- `resilience` → `dayanıklılık`
+- `latency` → `gecikme`
+- `throughput` → `işlem hacmi`
+- `forward etmek` → `iletmek`
+- `delete etmek` → `silmek`
+- `update etmek` → `güncellemek`
+- `edit etmek` → `düzenlemek`
+- `save etmek` → `kaydetmek`
+- `print etmek` → `yazdırmak`
+- `login olmak` → `giriş yapmak`
+- `logout olmak` → `çıkış yapmak`
+- `register olmak` → `kayıt olmak`
+- `signup olmak` → `kayıt olmak`
+- `signin olmak` → `giriş yapmak`
+- `signout olmak` → `çıkış yapmak`
+- `clicklemek` → `tıklamak`
+- `klicklemek` → `tıklamak`
+- `linklemek` → `bağlantı vermek`
+- `download etmek` → `indirmek`
+- `upload etmek` → `yüklemek`
+- `install etmek` → `kurmak`
+- `uninstall etmek` → `kaldırmak`
+- `start etmek` → `başlatmak`
+- `stop etmek` → `durdurmak`
+- `restart etmek` → `yeniden başlatmak`
+- `pause etmek` → `duraklatmak`
+- `resume etmek` → `devam ettirmek`
+- `run etmek` → `çalıştırmak`
+- `execute etmek` → `çalıştırmak`
+- `build etmek` → `derlemek`
+- `compile etmek` → `derlemek`
+- `debug etmek` → `hata ayıklamak`
+- `fixlemek` → `düzeltmek`
+- `patchlemek` → `yamamak`
+- `verify etmek` → `doğrulamak`
+- `validate etmek` → `doğrulamak`
+- `analyze etmek` → `analiz etmek`
+- `design etmek` → `tasarlamak`
+- `develop etmek` → `geliştirmek`
+- `support etmek` → `desteklemek`
+- `report etmek` → `raporlamak`
+- `export etmek` → `dışa aktarmak`
+- `import etmek` → `içe aktarmak`
+- `backup almak` → `yedeklemek`
+- `restore etmek` → `geri yüklemek`
+- `format atmak` → `biçimlendirmek`
+- `resetlemek` → `sıfırlamak`
+- `clear etmek` → `temizlemek`
+- `clean etmek` → `temizlemek`
+- `copyalamak` → `kopyalamak`
+- `pastalamak` → `yapıştırmak`
+- `cut etmek` → `kesmek`
+- `drag etmek` → `sürüklemek`
+- `scroll etmek` → `kaydırmak`
+- `zoom yapmak` → `yakınlaştırmak`
+- `search etmek` → `aramak`
+- `find etmek` → `bulmak`
+- `replace etmek` → `değiştirmek`
+- `leave etmek` → `ayrılmak`
+- `share etmek` → `paylaşmak`
+- `like etmek` → `beğenmek`
+- `comment atmak` → `yorum yapmak`
+- `follow etmek` → `takip etmek`
+- `subscribe olmak` → `abone olmak`
+- `notification` → `bildirim`
+- `release` → `sürüm`
+- `version` → `sürüm`
+- `deployment` → `yayına alma`
+- `production` → `canlı ortam`
+- `staging` → `test ortamı`
+- `environment` → `ortam`
+- `server` → `sunucu`
+- `database` → `veritabanı`
+- `network` → `ağ`
+- `security` → `güvenlik`
+- `performance` → `performans`
+- `optimization` → `optimizasyon`
+- `scalability` → `ölçeklenebilirlik`
+- `reliability` → `güvenilirlik`
+- `availability` → `erişilebilirlik`
+- `usability` → `kullanılabilirlik`
+- `accessibility` → `erişilebilirlik`
+- `compatibility` → `uyumluluk`
+- `maintenance` → `bakım`
+- `documentation` → `dokümantasyon`
+- `requirement` → `gereksinim`
+- `specification` → `teknik özellik`
+- `architecture` → `mimari`
+- `infrastructure` → `altyapı`
+- `framework` → `çatı`
+- `library` → `kütüphane`
+- `package` → `paket`
+- `module` → `modül`
+- `component` → `bileşen`
+- `interface` → `arayüz`
+- `service` → `servis`
+- `application` → `uygulama`
+- `software` → `yazılım`
+- `hardware` → `donanım`
+- `system` → `sistem`
+- `user` → `kullanıcı`
+- `admin` → `yönetici`
+- `customer` → `müşteri`
+- `team` → `takım`
+- `manager` → `yönetici`
+- `developer` → `geliştirici`
+- `designer` → `tasarımcı`
+- `tester` → `test uzmanı`
+- `analyst` → `analist`
+- `consultant` → `danışman`
+- `freelancer` → `serbest çalışan`
+- `remote` → `uzaktan`
+- `office` → `ofis`
+- `hybrid` → `hibrit`
+- `full-time` → `tam zamanlı`
+- `part-time` → `yarı zamanlı`
+- `intern` → `stajyer`
+- `salary` → `maaş`
+- `bonus` → `prim`
+- `benefit` → `yan hak`
+- `promotion` → `terfi`
+- `resignation` → `istifa`
+- `interview` → `mülakat`
+- `offer` → `teklif`
+- `hiring` → `işe alım`
+- `recruitment` → `işe alım`
+- `onboarding` → `işe alıştırma`
+- `training` → `eğitim`
+- `workshop` → `çalıştay`
+- `conference` → `konferans`
+- `seminar` → `seminer`
+- `webinar` → `web semineri`
+- `meetup` → `buluşma`
+- `event` → `etkinlik`
+- `community` → `topluluk`
+- `partner` → `ortak`
+- `vendor` → `tedarikçi`
+- `supplier` → `tedarikçi`
+- `competitor` → `rakip`
+- `market` → `pazar`
+- `industry` → `endüstri`
+- `sector` → `sektör`
+- `business` → `iş`
+- `company` → `şirket`
+- `startup` → `girişim`
+- `corporation` → `kurumsal şirket`
+- `enterprise` → `büyük ölçekli şirket`
+- `agency` → `ajans`
+- `studio` → `stüdyo`
+- `lab` → `laboratuvar`
+- `center` → `merkez`
+- `hub` → `merkez`
+- `headquarters` → `genel merkez`
+- `location` → `konum`
+- `address` → `adres`
+- `phone` → `telefon`
+- `email` → `e-posta`
+- `website` → `web sitesi`
+- `social media` → `sosyal medya`
+- `newsletter` → `bülten`
+- `presentation` → `sunum`
+- `slide` → `slayt`
+- `chart` → `grafik`
+- `graph` → `grafik`
+- `table` → `tablo`
+- `audio` → `ses`
+- `file` → `dosya`
+- `folder` → `klasör`
+- `document` → `belge`
+- `report` → `rapor`
+- `memo` → `not`
+- `note` → `not`
+- `message` → `mesaj`
+- `chat` → `sohbet`
+- `meeting room` → `toplantı odası`
+- `board room` → `yönetim kurulu odası`
+- `break room` → `mola odası`
+- `kitchen` → `mutfak`
+- `cafeteria` → `kafeterya`
+- `reception` → `resepsiyon`
+- `lobby` → `lobi`
+- `elevator` → `asansör`
+- `stairs` → `merdiven`
+- `parking` → `otopark`
+- `security guard` → `güvenlik görevlisi`
+- `cleaner` → `temizlikçi`
+- `janitor` → `kapıcı`
+- `receptionist` → `resepsiyonist`
+- `assistant` → `asistan`
+- `secretary` → `sekreter`
+- `clerk` → `memur`
+- `staff` → `personel`
+- `employee` → `çalışan`
+- `worker` → `işçi`
+- `colleague` → `iş arkadaşı`
+- `boss` → `patron`
+- `leader` → `lider`
+- `coach` → `koç`
+- `trainer` → `eğitmen`
+- `speaker` → `konuşmacı`
+- `guest` → `konuk`
+- `visitor` → `ziyaretçi`
+- `attendee` → `katılımcı`
+- `member` → `üye`
+- `subscriber` → `abone`
+- `follower` → `takipçi`
+- `fan` → `hayran`
+- `critic` → `eleştirmen`
+- `reviewer` → `inceleyen`
+- `editor` → `editör`
+- `publisher` → `yayıncı`
+- `author` → `yazar`
+- `creator` → `yaratıcı`
+- `maker` → `yapıcı`
+- `founder` → `kurucu`
+- `owner` → `sahip`
+- `investor` → `yatırımcı`
+- `shareholder` → `hissedar`
+- `stakeholder` → `paydaş`
+- `board member` → `yönetim kurulu üyesi`
+- `executive` → `yönetici`
+- `director` → `direktör`
+- `vp` → `başkan yardımcısı`
+- `president` → `başkan`
+## Reklam sıfatı
+
+Bu kelimeler için kör bir eş anlamlı değişimi yapma. Kanıt metinde varsa özelliği somutlaştır; yoksa iddiayı çıkar veya kaynağını sor.
+
+- `kusursuz` → ölçülebilir sonuçla değiştir veya çıkar
+- `devrim niteliğinde` → kanıtlı değişikliği açıkça anlat veya çıkar
+- `eşsiz` → karşılaştırma ve kaynak yoksa çıkar
+- `benzersiz` → ayırt edici özelliği kanıtla veya çıkar
+- `kapsamlı` → kapsanan işleri say veya çıkar
+- `güçlü` → hangi ölçütte güçlü olduğunu belirt veya çıkar
+- `sorunsuz` → ölçülen hata/arıza bilgisini ver veya çıkar
+- `yenilikçi` → yeniliğin ne olduğunu anlat veya çıkar
+- `çığır açan` → ölçülebilir değişikliği anlat veya çıkar
+- `vazgeçilmez` → kullanım verisi yoksa daralt veya çıkar
+
+## Güvenlik ve BT karşılıkları (yerleşik; teknik metinde İngilizcesi de kalabilir)
+
+- `firewall` → `güvenlik duvarı`
+- `encryption` → `şifreleme`
+- `encrypt etmek` → `şifrelemek`
+- `decrypt etmek` → `şifre çözmek`
+- `breach` → `ihlal`
+- `data breach` → `veri ihlali`
+- `ransomware` → `fidye yazılımı`
+- `malware` → `zararlı yazılım`
+- `spyware` → `casus yazılım`
+- `intrusion detection` → `saldırı tespiti`
+- `authentication` → `kimlik doğrulama`
+- `authorization` → `yetkilendirme`
+- `backup` → `yedekleme`
+- `exploit etmek` → `istismar etmek`
+- `patch` → `yama`
+- `two-factor` → `iki faktörlü kimlik doğrulama`
+
+## Teknik yazım ve özel adlar (teknik içeriği koru)
+
+Bunlar üslup değişikliği değildir. Kod, komut ve teknik dokümandaki tanımlayıcıları düzenleme; düzyazıdaki bariz yazım biçimi hatalarını ancak bağlam kesin olduğunda düzelt.
+
+- `Nodejs` → `Node.js`
+- `NodeJS` → `Node.js`
+- `Golang` → `Go`
+- `Reactjs` → `React`
+- `ReactJS` → `React`
+- `Vuejs` → `Vue.js`
+- `VueJS` → `Vue.js`
+- `Nextjs` → `Next.js`
+- `NextJS` → `Next.js`
+- `Nuxtjs` → `Nuxt.js`
+- `Cosmosdb` → `Cosmos DB`
+- `K8s` → `Kubernetes`
+- `Redhat` → `Red Hat`
+- `Vscode` → `VS Code`
+- `VsCode` → `VS Code`
+- `VSC` → `VS Code`
+- `Intellij` → `IntelliJ IDEA`
+
