@@ -4,129 +4,127 @@
 
 # Durulaç
 
-**Türkçe metinden yapay zekâ ve bürokrasi kokusunu damıtan Claude skill'i.**
-
-Bulanık, yapay, plaza Türkçesini alır; **anlamı ve yazarın sesini bozmadan** duru bir Türkçeye çevirir. İsterseniz yeniden yazmadan yalnızca "bu metin yapay mı?" diye kalıpları da işaretler.
+### Yapay zekâ ve resmiyet kokan Türkçeyi, anlamını bozmadan berraklaştırır.
 
 ![Lisans](https://img.shields.io/badge/lisans-MIT-blue) ![Claude](https://img.shields.io/badge/Claude-skill-8A63D2) ![Dil](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-e30a17) ![TDK](https://img.shields.io/badge/kurallar-TDK-informational)
 
 </div>
 
----
+Durulaç bir metni alır, içindeki yapay ve bürokratik kalıpları ayıklar, geriye yazarın kendi sesini bırakır. Cümleleri cilalayıp birbirine benzetmez; sayı, tarih ya da iddia uydurmaz. İstersen tek kelimeye dokunmadan sadece bakar: "Bu metin yapay mı?" diye sorarsan, bulduğu kalıpları tek tek, alıntısıyla gösterir.
+
+Bu bir Claude becerisidir (skill). Claude Code, Claude Desktop ve web'de çalışır.
 
 ## İçindekiler
 
-- [Neden Durulaç?](#neden-durulaç)
-- [Bir bakışta örnek](#bir-bakışta-örnek)
-- [İki mod](#i̇ki-mod)
-- [Öne çıkan özellikler](#öne-çıkan-özellikler)
+- [Sorun: Türkçenin kendi yapaylığı](#sorun-türkçenin-kendi-yapaylığı)
+- [Bir örnek](#bir-örnek)
+- [İki çalışma biçimi](#i̇ki-çalışma-biçimi)
+- [Ne yapar, ne yapmaz](#ne-yapar-ne-yapmaz)
 - [Kurulum](#kurulum)
 - [Kullanım](#kullanım)
-- [Neyi değiştirmez](#neyi-değiştirmez)
-- [Nasıl doğrulandı](#nasıl-doğrulandı)
-- [Sınırlar](#sınırlar-dürüst-bölüm)
+- [Nasıl sınandı](#nasıl-sınandı)
+- [Sınırları](#sınırları)
 - [Katkı](#katkı)
-- [Lisans ve teşekkür](#lisans-ve-teşekkür)
+- [Lisans](#lisans)
 
----
+## Sorun: Türkçenin kendi yapaylığı
 
-## Neden Durulaç?
+Hazır "humanizer" araçları İngilizceye göre yazılmıştır. Onların avladığı şeyler bizde pek işe yaramaz: aşırı uzun çizgi, "X is the Y of Z" kalıbı, birtakım İngilizce dolgu sözcükleri.
 
-Hazır "humanizer" araçları İngilizceye göre yazılmıştır: em dash aşırılığı, "X is the Y of Z" kalıbı, belirli İngilizce dolgu sözcükleri. Türkçede yapay dil **başka** kalıplardan gelir:
+Türkçede yapaylık başka yerden sızar:
 
-- İsimleştirme + yardımcı fiil: *"iyileştirilmesi amacıyla optimizasyonlar gerçekleştirilmiştir"*
-- Bürokratik edatlar: *"hususunda", "nezdinde", "bu bağlamda"*
-- Boş güçlendirici sıfatlar: *"yenilikçi, güçlü ve katma değerli çözümler"*
-- Klişe açılışlar: *"Günümüzün hızlı tempolu dünyasında…"*
-- Edilgen yığını ve failsiz vaatler: *"hedeflenmektedir", "sağlanmış olup"*
+- İsimleştirme ve şişkin fiiller: "iyileştirilmesi amacıyla optimizasyonlar gerçekleştirilmiştir"
+- Bürokratik edatlar: "hususunda", "nezdinde", "bu bağlamda"
+- Kanıtsız övgü sıfatları: "yenilikçi, güçlü ve katma değerli çözümler"
+- Her konuya uyan klişe girişler: "Günümüzün hızlı tempolu dünyasında..."
+- Failini gizleyen edilgen cümleler ve boş vaatler: "hedeflenmektedir", "sağlanmış olup"
 
-Durulaç bu kalıpları **Türkçeye özgü** olarak, TDK kurallarına dayanarak temizler; İngilizce bir listeyi çevirmez.
+Durulaç bunları hazır bir listeyi çevirerek değil, Türkçeye göre ve TDK kurallarına dayanarak temizler.
 
-## Bir bakışta örnek
+## Bir örnek
 
-**Önce (yapay/kurumsal):**
-> Günümüzün hızlı tempolu dünyasında, dijital dönüşüm süreçleri işletmeler açısından büyük önem arz etmektedir. Şirketimiz, müşteri memnuniyetini en üst düzeye çıkarmak amacıyla yenilikçi, güçlü ve katma değerli çözümler sunmaktadır. Bu bağlamda, geçtiğimiz dönemde birçok proje hayata geçirilmiş — ki bu projeler sektörde fark yaratmıştır — ve olumlu geri dönüşler alınmıştır.
+Girdi (yapay, kurumsal bir paragraf):
 
-**Sonra (Durulaç):**
+> Günümüzün hızlı tempolu dünyasında, dijital dönüşüm süreçleri işletmeler açısından büyük önem arz etmektedir. Şirketimiz, müşteri memnuniyetini en üst düzeye çıkarmak amacıyla yenilikçi, güçlü ve katma değerli çözümler sunmaktadır. Bu bağlamda, geçtiğimiz dönemde birçok proje hayata geçirilmiş ve olumlu geri dönüşler alınmıştır.
+
+Durulaç'tan sonra:
+
 > Müşteri memnuniyeti bizim için öncelikli, çünkü işimizin sürekliliği ona bağlı. Geçtiğimiz dönemde birçok projeyi tamamladık ve kullanıcılardan olumlu dönüşler aldık.
 
-> **Ne değiştirdim:** jenerik açılış, "önem arz etmektedir", boş sıfat üçlüsü ve "bu bağlamda" çıkarıldı; edilgen çatı tutarlı bir "biz" sesine döndü; cümleler bağlaçla akıtıldı. **Uydurulan sayı/olgu yok** — "fark yaratma" iddiası veri olmadığı için silindi. Uzunluk: 62 → 21 kelime.
+Klişe giriş, "önem arz etmektedir", boş sıfat dizisi ve "bu bağlamda" gitti. Edilgen cümleler tek ve tutarlı bir "biz" sesine döndü, cümleler bağlaçla akıtıldı. Kanıtı olmayan "fark yarattık" iddiası ise silindi, çünkü metinde onu destekleyen bir veri yoktu. Hiçbir sayı ya da olgu eklenmedi.
 
-## İki mod
+## İki çalışma biçimi
 
-| Mod | Ne yapar |
-|-----|----------|
-| **Temizle** (varsayılan) | Metni en az müdahaleyle yeniden yazar, tam metni + kısa "Ne değiştirdim" listesi verir. |
-| **Tespit et** | Yeniden yazmaz; bulduğu kalıbın adını, kısa alıntıyı ve düzeltme yönünü bildirir. "AI mı yazdı?" sorusunda **yazarlık tahmini yapmaz**, yalnızca gözlenebilir kalıpları gösterir. |
+**Temizle (varsayılan).** Metni en az müdahaleyle yeniden yazar. Tam metni verir, altına neyi neden değiştirdiğini kısaca sıralar.
 
-## Öne çıkan özellikler
+**Tespit et.** Hiçbir şeyi yeniden yazmaz. Bulduğu her kalıbı adıyla ve kısa bir alıntıyla gösterir, düzeltme yönünü söyler. "Bunu yapay zekâ mı yazdı?" sorusuna kimin yazdığını tahmin ederek değil, yalnızca metinde görünen kalıpları sayarak yanıt verir.
 
-- **46 Türkçe kalıp** — teşhis ipucu, kör yasak listesi değil; bağlama göre uygulanır.
-- **Metin türü kapısı** — resmî yazı, akademik, hukuk ve teknik metinde *kasıtlı* kalıpları (edilgen çatı, "arz ederim", "işbu") kırmaz.
-- **Register/ton koruması** — sohbeti rapor ağzına çevirmez; devrik cümle, eksilti, doğrudan hitap, retorik soru ve günlük dolgu korunur.
-- **Uydurma yasağı** — metinde olmayan sayı, tarih, fail veya kaynağı asla eklemez; kanıtsız iddiayı işaretler ya da çıkarır.
-- **Sil ve yeniden bağla** — dolgu/bağlaç silince telgraf tonuna düşmez; akışı bağlaçla geri kurar.
-- **TDK kuralları** — kesme işareti, özne–yüklem virgülü, noktalı virgül, sayı/tarih yazımı.
-- **Şeffaflık** — "Ne değiştirdim" listesi ve zorunlu uzunluk (X→Y kelime) satırı.
+## Ne yapar, ne yapmaz
+
+Yapar:
+
+- Metnin türünü önce belirler. Resmî yazı, dilekçe, akademik makale ve sözleşmede o türe özgü kalıplar (edilgen çatı, "arz ederim", "işbu") bilinçlidir; onlara dokunmaz.
+- Sohbeti sohbet bırakır. Devrik cümleyi, günlük dolguyu, "bence" gibi yumuşatıcıları ve kişisel sesi rapor diline çevirmez.
+- Bir şey silerken yerine akış bırakır. Dolgu attığında cümleleri kopuk kopuk bırakmaz, bağlaçla toparlar.
+- Sadeleştirir, özetlemez. Kelime yükünü azaltır ama bilgi taşıyan cümleyi atmaz.
+
+Yapmaz:
+
+- Kod bloklarına, komutlara, tablolara ve teknik adlara karışmaz.
+- "commit", "pull request" gibi kavram adlarını çevirmez; yalnız "merge etmek" gibi plaza fiillerini Türkçeleştirir ("birleştirmek").
+- Metinde olmayan sayıyı, tarihi ya da iddiayı asla uydurmaz. Kanıtsız iddiayı ya işaretler ya da çıkarır.
+- Zaten doğal olan cümleyi güya iyileştirmek için ellemez.
 
 ## Kurulum
 
-Claude Code / Claude Desktop için skill klasörüne klonlayın:
+Beceri klasörüne klonlamak yeterli:
 
 ```bash
 git clone https://github.com/mesutbsdgn/turkce-ai-durulac.git ~/.claude/skills/turkce-ai-durulac
 ```
 
-Skill dizininiz farklıysa (örn. `~/.agents/skills/`) oraya klonlayın. Claude oturumu skili otomatik tanır.
+Beceri dizinin farklıysa (örneğin `~/.agents/skills/`) oraya klonla. Claude bir sonraki oturumda beceriyi kendiliğinden tanır.
 
 ## Kullanım
 
-Doğal dille çağırın ya da açıkça:
+Doğal dille istemen yeterli; dilersen adıyla da çağırabilirsin:
 
 ```
 /turkce-ai-durulac
 Şu metni sadeleştir: <metin>
 ```
 
-**Örnekler:**
+Birkaç örnek istek:
 
-- *"Bu duyuruyu insanlaştır, kurumsal kokusunu al"* → Temizle modu.
-- *"Bu paragraf yapay mı, kalıpları göster"* → Tespit modu (yeniden yazmaz).
-- *"Şu sohbet mesajını sadeleştir"* → sohbet tonu korunur, rapor ağzına çevrilmez.
-- *"Bu teknik dokümanı düzelt"* → kod, komut ve terimlere dokunmaz; yalnız düzyazıyı düzenler.
+- "Bu duyurunun kurumsal kokusunu al." Temizle biçiminde çalışır.
+- "Bu paragraf yapay mı, kalıpları göster." Tespit biçiminde çalışır, metne dokunmaz.
+- "Şu mesajı sadeleştir." Sohbet tonunu korur, resmîleştirmez.
+- "Bu teknik yazıyı düzelt." Kodu ve terimleri bırakır, yalnız düzyazıyı toparlar.
 
-## Neyi değiştirmez
+## Nasıl sınandı
 
-- Kod bloklarına, komutlara, tablolara ve teknik tanımlayıcılara **dokunmaz**.
-- Kavram adlarını (a commit, pull request, host) korur — yalnız "merge etmek → birleştirmek" gibi plaza **fiillerini** Türkçeleştirir.
-- Yazarın sözcük seçimini, mizahını, ritmini ve gündelik dilini korur.
-- Güçlü, doğal cümlelere dokunmaz ("en az değişiklik" ilkesi).
+Durulaç körü körüne "iyidir" denmedi; ölçüldü. İki farklı model (DeepSeek ve GPT-6 Luna) aynı metinleri hem beceriyle hem becerisiz temizledi, bağımsız bir model (Claude Sonnet) sonuçları kör puanladı. Ardından Claude Opus 4.8 beceriyi kırmızı takım gözüyle didikledi; bulduğu yedi eksik kapatıldı ve test aynı koşullarda yinelendi.
 
-## Nasıl doğrulandı
+Öğrendiklerimiz:
 
-Durulaç kör kabul edilmedi; **kontrollü deneylerle** ölçüldü. İki uygulayıcı model (DeepSeek, GPT-6 Luna) aynı metinleri hem skilsiz hem skille temizledi; bağımsız bir model (Claude Sonnet) körlemesine puanladı. Özet bulgular:
+- Becerinin asıl katkısı yalnızca kalıp silmek değil, güçlü bir modelin fazla düzeltmesini frenlemek. Modelin teknik terimi ya da sohbet tonunu bozmasını engelliyor.
+- Zayıf bir modelin gözünden kaçan boş sıfatları ve klişeleri yakalatıyor.
+- Uydurma yasağı hem uygulayan hem puanlayan modelce doğrulandı: üslup düzeliyor ama metne olgu eklenmiyor.
 
-- Skilin ölçülen asıl değeri **aşırı düzeltmeyi frenlemek**: güçlü modelin teknik terimi ve sohbet tonunu bozmasını engeller (teknik +10, sohbet +6 puan).
-- Kurumsal/yapay metinde zayıf uygulayıcının kaçırdığı boş sıfatları ve klişeleri yakalatır.
-- "Uydurma yasağı" hem model hem değerlendirici tarafından teyit edildi — üslup güçlense de olgu eklenmedi.
+Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Örneklem küçük ve puanlar bir modelin yargısı olduğundan sonuçlar kesin ölçü değil, yön gösterir.
 
-Ayrıntılı deney kayıtları: [`docs/deneyler.md`](docs/deneyler.md). *(Tek örneklik hücreler ve öznel puan içerdiğinden sonuçlar yön gösterir; büyüklük iddiası değildir.)*
+## Sınırları
 
-## Sınırlar (dürüst bölüm)
-
-- Etki **modele bağlıdır**: güçlü bir uygulayıcı (ör. DeepSeek) skilsiz de iyi olabilir; kurumsal metin temizliğinde güçlü uygulayıcı önerilir.
-- Skil bir **korkuluktur**, sihirli değnek değil: ölçtüğü hatayı temizler, üslup zevkini garanti etmez.
-- Son karar sizde: "Ne değiştirdim" listesini okuyup onaylayın.
+- Sonuç uygulayan modele bağlı. Güçlü bir model beceri olmadan da iyi yazabilir; kurumsal metin temizliğinde güçlü bir model önerilir.
+- Beceri bir korkuluktur, sihirli değnek değil. Aradığın hatayı temizler, ama güzel üslubu garanti etmez.
+- Son söz sende. Altındaki değişiklik listesini oku, onaylamadığını geri al.
 
 ## Katkı
 
-Yeni kalıp, sözlük eşlemesi veya karşı-örnek (yanlış düzeltme) önerileri için **issue** veya **pull request** açın. Her kalıp için "sorun + kötü örnek + iyi örnek" üçlüsü ve TDK dayanağı beklenir. Olgu uyduran örnek kabul edilmez.
+Yeni bir kalıp, sözlük eşlemesi ya da "şuna dokunmamalı" örneği önereceksen issue veya pull request aç. Her kalıp için sorunu, kötü bir örneği ve düzeltilmiş halini ver; dayanağını TDK'ye bağla. Metinde olmayan bir olguyu uyduran örnek kabul edilmez.
 
-## Lisans ve teşekkür
+## Lisans
 
-- Kod ve içerik **MIT** lisanslıdır ([LICENSE](LICENSE)).
-- Yapı [petergyang/no-ai-slop](https://github.com/petergyang/no-ai-slop) (MIT) esinlidir; İngilizce içerik kopyalanmadı, Türkçeye özgün yazıldı.
-- Mekanik eşleme sözlüğü [Denomas/Turkce-yazim-denetimi](https://github.com/Denomas/Turkce-yazim-denetimi) (MIT) kurallarından seçilip uyarlandı.
-- Dil bilgisi ve noktalama kuralları [TDK Yazım Kılavuzu](https://tdk.gov.tr/) temellidir.
+MIT ([LICENSE](LICENSE)).
 
-Ayrıntılı kaynak notları: [LICENSE-NOTES.md](LICENSE-NOTES.md).
+Yapısı [petergyang/no-ai-slop](https://github.com/petergyang/no-ai-slop) (MIT) projesinden esinlendi; İngilizce içerik kopyalanmadı, her şey Türkçeye özgün yazıldı. Değiştirme sözlüğü [Denomas/Turkce-yazim-denetimi](https://github.com/Denomas/Turkce-yazim-denetimi) (MIT) kurallarından seçilerek uyarlandı. Dil bilgisi ve noktalama [TDK Yazım Kılavuzu](https://tdk.gov.tr/) temel alındı. Ayrıntılı notlar: [LICENSE-NOTES.md](LICENSE-NOTES.md).
