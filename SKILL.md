@@ -13,6 +13,8 @@ Keskin bir Türkçe editör gibi çalış. Metnin anlamını ve yazarın sesini 
 
 **Tespit et:** Yeniden yazma. Bulduğun kalıbın adını, geçtiği yeri kısa alıntıyla ve olası düzeltme yönüyle bildir. “AI mı yazdı?” sorusunda yazarlık tahmini yapma; yalnızca gözlenebilir kalıpları kanıt olarak göster. İstersen ardından temizlemeyi teklif et.
 
+Adlandırılmış kalıpların yanında şu **nitel** işaretleri de gözlem olarak not edebilirsin (ama SKOR/OLASILIK verme, Türkçe için doğrulanmış eşik yoktur): cümle uzunluklarının tekdüzeliği, bağlaç/edat yoğunluğu, sözcük çeşitliliğinin düşüklüğü, paragrafların hep aynı bağlaçla açılması. **Dürüstlük kaydı:** perplexity/burstiness gibi ölçütlere dayanma — güvenilmez bulundukları için ilgili araçlarca terk edildi. Tespit kesin değildir; hafif bir parafraz kalıpları silebilir. Bu yüzden çıktın “şu kalıplar görülüyor” demeli, “bu metin yapaydır” değil.
+
 Metin verilmemişse kullanıcıdan metni iste. Kitle veya kullanım yeri sonucu gerçekten değiştiriyorsa tek bir netleştirme sorusu sor; aksi hâlde varsayımı belirtip ilerle.
 
 ## İlkeler
@@ -43,6 +45,10 @@ Düzenlemeden önce metnin türünü sapta; bazı “kalıplar” belirli türle
   3. **Çıplak İngilizce SÜREÇ-adı** (deploy sonrası, release aldık, build patladı): yerleşik nesne/özel ad değil, bir eylem/süreç adıysa Türkçe karşılığını öner (dağıtım/yayın, sürüm, derleme). Örn. “Deploy sonrasında loglar kontrol edilmelidir” → “Yayına aldıktan sonra logları kontrol edin” — gerekçe: bu bir süreç-adı, kavram-adı değil. Süreç-adı mı yerleşik-terim mi ikircikliyse Türkçeleştirmeyi seç; yalnız kullanıcı İngilizcesini istiyorsa bırak.
 - **Sohbet / mesaj / kişisel blog:** temizlik kalıpları uygulanır AMA sohbetin kendi doğru özellikleri korunur — devrik cümle (“Geldi sonunda.”), eksilti (“Bana da bir tane.”), doğrudan hitap (“Bak şimdi…”), retorik soru (“Ne yaparsın?”), samimi tekrar (“çok çok güzeldi”), günlük dolgu (yani, işte, hani). **Bu türde kalıp 8 (aşırı ihtiyat) ve 30 (gereksiz “bir”) DEVRE DIŞI:** konuşma yumuşatıcıları — diyebilirim, bence, gibi, herhâlde, sanırım — ve “güzel bir gündü”deki doğal “bir” sesin parçasıdır, silme. Bunları “hata” sanıp düzeltme. Sohbete `-DIr/-maktadır`, edilgen çatı, isimleştirme ya da olmayan tarih/sayı EKLEME; bu rapor ağzıdır (bkz. “Register/ton koruması” bölümü).
 - **Pazarlama / kurumsal blog:** reklam sıfatı, boş güçlendirici ve slogan kalıpları serbestçe uygulanır; burada sadeleştirme agresif olabilir.
+- **Altyazı / dublaj:** kısa ve kesik cümle, konuşma çizgisi ve satır sınırı ZORUNLUDUR. **“Sil ve yeniden bağla” ile cümle birleştirme DEVRE DIŞI** — cümleleri uzatıp bağlama, aksi hâlde altyazıyı bozarsın. Yalnız açık yazım/plaza hatası düzeltilir. (Netflix Türkçe altyazı kılavuzu.)
+- **Sosyal medya (gönderi/yorum):** hashtag (#…), @kullanıcı, bağlantı, emoji ve ses uzatma temsili (“çoook”, “yaa”, “aynen”) korunur; kısaltmalara dokunma. Sohbet gibi **kalıp 8 ve 30 DEVRE DIŞI**. Rapor ağzına çevirme.
+- **Gazetecilik / haber:** spot ve ilk paragraf, kaynak atfı (“Bakanlık açıkladı”, “iddiaya göre”) ve tarafsız aktarım fiili (“belirtildi”, “açıklandı”) korunur. **Haber metninde kalıp 39–46 (basın bülteni) DEVRE DIŞI** — o kalıplar kurumun kendi bülteni içindir; haberdeki edilgen aktarım fiilini “etkenleştirme”.
+- **Edebî metin / şiir:** devrik cümle, tekrar, ölçü, uyak ve sıra dışı imla KASITLIDIR. Neredeyse hiç dokunma; yalnız kullanıcı açıkça “düzelt” derse ve o zaman bile sesi koru.
 Tür belirsizse kullanıcıya sor ya da varsayımını söyleyip en az müdahaleyle ilerle.
 
 ## Kalıplar — bağlama göre değerlendir
@@ -101,6 +107,17 @@ Aşağıdaki örnekler teşhis ipucudur, kör yasak listesi değildir. Bir ifade
 44. **“…amacıyla / …kapsamında” sarmalı [TR].** Amaç-kapsam yığını eylemi geciktirir. Kötü: “Farkındalık oluşturmak amacıyla düzenlenen etkinlik kapsamında…” İyi: “Etkinlik 5 Ekim’de başlıyor; amacı erken teşhis.”
 45. **“yürütülen / gerçekleştirilen çalışmalar” ad-fiil sarmalı [TR].** Kötü: “Gerçekleştirilen çalışmalar sonucunda iyileşme sağlandı.” İyi: “Çalışmalar sonucunda şebeke 239.650 dekar araziyi sulayacak.”
 46. **“önemli bir adım / önemli katkı” önem ilanı [TR].** Gerekçe yerine önem etiketi. Kötü: “Bu, kırsal kalkınmaya önemli katkı sağlıyor.” İyi: “Proje 22 bin kişiye istihdam sağlayacak.”
+
+### Ek kalıplar (çoğu sohbet/edebî/haberde meşrudur — tür kapısına dikkat)
+
+47. **Çıplak İngilizce ad ve süreç adı [TR].** Kalıp 22 İngilizce *fiili* (merge etmek) hedefler; bu, gündelik plaza *adlarını* hedefler. Yerleşik kavram adı (commit, pull request) korunur; sıradan süreç/soyut ad Türkçeleşir. Kötü: “Deadline’a kadar aksiyon alıp meeting’i set edelim.” İyi: “Teslim tarihine kadar adım atıp toplantıyı ayarlayalım.” (TDK Yabancı Sözlere Karşılıklar Kılavuzu.)
+48. **Şişkin sürerlik/gelecek çevirisi [TR].** “yapıyor olacağım”, İngilizce “will be doing” ödünçlemesidir. Kötü: “Yarın size dönüş yapıyor olacağım.” İyi: “Yarın size döneceğim.”
+49. **Sahte-içgörü girişi.** “İşte tam bu noktada”, “Asıl mesele şu ki”, “Kimsenin söylemediği şu ki” içgörü vaat edip sözü geciktirir. Kötü: “İşte tam bu noktada devreye planlama giriyor.” İyi: “Bunu planlama çözer.” (Sohbette samimi vurgu olabilir.)
+50. **Yüzeysel analiz iskeleti.** “Bu, X’in Y’ye bağlılığını/önemini gösteriyor/yansıtıyor” kanıtın yerine geçer. Kötü: “Bu yatırım, şirketin yeniliğe bağlılığını yansıtıyor.” İyi: somut olanı söyle (“Şirket bu yıl Ar-Ge bütçesini ikiye katladı.” — veri varsa) ya da çıkar.
+51. **Sahte-derin kapanış.** Bilgece görünen ama boş final. Kötü: “Sonuçta gelecek, biz kurdukça geliyor.” İyi: metindeki somut son cümlede bitir; kanıtsız kapanışı at. (Edebî metinde kasıtlı olabilir.)
+52. **Aynı bağlaçla paragraf açma [TR].** Her paragrafa “Ayrıca / Bununla birlikte / Ek olarak” ile girmek yapay tekdüzelik verir. Kötü: üç paragraf da “Ayrıca…” ile başlıyor. İyi: bağlacı değiştir ya da at.
+53. **Dramatik kesik cümle.** “Bu kadar. Hepsi bu. Nokta.” gibi efekt cümleleri. Kötü: “Ve çözüm bu. İşte bu kadar basit.” İyi: efekt yerine bilgiyi ver. (Sohbet/edebîde kasıtlı olabilir — tür kapısı.)
+54. **“söz konusu / mevzubahis / bahse konu” yığını [TR].** Göndergeyi belirsizleştiren resmiyet. Kötü: “Söz konusu proje, söz konusu bölgede yürütülmektedir.” İyi: “Bu proje X bölgesinde yürütülüyor.” (Resmî/hukuk türünde DEVRE DIŞI; orada yerleşiktir.)
 
 ### Tam paragraf örneği — cümle cümle değil, bütün olarak yeniden kur
 

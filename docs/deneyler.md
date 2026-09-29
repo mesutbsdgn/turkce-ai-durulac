@@ -54,3 +54,16 @@ Aynı bataryayla ikinci tur (Sonnet /10 ortalama):
 | Qwen | 8.40 | **9.00** | +0.60 |
 
 Dilekçe aşırı düzenleme, "deploy" çevirisi, aşırı sıkıştırma, "biz" uydurma ve kalıp-yığma hatalarının tümü kapandı; regresyon gözlenmedi.
+
+## Deney 5 — Kapsam genişletme (4 tür kapısı + 8 kalıp) ve regresyon
+
+Araştırma turundan (kaynaklı: dergipark, TDK, no-ai-slop, Netflix altyazı kılavuzu) sonra eklenenler: altyazı, sosyal medya, haber ve edebî tür kapıları; 8 yeni kalıp (çıplak İngilizce ad/süreç, şişkin gelecek, sahte-içgörü girişi, yüzeysel analiz iskeleti, sahte-derin kapanış, paragraf-açılışı tekrarı, dramatik kesik cümle, "söz konusu" yığını); tespit modu nitel belirteçleri + perplexity dışlama ve "tespit kesin değildir" notu. **Okunabilirlik skoru bilinçli EKLENMEDİ** (LLM hece/kelime sayımı güvenilmez, sayı halüsinasyonu riski; formüller uzman görüşüyle tutarsız).
+
+Aynı 8 metin (regresyon) + 5 yeni metin (yeni kapılar), DeepSeek+Qwen, Sonnet /10:
+
+| Model | Önce (8 madde) | Sonra (8 madde) | Genel (13) |
+|-------|---:|---:|---:|
+| DeepSeek | 9.53 | 9.93 | 9.94 |
+| Qwen | 9.00 | 9.53 | 9.25 |
+
+Regresyon yok; DeepSeek yükseldi. Yeni kapılar doğrulandı (altyazı satırları birleştirilmez, sosyal medya işaretleri korunur, haberde basın-bülteni kalıpları uygulanmaz, edebî metne dokunulmaz, plaza adları Türkçeleşir). Qwen'in iki nokta hatası (geçersiz çekim, haber kapısı ihlali) model zayıflığıdır, skil kusuru değil; haber kapısı yine de "DEVRE DIŞI" sert filtresine çevrildi.
