@@ -51,7 +51,7 @@ Durulaç'tan sonra:
 
 > Müşteri memnuniyeti bizim için öncelikli, çünkü işimizin sürekliliği ona bağlı. Geçtiğimiz dönemde birçok projeyi tamamladık ve kullanıcılardan olumlu dönüşler aldık.
 
-Klişe giriş, "önem arz etmektedir", boş sıfat dizisi ve "bu bağlamda" gitti. Edilgen cümleler tek ve tutarlı bir "biz" sesine döndü, cümleler bağlaçla akıtıldı. Kanıtı olmayan "fark yarattık" iddiası ise silindi, çünkü metinde onu destekleyen bir veri yoktu. Hiçbir sayı ya da olgu eklenmedi.
+Klişe giriş, "önem arz etmektedir", boş sıfat dizisi ve "bu bağlamda" çıkarıldı. Edilgen cümleler tek ve tutarlı bir "biz" sesine döndü; kopuk kalanlar bağlaçla birbirine bağlandı. "Fark yarattık" iddiası kanıtı olmadığı için silindi; metinde onu destekleyen veri yoktu. Hiçbir sayı ya da olgu eklenmedi.
 
 ## İki çalışma biçimi
 
