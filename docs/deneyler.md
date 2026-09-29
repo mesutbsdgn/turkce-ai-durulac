@@ -67,3 +67,16 @@ Aynı 8 metin (regresyon) + 5 yeni metin (yeni kapılar), DeepSeek+Qwen, Sonnet 
 | Qwen | 9.00 | 9.53 | 9.25 |
 
 Regresyon yok; DeepSeek yükseldi. Yeni kapılar doğrulandı (altyazı satırları birleştirilmez, sosyal medya işaretleri korunur, haberde basın-bülteni kalıpları uygulanmaz, edebî metne dokunulmaz, plaza adları Türkçeleşir). Qwen'in iki nokta hatası (geçersiz çekim, haber kapısı ihlali) model zayıflığıdır, skil kusuru değil; haber kapısı yine de "DEVRE DIŞI" sert filtresine çevrildi.
+
+## Deney 6 — Sözlük derinleştirme (A/B)
+
+Değiştirme sözlüğüne yeni bir **eş dizim (kalıp 27) bölümü** (12 madde, hepsi "bağlama göre" notlu) ve eksik plaza adları eklendi. Kaynak niyeti Mersin Eşdizim Sözlüğü + TDK Karşılıklar; araştırma arka ucu geçici olarak çökük olduğundan maddeler yerleşik kullanımdan elle kürasyonla derlendi (web-kaynaklı sürüm sonraya ertelendi).
+
+A/B testi (eş dizim + plaza stresine ve yanlış-pozitif tuzağına odaklı 7 metin; uygulayıcı Codex/Luna, puan Sonnet): **A = eski sözlük, B = aday sözlük.**
+
+| Sürüm | Ort. /10 |
+|-------|---------:|
+| A (eski) | 8.07 |
+| B (aday) | **9.07** |
+
+B kazandı: yeni eş dizim maddeleri "başarıya imza atmak → başarı elde etmek" ve "süreç yaşamak → süreçten geçmek" gibi düzeltmeleri yakalattı; kritik olarak "değer üretmek" ekonomi bağlamında **korundu** ([bağlama bağlı] notu yanlış-pozitifi önledi). Resmî/sohbet/temiz metinlerde regresyon yok. **Genişletilmiş sözlük son sürüm oldu.**

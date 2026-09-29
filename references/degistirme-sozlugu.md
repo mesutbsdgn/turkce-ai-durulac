@@ -101,6 +101,35 @@
 - `task` → `görev`
 - `backlog` → `iş listesi`
 - `touchbase yapmak` → `görüşmek`
+- `revize etmek` → `gözden geçirmek` / `düzeltmek`
+- `update etmek` → `güncellemek`
+- `mail atmak` → `e-posta göndermek`
+- `note etmek` → `not almak`
+- `schedule etmek` → `planlamak` / `programlamak`
+- `sync olmak` → `uyum sağlamak` / `eşgüdüm sağlamak`
+- `brief` → `bilgi notu` / `özet`  [bağlama bağlı]
+- `agenda` → `gündem`
+- `output` → `çıktı`
+- `input` → `girdi`  [bağlama bağlı]
+- `takeaway` → `çıkarım` / `ders`  [bağlama bağlı]
+- `prezentasyon` → `sunum`
+
+## Eş dizim düzeltmeleri (kalıp 27 — fiil/ad birlikteliği)
+
+> Bunlar KÖR değildir: yalnız eş dizim gerçekten yerleşikken uygula. Doğal ama nadir bir birlikteliği “yanlış” sayma. Şüphedeysen dokunma.
+
+- `etki üretmek` → `etki yaratmak`
+- `değer üretmek` → `değer yaratmak`  [bağlama bağlı: ekonomi metninde “değer üretmek” yerleşiktir]
+- `katkı yapmak` → `katkıda bulunmak` / `katkı sağlamak`
+- `katkı koymak` → `katkıda bulunmak`
+- `sorun teşkil etmek` → `sorun oluşturmak` / `sorun olmak`
+- `başarıya imza atmak` → `başarı elde etmek` / `başarı kazanmak`  [bağlama bağlı]
+- `süreç yaşamak` → `süreçten geçmek`
+- `beklenti içinde olmak` → `beklemek`  [bağlama bağlı]
+- `çaba sarf etmek` → `çaba göstermek` / `çabalamak`
+- `öncelik arz etmek` → `öncelikli olmak`
+- `ihtiyaç hâsıl olmak` → `ihtiyaç doğmak` / `gerekmek`
+- `karar çıkarmak` → `karar almak`  [bağlama bağlı]
 
 ## İngilizce terim (yalnız kullanıcı isterse; teknik metinde DOKUNMA)
 
