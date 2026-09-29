@@ -4,7 +4,7 @@
 
 # Durulaç
 
-### Yapay zekâ ve resmiyet kokan Türkçeyi, anlamını bozmadan berraklaştırır.
+### Türkçeyi durulaştırır: yapaylığı ve resmiyeti alır, anlamı ve sesini bırakır.
 
 ![Lisans](https://img.shields.io/badge/lisans-MIT-blue) ![Claude](https://img.shields.io/badge/Claude-skill-8A63D2) ![Dil](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-e30a17) ![TDK](https://img.shields.io/badge/kurallar-TDK-informational)
 
