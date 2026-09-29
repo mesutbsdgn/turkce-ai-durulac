@@ -16,7 +16,7 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 
 ## İçindekiler
 
-- [Sorun: Türkçenin kendi yapaylığı](#sorun-türkçenin-kendi-yapaylığı)
+- [Sorun: yapay dil Türkçede başka türlü görünür](#sorun-yapay-dil-türkçede-başka-türlü-görünür)
 - [Bir örnek](#bir-örnek)
 - [İki çalışma biçimi](#i̇ki-çalışma-biçimi)
 - [Ne yapar, ne yapmaz](#ne-yapar-ne-yapmaz)
@@ -27,11 +27,11 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 - [Katkı](#katkı)
 - [Lisans](#lisans)
 
-## Sorun: Türkçenin kendi yapaylığı
+## Sorun: yapay dil Türkçede başka türlü görünür
 
-Hazır "humanizer" araçları İngilizceye göre yazılmıştır. Onların avladığı şeyler bizde pek işe yaramaz: aşırı uzun çizgi, "X is the Y of Z" kalıbı, birtakım İngilizce dolgu sözcükleri.
+Yapaylık Türkçenin kendinde değil; yapay zekânın ve bürokrasinin ürettiği metinde. Üstelik bu metinlerin bıraktığı izler İngilizcedekinden farklıdır. Hazır "humanizer" araçları İngilizceye göre yazılmıştır; onların avladığı şeyler bizde pek işe yaramaz: aşırı uzun çizgi, "X is the Y of Z" kalıbı, birtakım İngilizce dolgu sözcükleri.
 
-Türkçede yapaylık başka yerden sızar:
+Yapay zekâ ve bürokrasi, Türkçede kendini başka yerlerden belli eder:
 
 - İsimleştirme ve şişkin fiiller: "iyileştirilmesi amacıyla optimizasyonlar gerçekleştirilmiştir"
 - Bürokratik edatlar: "hususunda", "nezdinde", "bu bağlamda"
@@ -39,7 +39,7 @@ Türkçede yapaylık başka yerden sızar:
 - Her konuya uyan klişe girişler: "Günümüzün hızlı tempolu dünyasında..."
 - Failini gizleyen edilgen cümleler ve boş vaatler: "hedeflenmektedir", "sağlanmış olup"
 
-Durulaç bunları hazır bir listeyi çevirerek değil, Türkçeye göre ve TDK kurallarına dayanarak temizler.
+Durulaç bu izleri hazır bir listeyi çevirerek değil, Türkçeye göre ve TDK kurallarına dayanarak temizler.
 
 ## Bir örnek
 
