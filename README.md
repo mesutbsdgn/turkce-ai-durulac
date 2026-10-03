@@ -18,7 +18,7 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 
 - [Sorun: yapay dil Türkçede başka türlü görünür](#sorun-yapay-dil-türkçede-başka-türlü-görünür)
 - [Bir örnek](#bir-örnek)
-- [İki çalışma biçimi](#i̇ki-çalışma-biçimi)
+- [Üç çalışma biçimi](#üç-çalışma-biçimi)
 - [Ne yapar, ne yapmaz](#ne-yapar-ne-yapmaz)
 - [Kurulum](#kurulum)
 - [Kullanım](#kullanım)
@@ -53,7 +53,7 @@ Durulaç'tan sonra:
 
 Klişe giriş, "önem arz etmektedir", boş sıfat dizisi ve "bu bağlamda" çıkarıldı. Edilgen cümleler tek ve tutarlı bir "biz" sesine döndü; kopuk kalanlar bağlaçla birbirine bağlandı.
 
-## İki çalışma biçimi
+## Üç çalışma biçimi
 
 **Temizle (varsayılan).** Metni en az müdahaleyle yeniden yazar. Tam metni verir, altına neyi neden değiştirdiğini kısaca sıralar.
 
