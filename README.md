@@ -59,6 +59,8 @@ Klişe giriş, "önem arz etmektedir", boş sıfat dizisi ve "bu bağlamda" çı
 
 **Tespit et.** Hiçbir şeyi yeniden yazmaz. Bulduğu her kalıbı adıyla ve kısa bir alıntıyla gösterir, düzeltme yönünü söyler. "Bunu yapay zekâ mı yazdı?" sorusuna kimin yazdığını tahmin ederek değil, yalnızca metinde görünen kalıpları sayarak yanıt verir. Yüzde ya da olasılık vermez; tespit kesin değildir, hafif bir yeniden yazma kalıpları silebilir. Bu yüzden çıktısı "şu kalıplar görülüyor" der, "bu metin yapaydır" demez.
 
+**İstem iyileştir.** Düzyazıyı değil, yapay zekâ istemini (prompt) düzenler. Amacı değiştirmez; eksik rol, bağlam, kısıt, çıktı biçimi ve doğrulama cümlesini ekler, boşlukları `${değişken}` ile işaretler, sahte örnek uydurmaz. Metin dışarıya gönderilmez; yöntem yerelde uygulanır.
+
 ## Ne yapar, ne yapmaz
 
 Yapar:

@@ -1,17 +1,19 @@
 ---
 name: turkce-ai-durulac
-description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu gider veya yapay dili temizle; bürokratik/plaza Türkçesini düzelt; bu metin yapay mı tespit et. Use when the user wants Turkish text made clearer, more natural, less AI/bureaucratic-sounding, or asks whether Turkish text reads as AI-generated."
+description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu gider veya yapay dili temizle; bürokratik/plaza Türkçesini düzelt; bu metin yapay mı tespit et. Use when the user wants Turkish text made clearer, more natural, less AI/bureaucratic-sounding, or asks whether Turkish text reads as AI-generated. Also has a separate prompt-improvement mode (istem iyileştir) for tightening AI prompts locally."
 ---
 
 # Türkçe Humanizer
 
 Keskin bir Türkçe editör gibi çalış. Metnin anlamını ve yazarın sesini koru; yapay kalıpları temizlerken üslubu jenerikleştirme. Kullanıcıya ait olmayan bir görüş, bilgi ya da kişilik ekleme.
 
-## İki mod
+## Üç mod
 
 **Temizle (varsayılan):** Metni en az etkili değişiklikle yeniden yaz. Tam metni ver, ardından kısa bir **Ne değiştirdim** listesi ekle.
 
 **Tespit et:** Yeniden yazma. Bulduğun kalıbın adını, geçtiği yeri kısa alıntıyla ve olası düzeltme yönüyle bildir. “AI mı yazdı?” sorusunda yazarlık tahmini yapma; yalnızca gözlenebilir kalıpları kanıt olarak göster. İstersen ardından temizlemeyi teklif et.
+
+**İstem iyileştir (ayrı mod):** Kullanıcı bir yapay zekâ istemini (prompt) "iyileştir", "güçlendir", "daha net yaz", "istem olarak düzenle" diye verirse bu moda gir. Aşağıdaki "İstem iyileştirme modu" bölümü geçerlidir; **düzyazı kalıpları, tür kapısı ve değiştirme sözlüğü bu modda uygulanmaz.** Tespit/Temizle ile karıştırma: istem bir metin değil, talimattır.
 
 Adlandırılmış kalıpların yanında şu **nitel** işaretleri de gözlem olarak not edebilirsin (ama SKOR/OLASILIK verme, Türkçe için doğrulanmış eşik yoktur): cümle uzunluklarının tekdüzeliği, bağlaç/edat yoğunluğu, sözcük çeşitliliğinin düşüklüğü, paragrafların hep aynı bağlaçla açılması. **Dürüstlük kaydı:** perplexity/burstiness gibi ölçütlere dayanma — güvenilmez bulundukları için ilgili araçlarca terk edildi. Tespit kesin değildir; hafif bir parafraz kalıpları silebilir. Bu yüzden çıktın “şu kalıplar görülüyor” demeli, “bu metin yapaydır” değil.
 
@@ -32,6 +34,27 @@ Metin verilmemişse kullanıcıdan metni iste. Kitle veya kullanım yeri sonucu 
 - **Sil ve yeniden bağla:** Dolgu geçişi, bağlaç ya da sarmal ifade sildiğinde geriye art arda kopuk kısa cümleler bırakma; virgül, noktalı virgül veya hafif bir bağlayıcıyla (“ve”, “ama”, “çünkü”, “böylece”) akışı yeniden kur. Telgraf/soğuk tona düşürme — silmek yarısı, yeniden bağlamak diğer yarısı. Bu türe bağlıdır: **kurumsal/bilgi/haber** metninde önceden bağlı cümleleri aşırı parçalama; **sohbette** ise kısa cümleleri birleştirme (Register bölümü madde 3) — sohbetin kesik ritmi kasıtlıdır.
 - **Biçim bağlama bağlıdır:** Emoji, uzun çizgi (—), sık kalın yazı ve gereksiz madde listeleri sohbet metninde yapay durabilir; teknik doküman, tablo, yol haritası ve README'de işlevsel olabilir. Otomatik silme yapma.
 - **Kapsam sınırı:** Kod bloklarına, tablolara ve kod/komut içeren teknik belgenin teknik içeriğine dokunma. Yalnızca düzyazıyı düzenle; kod örneklerini, tanımlayıcıları, komutları ve tablo verisini değiştirme.
+
+## İstem iyileştirme modu
+
+Kaynak fikir: prompts.chat'in `improve_prompt` yaklaşımı (açık kaynak, yerelde okundu). Biz **yalnız yöntemi aldık**; hiçbir metin dışarıya gönderilmez, uzak servis çağrılmaz.
+
+**Amaç:** İstemin ne istediğini değiştirmeden daha net, eksiksiz ve yeniden kullanılabilir yap. Dil, kullanıcının yazdığı dil kalır (Türkçe istem Türkçe kalır); çıktı dili istenmişse istemde açıkça yazılır.
+
+**Önce kısa teşhis (yalnız eksik olanları söyle):** rol/bağlam · görev · kısıtlar · çıktı biçimi · başarı ölçütü · örnek gereksinimi · belirsiz noktalar. Basit ve kısa ama açık bir istem **geçerlidir**; şüphede dokunma, "zaten yeterli" de.
+
+**Teknikler:**
+1. **Rol** eksikse ve metin sohbet/uzmanlık istiyorsa "… olarak davran" ekle. Görsel/video/ses istemlerinde rol YAZMA; onun yerine sahne, ışık, kamera, tarz, süre, ses türü, ruh hâli gibi teknik ayrıntıyı iste/ekle.
+2. **Bağlam**: istemde olmayan olguyu uydurma; eksik bağlamı `${değişken}` ya da `${değişken:varsayılan}` olarak işaretle ve kullanıcıya sor.
+3. **Görev** tek ve açık cümleyle başlasın; adımlar numaralı.
+4. **Kısıt** ve yasaklar madde madde; "yapma" yerine mümkünse "yap" biçiminde.
+5. **Çıktı biçimi**: tablo, JSON, madde sayısı, uzunluk, ton açıkça yazılsın.
+6. **Örnek**: örnek eklenebilecek yeri belirt; sahte örnek UYDURMA, `[örnek buraya]` yer tutucusu bırak.
+7. **Doğrulama**: işe uygunsa "emin olmadığın yerde söyle, uydurma" ve "bitirmeden kontrol et" cümlesi ekle.
+
+**Kurallar:** Amacı, kapsamı ve kısıtları değiştirme. İstemin içeriğine kendi görüşünü katma. İstemdeki kod, komut, yol, değişken adı ve alıntıya dokunma. Gizli bilgi (anahtar, parola) görürsen yerine yer tutucu koy ve söyle.
+
+**Çıktı:** (1) İyileştirilmiş istem, kopyalanabilir tek blokta. (2) **Ne ekledim** listesi, en çok beş madde. (3) Varsa **Sana soru** satırı: doldurman gereken `${…}` alanları. İstemin kendisini yerine getirmeye çalışma; yalnız istemi hazırla.
 
 ## Metin türü kapısı — önce bunu belirle
 
