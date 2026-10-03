@@ -80,3 +80,28 @@ A/B testi (eş dizim + plaza stresine ve yanlış-pozitif tuzağına odaklı 7 m
 | B (aday) | **9.07** |
 
 B kazandı: yeni eş dizim maddeleri "başarıya imza atmak → başarı elde etmek" ve "süreç yaşamak → süreçten geçmek" gibi düzeltmeleri yakalattı; kritik olarak "değer üretmek" ekonomi bağlamında **korundu** ([bağlama bağlı] notu yanlış-pozitifi önledi). Resmî/sohbet/temiz metinlerde regresyon yok. **Genişletilmiş sözlük son sürüm oldu.**
+
+## Deney 7 — Finans eklentisi (v1.3)
+
+Eklenenler: tür kapısına dört alt türlü finans türü (yasal ibare, müşteri bilgilendirmesi, yatırım/pazarlama, iç yazışma), `references/finans-terimleri.md` (AYNEN / SADE / TR sınıflı 67 terim), `references/finans-mevzuat.md`, `scripts/okunabilirlik.py` ve `eval.md`'ye 12 finans vakası. Deney 5'te okunabilirlik skoru, modelin hece ve sözcük sayımına güvenilemediği için eklenmemişti. Bu sürümde sayımı model değil betik yapıyor; model yalnız betiğin çıktısını aktarıyor.
+
+**Tur 1 — kör uygulama ve inceleme (GPT-6 Luna).** Uygulayıcı `eval.md`'yi görmeden 15 metni işledi (10 finans, 5 gerileme: dilekçe, sohbet, teknik, kurumsal). Ayrı bir Luna koşusu betiği ve kuralları inceledi. Bulgular:
+
+| Bulgu | Kaynak | Düzeltme |
+|---|---|---|
+| Sayı denetimi para birimi, eksi işareti ve "milyon" değişikliğini kaçırıyordu ("1.250,00 USD" → "TL" geçiyordu) | inceleme | Değer artık işaret, birim, yüzde ve ölçekle birlikte karşılaştırılıyor |
+| Cümle bölücü "Dr.", "A.Ş.", "md. 5", "3. çeyrek" noktalarında bölüyordu (3 cümle → 6) | inceleme | Kısaltma listesi ve sıra sayısı kuralı |
+| Ateşman 100'ü aşınca "çok kolay" deniyordu | inceleme | "Ölçek dışı" etiketi |
+| Mevzuat notunda yanlış düzenleme adı (03.10.2014 metni BDDK ücretler yönetmeliğiydi; güncel karşılığı TCMB Tebliği 2020/7) ve fazla geniş kapsam | inceleme; Resmî Gazete'den doğrulandı | Ad, sayı ve kapsam düzeltildi |
+| Bir eval vakası kendi sayı denetimini geçmiyordu | inceleme | Beklenen çıktı düzeltildi |
+| Yasak vaat silinince metinde olmayan çağrı uyduruldu ("Yeni fonumuzu inceleyin") | uygulama | Kural: geriye bilgi kalmazsa özü bırak, yeni cümle ekleme |
+| EBITDA → FAVÖK çevrildi | uygulama | Kural: kısaltma başka kısaltmaya çevrilmez |
+| Dayanaksız "istikrarlı performans" işaretlenmedi | uygulama | Yatırım türünde zorunlu **Uyum notu** alanı |
+| Bilgisiz kapanış yerine yeni dolgu konuldu ("Sizi bilgilendiriyoruz") | uygulama | Kural ve eval vakası 12 |
+
+Gerileme metinlerinde (dilekçe, sohbet, "deploy", kurumsal slogan) davranış değişmedi.
+
+**Tur 2–4 — yineleme (GPT-6 Luna, kör).** Sorunlu vakalar yeniden işlendi. Zorunlu uyarının ikinci cümlesinin de değiştirildiği görüldü ("ile" → "ve", "sunulmaktadır" → "sunulur"); kural "uyarı bloğu harfi harfine kalır" diye netleştirildi. Son turda: uyarı bloğu aynen kaldı, performans iddiası uyum notunda TBB gerekçesiyle işaretlendi, kart mektubu üç kısa cümleye bölündü ve sayı denetimi "tamam" verdi (Ateşman 36,6 → 71,6).
+
+Sınır: Luna aynı vakada turdan tura farklı karar verebildi (performans iddiası bir turda işaretlendi, ötekinde işaretlenmedi). Zorunlu çıktı alanı bu oynaklığı azaltmak için eklendi; tek koşu sonucu kesin ölçü değildir.
+

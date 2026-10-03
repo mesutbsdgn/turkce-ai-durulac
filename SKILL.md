@@ -1,6 +1,6 @@
 ---
 name: turkce-ai-durulac
-description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu gider veya yapay dili temizle; bürokratik/plaza Türkçesini düzelt; bu metin yapay mı tespit et. Use when the user wants Turkish text made clearer, more natural, less AI/bureaucratic-sounding, or asks whether Turkish text reads as AI-generated. Also has a separate prompt-improvement mode (istem iyileştir) for tightening AI prompts locally."
+description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu gider veya yapay dili temizle; bürokratik/plaza Türkçesini düzelt; bu metin yapay mı tespit et. Use when the user wants Turkish text made clearer, more natural, less AI/bureaucratic-sounding, or asks whether Turkish text reads as AI-generated. Has a finance mode: recognizes bank/insurance/investment/corporate-finance text, keeps legal terms, figures and mandatory warnings intact, simplifies customer notices, flags prohibited return promises, and scores readability (Ateşman, Bezirci-Yılmaz). Also has a separate prompt-improvement mode (istem iyileştir) for tightening AI prompts locally."
 ---
 
 # Türkçe Humanizer
@@ -72,7 +72,33 @@ Düzenlemeden önce metnin türünü sapta; bazı “kalıplar” belirli türle
 - **Sosyal medya (gönderi/yorum):** hashtag (#…), @kullanıcı, bağlantı, emoji ve ses uzatma temsili (“çoook”, “yaa”, “aynen”) korunur; kısaltmalara dokunma. Sohbet gibi **kalıp 8 ve 30 DEVRE DIŞI**. Rapor ağzına çevirme.
 - **Gazetecilik / haber:** spot ve ilk paragraf, kaynak atfı (“Bakanlık açıkladı”, “iddiaya göre”) ve tarafsız aktarım fiili (“belirtildi”, “açıklandı”) korunur. **Haber metninde kalıp 39–46 (basın bülteni) DEVRE DIŞI** — o kalıplar kurumun kendi bülteni içindir; haberdeki edilgen aktarım fiilini “etkenleştirme”.
 - **Edebî metin / şiir:** devrik cümle, tekrar, ölçü, uyak ve sıra dışı imla KASITLIDIR. Neredeyse hiç dokunma; yalnız kullanıcı açıkça “düzelt” derse ve o zaman bile sesi koru.
+- **Finans (banka, sigorta, yatırım, şirket finansı):** önce aşağıdaki dört alt türden hangisi olduğunu belirle; ayrıntı “Finans metinleri” bölümünde.
 Tür belirsizse kullanıcıya sor ya da varsayımını söyleyip en az müdahaleyle ilerle.
+
+## Finans metinleri
+
+Finans metninde iki yönlü hata riski var: yasal olarak aynen kalması gereken bir cümleyi değiştirmek ya da müşteriye giden karışık bir metni yeterince sadeleştirmemek. Mevzuat müşteri bilgilendirmesinin “açık, sade ve okunabilir” olmasını zorunlu tutar (dayanaklar: [`references/finans-mevzuat.md`](references/finans-mevzuat.md)). Terimlerin sade karşılığı ve hangisinin dokunulmaz olduğu: [`references/finans-terimleri.md`](references/finans-terimleri.md).
+
+**Her alt türde geçerli sert kurallar:**
+- Rakam, tutar, oran, yüzde, tarih ve vade aynen kalır; biçimi de (binlik nokta, ondalık virgül, ₺/TL ve % yeri). “1.250,00 TL” → “1.250 TL” bile değişikliktir.
+- Terimler listesinde **AYNEN** işaretli terimin sözcüğü değişmez (yıllık maliyet oranı, KKDF, BSMV, kâr payı, gecikme faizi…). Müşteri metninde gerekiyorsa ilk geçişte parantez içinde kısa açıklama eklenebilir.
+- Koşul düşmez: “ödenmemesi hâlinde” → “ödemezseniz” olabilir; koşulu silmek olmaz.
+- Zorunlu uyarı ve bildirim cümleleri (risk uyarısı, “yatırım danışmanlığı kapsamında değildir”, “geçmiş getiri gelecek getirinin göstergesi değildir”, cayma hakkı) silinmez, kısaltılmaz, sadeleştirilmez. Uyarı birden çok cümleyse **bütün blok** harfi harfine kalır: “Yatırım danışmanlığı hizmeti … sözleşmesi çerçevesinde sunulmaktadır.” cümlesinde “ile”yi “ve”ye, “sunulmaktadır”ı “sunulur”a çevirmek de değişikliktir. Pazarlama cümlelerini düzenle, uyarı bloğunu kopyala.
+- Metinde olmayan oran, tutar, ücret ya da güvence ekleme. Uyum kararı verme; riskli ifadeyi işaretle ve uyum birimine sorulmasını söyle.
+
+**Dört alt tür:**
+1. **Yasal ibare ve bildirim** (KAP özel durum açıklaması, sözleşme hükmü, risk bildirim formu, zorunlu uyarı metni): hukuk türü gibi davran. **Varsayılan 0 değişiklik**; yalnız açık yazım/noktalama hatası. Kullanıcı sadeleştirme isterse metni yeniden yazma; tespit modunda hangi ifadenin müşteri için zor olduğunu söyle ve metnin yasal ibare olduğunu hatırlat.
+2. **Müşteri bilgilendirmesi** (banka/sigorta mektubu, SMS, e-posta, hesap özeti notu, uygulama bildirimi): **cesur sadeleştir.** Uzun cümleyi böl, isimleştirmeyi fiile çevir (“tahakkuk ettirilmiştir” → “işledi”), edilgeni müşteriye hitaba çevir (“ödenmesi gerekmektedir” → “ödeyin”), içi boş kapanışı (“Bilgilerinize sunarız”, “tarafınıza bilgi verilmektedir”) at ve yerine yeni dolgu (“Sizi bilgilendiriyoruz”) koyma. Tek uzun cümlede birden çok bilgi varsa (tutar, tarih, koşul, sonuç) her bilgiye kısa bir cümle ver. SADE işaretli terimi sade karşılığıyla değiştir. Ses: 2. çoğul “siz”, nazik ama doğrudan.
+   - Önce: “Kredi kartınıza tahakkuk ettirilen akdi faiz tutarı hesap özetinize yansıtılmıştır.”
+   - Sonra: “Kartınıza işleyen sözleşme faizi hesap özetinize eklendi.” (“akdi faiz” → “sözleşme faizi”: yalnız “faiz” demek gecikme faiziyle karıştırır.)
+3. **Yatırım içeriği ve pazarlama** (fon tanıtımı, kampanya, bülten, sosyal medya gönderisi): pazarlama kalıpları uygulanır, ayrıca **yasak vaat taraması** yapılır. “garantili getiri”, “kesin kazanç”, “risksiz”, “zarar etmezsiniz”, “kaçırılmayacak fırsat”, “en yüksek getiri” (kanıtsız) gibi ifadeleri her modda **ayrı başlık altında** işaretle: “SPK III-37.1 açısından riskli olabilir”. Temizle modunda bu ifadeyi kendiliğinden başka bir vaatle değiştirme; vaadi çıkar ve metinde varsa somut bilgiyi (geçmiş dönem getirisi, tarih aralığıyla) bırak. Geriye bilgi kalmıyorsa metnin kendi özünü bırak (“Yeni fonumuz.”) ya da metni yeniden yazmadan kullanıcıya dön; metinde olmayan çağrı ya da cümle (“Fonumuzu inceleyin”) EKLEME. Dayanaksız performans iddiası (“istikrarlı performans”, “güvenli liman”, “yüksek getiri”) yasak vaat değildir ama aynı başlıkta işaretlenir: dönem ve oran yoksa abartılı ya da yanıltıcı olabilir (TBB etik ilkeleri). Risk uyarısı asla silinmez.
+   - **Zorunlu çıktı alanı:** bu alt türde, Temizle modunda da, **Ne değiştirdim** listesinden sonra her zaman bir **Uyum notu** ver: her yasak vaadi ve her dayanaksız performans iddiasını alıntıyla, “SPK III-37.1” ya da “TBB etik ilkeleri” gerekçesiyle tek satırda yaz; hiçbiri yoksa “Uyum notu: işaretlenecek ifade yok.” yaz. Alanı atlamak hatadır.
+4. **İç yazışma ve rapor** (ekip e-postası, yönetim raporu, bütçe notu): plaza İngilizcesini Türkçeleştir (terimler listesinde **TR** işaretli: “cash flow'u forecast'leyelim” → “nakit akışını tahmin edelim”). Yerleşik kısaltmalar kalır (EBITDA/FAVÖK, KDV, SGK); birini ötekine de çevirme (EBITDA → FAVÖK yapma); “P&L” gibi plaza kısaltması ise Türkçeleşir (“gelir tablosu”). Muhasebe terimleri (tahakkuk, mutabakat, bilanço) iç raporda doğru kullanımdır, sadeleştirme.
+
+Alt tür belirsizse (ör. müşteriye giden sözleşme özeti) daha korumalı olanı seç ve varsayımını söyle.
+
+**Ölçüm:** Müşteri bilgilendirmesini sadeleştirdiysen önce/sonra puanını ve sayı denetimini çalıştır:
+`python3 scripts/okunabilirlik.py once.txt sonra.txt` (Ateşman yükselmeli, Bezirci–Yılmaz düşmeli; “Sayı koruma: SORUN” çıkarsa düzenlemeyi düzelt). Puanı **Ne değiştirdim** listesine yaz; kısa metinde (3 cümleden az) puanın oynak olduğunu belirt. Betik çalıştırılamıyorsa puan uydurma. Metinleri dosyaya yaz; kabukta tırnak içine gömmek kesme işaretini bozup yanlış alarm verebilir. “Sayı koruma: SORUN” çıkarsa önce listelenen değeri iki metinde gözle karşılaştır: gerçekten değiştiyse düzelt; değer aynı ama yazılışı farklıysa (ör. “%4,25” → “yüzde 4,25”) özgün yazılışa dön.
 
 ## Kalıplar — bağlama göre değerlendir
 
@@ -195,4 +221,4 @@ Sadeleştirmenin yanında şu somut kuralları da uygula; hepsi TDK yazım kural
 
 ## Başvuru dosyaları
 
-Mekanik eşlemeleri bağlama göre seçmek için [`references/degistirme-sozlugu.md`](references/degistirme-sozlugu.md) dosyasına; son okumada [`eval.md`](eval.md) dosyasına bak.
+Mekanik eşlemeleri bağlama göre seçmek için [`references/degistirme-sozlugu.md`](references/degistirme-sozlugu.md) dosyasına; son okumada [`eval.md`](eval.md) dosyasına bak. Finans metninde ayrıca [`references/finans-terimleri.md`](references/finans-terimleri.md), [`references/finans-mevzuat.md`](references/finans-mevzuat.md) ve [`scripts/okunabilirlik.py`](scripts/okunabilirlik.py).
