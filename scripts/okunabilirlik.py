@@ -20,6 +20,7 @@ aynı mı (işaret, para birimi, yüzde ve bin/milyon ölçeği dâhil)?
 Biçim de karşılaştırılır: "1.250,00" ile "1.250" farklı sayılır. Bir değer kaybolduysa ya da değiştiyse çıkış kodu 1 olur.
 """
 import math
+import os
 import re
 import sys
 from collections import Counter
@@ -39,8 +40,9 @@ KISALTMA = {
 TARIH = r"\d{1,2}[./]\d{1,2}[./]\d{2,4}"
 SAYI = re.compile(
     r"(?<![\w.,])(?:" + TARIH + r"|"
+    r"(?:(?<![\d\w])[-−+])?"                              # işaret birimden önce: -%4,25
     r"(?:(?:[₺$€]|%|(?:TL|USD|EUR)\s)\s?)?"             # önde birim: ₺1.250, %4,25
-    r"(?:(?<![\d\w])[-−+])?"                              # işaret (10-20 aralığı hariç)
+    r"(?:(?<![\d\w])[-−+])?"                              # işaret birimden sonra: %-4,25 (10-20 aralığı hariç)
     r"\d+(?:[.,]\d+)*"
     r"(?:\s?%)?"                                          # 4,25%
     r"(?:\s?(?:bin|milyon|milyar|trilyon)(?![a-zçğıöşü]))?"
@@ -128,9 +130,20 @@ def oku(yol: str) -> str:
 
 
 def main(arg: list[str]) -> int:
+    if any(a in ("-h", "--help") for a in arg):
+        print(__doc__)
+        return 0
     if len(arg) not in (1, 2):
         print(__doc__)
         return 2
+    bilinmeyen = [a for a in arg if a.startswith("-") and a != "-"]
+    if bilinmeyen:
+        print(f"okunabilirlik: bilinmeyen seçenek {bilinmeyen[0]!r} (yardım için --help)", file=sys.stderr)
+        return 2
+    for a in arg:
+        if a != "-" and not os.path.isfile(a):
+            print(f"okunabilirlik: dosya bulunamadı: {a}", file=sys.stderr)
+            return 2
     once = oku(arg[0])
     o1 = olc(once)
     yaz("Önce" if len(arg) == 2 else "Metin", o1)

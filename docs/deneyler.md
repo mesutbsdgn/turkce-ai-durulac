@@ -105,3 +105,30 @@ Gerileme metinlerinde (dilekçe, sohbet, "deploy", kurumsal slogan) davranış d
 
 Sınır: Luna aynı vakada turdan tura farklı karar verebildi (performans iddiası bir turda işaretlendi, ötekinde işaretlenmedi). Zorunlu çıktı alanı bu oynaklığı azaltmak için eklendi; tek koşu sonucu kesin ölçü değildir.
 
+
+
+## Deney 8 — Gerçek bir README denetimi: okuyarak düzenleme neyi kaçırır? (9 Ekim 2026)
+
+İngilizceden çevrilmiş bir projenin Türkçe README'si (Quoteproof) Durulaç ile elle, okuyarak düzenlendi. Sonra aynı dosyanın eski ve yeni sürümü yeni `scripts/tarama.py` ile karşılaştırıldı. Tarama, kalıpları satır satır arayan bir kontrol listesidir; karar vermez.
+
+Toplam bulgu **78 → 55**. Düzenleme gerçekten azaltanlar: “atıf yapılan” 11 → 0, uzun çizgi 10 → 0, “tarafından” 2 → 0, “buluşsal” 2 → 0, “tolere” 1 → 0, “fark yaratmak” 1 → 0.
+
+Kaçanlar ve düzenlemede **kötüleşenler**:
+
+| Bulgu | Önce → sonra | Neden kaçtı |
+|---|---|---|
+| “koşu/koşturmak” (*run*) | 11 → 12 | Skilde kalıp yoktu; sözcük “çalışma” gibi okundu, yeni cümleye de girdi |
+| “çalışan” (*worker*) | 25 → 31 | Sözlükte `employee → çalışan`, `worker → işçi` zaten ayrıydı, ama uygulanmadı; tanım eklemek yerine sözcük çoğaldı |
+| “hoş görülür” (*tolerate*) | 0 → 1 | Düzenlemede **kendi eklediğim** yeni yapaylık; eklenen sözcük doğrulanmadı |
+| “kapı olarak” (*gate*), “aynı şekilde” | 0 → 1 | Yeni cümlede kaldı; okurken fark edilmedi |
+| Başlık kalkları (“Özellikler, açıklamalı”, “Tasarımdan gelen güvenlik”) | 2 → 2 | Başlığa “prose değil” gözüyle bakıldı |
+| Düzyazıda ISO tarih (“2026-10-08”) | 1 → 1 | Kalıp 38 vardı ama dosya bu kalıba karşı taranmadı |
+| Şahıs karışımı (“koşularımızda” ↔ “yazarın kendi koşularında”) | 1 → 1 | Paragraf düzeyinde bakınca görünmüyor; belge boyu sayılmalı |
+
+Neden kaçtı: (1) Kalıp listesi uzun ve tek geçişte okuyarak düzenlemek, akla gelen cümleleri düzeltip okunmayanları bırakıyor. (2) “En az değişiklik” ve teknik tür kapısı, başlık ve tablo hücresine az bakılmasına yol açtı. (3) Skilde **çeviri kokusu** kalıpları yoktu. (4) Eklenen yeni sözcükler ikinci kez taranmadı.
+
+Alınan önlem: SKILL.md'ye “Çeviri kokusu” kalıpları (55–60), iş akışına adım 4b (dosyalarda `tarama.py` önce/sonra), eval.md'ye üç madde ve sözlüğe başvuru bölümü eklendi.
+
+Betik hataları (yeni birim testleri buldu): `okunabilirlik.py` `-%4,25` değerinin eksi işaretini yakalamıyordu, yani düşüşün artışa çevrilmesi “sayı korundu” sayılırdı; `--help` çöküyordu. `tarama.py` ilk sürümünde sözlük eşleşmeleri büyük/küçük harfe duyarlıydı (“Server” bulunmuyordu) ve “temiz” sözcüğü 1. çoğul sayılıyordu. Hepsi düzeltildi ve testlendi.
+
+Sınır: Tarama bağlamsızdır. “benzersiz URL”, “issue”, “örnekleme yok” gibi doğru kullanımları da işaretleyebilir; “çalışan” sözcüğü tanımlandıktan sonra da uyarı verir. Bu yüzden her bulgu gerekçeyle karara bağlanır. Tarama bulmadığı şeyi (anlam, ritim, fail) bulmaz.

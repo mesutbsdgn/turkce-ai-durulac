@@ -377,6 +377,21 @@
 - `director` → `direktör`
 - `vp` → `başkan yardımcısı`
 - `president` → `başkan`
+## Çeviri kokusu — İngilizceden çevrilmiş doküman (başvuru; makine karşılığı `scripts/tarama.py` içindedir)
+
+- `atıf yapılan sayfa` → `kaynak gösterilen sayfa` / `gösterilen sayfa`
+- `buluşsal` → `sezgisel`
+- `tolere etmek` → `kabul etmek` / `yok saymak`
+- `hoş görülür` (tolerate çevirisi) → `kabul edilir` / `yok sayılır`
+- `kapalı-varsayılan (fail-closed)` → `varsayılanı yasak olan` / `güvenli tarafta kalan`
+- `kapı (gate)` → `denetim noktası` / `engel`
+- `spot-check → örnekleme/örneklemek` → `kontrol etmek` / `göz atmak`  [istatistikte “örnekleme” meşru]
+- `run → koşu / koşturmak` → `çalıştırma` / `deneme` / `başlatmak`
+- `worker → çalışan` → `alt ajan` (ilk geçişte tanımla; “çalışan” insan personeldir)
+- `Özellikler, açıklamalı (Features, explained)` → `Özellikler`
+- `Tasarımdan gelen güvenlik (Safety by design)` → `Tasarım gereği güvenlik`
+- `2026-10-08 (düzyazıda)` → `8 Ekim 2026`  [log, komut ve kod bloğunda ISO kalır]
+
 ## Reklam sıfatı
 
 Bu kelimeler için kör bir eş anlamlı değişimi yapma. Kanıt metinde varsa özelliği somutlaştır; yoksa iddiayı çıkar veya kaynağını sor.

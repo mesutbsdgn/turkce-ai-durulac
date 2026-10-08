@@ -87,9 +87,14 @@ Bu türler için üç yardımcı dosya var:
 - [`references/finans-mevzuat.md`](references/finans-mevzuat.md): Davranışın dayanağı (TCMB'nin sade dil hükmü, SPK'nın getiri garantisi yasağı, KAP'ın Türkçe kuralı) ve kaynak bağlantıları. Hukuk görüşü değildir.
 - [`scripts/okunabilirlik.py`](scripts/okunabilirlik.py): Önceki ve sonraki metin için Ateşman ve Bezirci–Yılmaz okunabilirlik puanı verir. Ayrıca sayıları denetler: "1.250,00 TL" metinde "1.250 TL" ya da "1,5 milyon TL" "1,5 TL" olursa uyarır. Yalnız Python'un standart kütüphanesini kullanır.
 
+- [`scripts/tarama.py`](scripts/tarama.py): Dosya hâlindeki düzyazıda kalıpları satır satır listeler; kod blokları, URL'ler ve tablo ayraçları taranmaz. `--onceki` ile eski sürümle kalıp başına önce → sonra sayısını karşılaştırır. Karar vermez, kontrol listesi üretir; resmî, akademik ve hukuk türünde (`--tur`) devre dışıdır. Okuyarak düzenlemenin kaçırdığı kalıpları yakalamak için eklendi ([Deney 8](docs/deneyler.md)).
+
 ```bash
 python3 scripts/okunabilirlik.py once.txt sonra.txt
+python3 scripts/tarama.py README.tr.md --onceki README.tr.eski.md
 ```
+
+Testler: `python3 scripts/test_okunabilirlik.py` ve `python3 scripts/test_tarama.py`.
 
 ## Ne yapar, ne yapmaz
 
@@ -159,6 +164,7 @@ Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Ö
 - Beceri bir korkuluktur, sihirli değnek değil. Aradığın hatayı temizler, ama güzel üslubu garanti etmez.
 - Son söz sende. Altındaki değişiklik listesini oku, onaylamadığını geri al.
 - Finans eklentisi hukuk ya da uyum danışmanlığı değildir. Mevzuat notundaki bazı madde numaraları ikincil kaynakla doğrulandı ve dosyada öyle işaretli; resmî kullanımda aslından kontrol et.
+- Tarama betiği bağlamı bilmez: doğru kullanımı da işaretleyebilir ve bulmadığı kalıbı (anlam, ritim, fail) bulmaz. Bulguları gerekçeyle karara bağla.
 - Okunabilirlik formülleri sözcük ve hece uzunluğuna bakar, anlamı ölçmez. Kısa metinde puan oynaktır; puanı tek başına başarı ölçüsü sayma.
 
 ## Katkı

@@ -3,7 +3,7 @@ name: turkce-ai-durulac
 description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu gider veya yapay dili temizle; bürokratik/plaza Türkçesini düzelt; bu metin yapay mı tespit et. Use when the user wants Turkish text made clearer, more natural, less AI/bureaucratic-sounding, or asks whether Turkish text reads as AI-generated. Has a finance mode: recognizes bank/insurance/investment/corporate-finance text, keeps legal terms, figures and mandatory warnings intact, simplifies customer notices, flags prohibited return promises, and scores readability (Ateşman, Bezirci-Yılmaz). Also has a separate prompt-improvement mode (istem iyileştir) for tightening AI prompts locally."
 ---
 
-# Türkçe Humanizer
+# Durulaç
 
 Keskin bir Türkçe editör gibi çalış. Metnin anlamını ve yazarın sesini koru; yapay kalıpları temizlerken üslubu jenerikleştirme. Kullanıcıya ait olmayan bir görüş, bilgi ya da kişilik ekleme.
 
@@ -66,6 +66,7 @@ Düzenlemeden önce metnin türünü sapta; bazı “kalıplar” belirli türle
   1. **Yerleşik KAVRAM/nesne adı** (a commit, main branch, merge conflict, host, pull request) → korunur, çevirme.
   2. **İngilizce FİİL + etmek/lamak** (merge etmek, deploy etmek, pushlamak) → plaza kalıbıdır, Türkçe fiili öner (birleştirmek, yayına almak, göndermek).
   3. **Çıplak İngilizce SÜREÇ-adı** (deploy sonrası, release aldık, build patladı): yerleşik nesne/özel ad değil, bir eylem/süreç adıysa Türkçe karşılığını öner (dağıtım/yayın, sürüm, derleme). Örn. “Deploy sonrasında loglar kontrol edilmelidir” → “Yayına aldıktan sonra logları kontrol edin” — gerekçe: bu bir süreç-adı, kavram-adı değil. Süreç-adı mı yerleşik-terim mi ikircikliyse Türkçeleştirmeyi seç; yalnız kullanıcı İngilizcesini istiyorsa bırak.
+  4. **İngilizceden çevrilmiş doküman/README** (başlıklar, terimler, cümle yapısı İngilizce izi taşıyor): kod, komut ve tablo verisi yine aynen kalır, ama düzyazıda ve başlıklarda “Çeviri kokusu” kalıpları (55–60) ve `scripts/tarama.py` geçerlidir. Yerleşik kavram adı korunur; sözcüğü sözcüğüne çevrilmiş başlık, rol adı ve fiil Türkçeleşir.
 - **Sohbet / mesaj / kişisel blog:** temizlik kalıpları uygulanır AMA sohbetin kendi doğru özellikleri korunur — devrik cümle (“Geldi sonunda.”), eksilti (“Bana da bir tane.”), doğrudan hitap (“Bak şimdi…”), retorik soru (“Ne yaparsın?”), samimi tekrar (“çok çok güzeldi”), günlük dolgu (yani, işte, hani). **Bu türde kalıp 8 (aşırı ihtiyat) ve 30 (gereksiz “bir”) DEVRE DIŞI:** konuşma yumuşatıcıları — diyebilirim, bence, gibi, herhâlde, sanırım — ve “güzel bir gündü”deki doğal “bir” sesin parçasıdır, silme. Bunları “hata” sanıp düzeltme. Sohbete `-DIr/-maktadır`, edilgen çatı, isimleştirme ya da olmayan tarih/sayı EKLEME; bu rapor ağzıdır (bkz. “Register/ton koruması” bölümü).
 - **Pazarlama / kurumsal blog:** reklam sıfatı, boş güçlendirici ve slogan kalıpları serbestçe uygulanır; burada sadeleştirme agresif olabilir.
 - **Altyazı / dublaj:** kısa ve kesik cümle, konuşma çizgisi ve satır sınırı ZORUNLUDUR. **“Sil ve yeniden bağla” ile cümle birleştirme DEVRE DIŞI** — cümleleri uzatıp bağlama, aksi hâlde altyazıyı bozarsın. Yalnız açık yazım/plaza hatası düzeltilir. (Netflix Türkçe altyazı kılavuzu.)
@@ -168,6 +169,17 @@ Aşağıdaki örnekler teşhis ipucudur, kör yasak listesi değildir. Bir ifade
 53. **Dramatik kesik cümle.** “Bu kadar. Hepsi bu. Nokta.” gibi efekt cümleleri. Kötü: “Ve çözüm bu. İşte bu kadar basit.” İyi: efekt yerine bilgiyi ver. (Sohbet/edebîde kasıtlı olabilir — tür kapısı.)
 54. **“söz konusu / mevzubahis / bahse konu” yığını [TR].** Göndergeyi belirsizleştiren resmiyet. Kötü: “Söz konusu proje, söz konusu bölgede yürütülmektedir.” İyi: “Bu proje X bölgesinde yürütülüyor.” (Resmî/hukuk türünde DEVRE DIŞI; orada yerleşiktir.)
 
+### Çeviri kokusu — İngilizceden çevrilmiş teknik doküman [TR] (9 Ekim 2026, gerçek README denetiminden)
+
+> Bu kalıplar **tür kapısı “teknik doküman, çeviri”** için geçerlidir; sohbet ve edebîde aranmaz. Yerleşik kavram adı (commit, pull request, proxy) korunur; kalıp, **sözcüğü sözcüğüne çevrilmiş** düzyazıyı hedefler. `scripts/tarama.py` bu kalıpları satır satır arar.
+
+55. **Çeviri kokusu sözcükleri.** Kötü: “atıf yapılan sayfa”, “buluşsal”, “hataları tolere eder”, “sentez aşamasında kapı olarak”, “kapalı-varsayılan”, “örnekleyin (spot-check)”. İyi: “kaynak gösterilen sayfa / gösterilen sayfa”, “sezgisel”, “yok sayar / kabul eder”, “denetim noktası”, “varsayılanı yasak olan / güvenli tarafta kalan”, “kendiniz kontrol edin”. (“Örnekleme” istatistik anlamında meşrudur: “her bulguyu denetliyoruz, örnekleme yok”.) Sadeleştirirken seçtiğin karşılığı da doğrula: “tolere → hoş görülür” yeni bir yapaylıktır.
+56. **Rol adı çakışması: worker → “çalışan”.** Türkçede “çalışan” insan personeldir (sözlükte `employee → çalışan`, `worker → işçi`); yazılımın alt ajanına “çalışan” demek okuru ilk paragrafta yanıltır. Terimi bir kez seç (“alt ajan”), **ilk geçişte tanımla** ve belge boyunca aynısını kullan. Kötü: “Çalışanın yazdığı her bulgu…” (tanımsız). İyi: “Aramayı yapan ucuz modeller (belgede *alt ajan* denir)…”.
+57. **Başlık kalkı.** İngilizce başlığı sözcüğü sözcüğüne çevirme. Kötü: “Özellikler, açıklamalı” (*Features, explained*), “Tasarımdan gelen güvenlik” (*Safety by design*). İyi: “Özellikler”, “Tasarım gereği güvenlik”. Başlık Türkçede doğal bir ad tamlaması ya da kısa bir ad olmalı.
+58. **“run” → “koşu/koşturmak”.** “Koşu” spor, “koşturmak” acele çağrışımı yapar. Kötü: “Bir araştırma koşturun”, “gerçek koşularda”, “koşu günlükleri”. İyi: “Bir araştırma başlatın”, “gerçek denemelerde / çalıştırmalarda”, “çalıştırma günlükleri”.
+59. **Belge boyunca terim tutarlılığı.** Aynı kavrama iki ad verme (alt ajan/çalışan/worker; deneme/koşu/çalıştırma). Terimi seç, ilk geçişte tanımla, sonra değiştirme. Düzenlerken eklediğin her yeni sözcüğü de bu kurala göre kontrol et.
+60. **Belge ölçeğinde şahıs karışımı.** Aynı belgede hem “koşularımızda / yaptırmıyoruz” (1. çoğul) hem “yazarın kendi koşularında” (3. kişi) olmasın. Okura hep “siz”, yazara tek ad (“biz” ya da “yazar”). Paragraf düzeyinde bakınca kaçar; belge boyu say.
+
 ### Tam paragraf örneği — cümle cümle değil, bütün olarak yeniden kur
 
 Gerçek metinlerde 5-6 kalıp aynı paragrafta iç içedir. Amaç her kalıbı tek tek kesmek değil, **paragrafı aynı uzunlukta, aynı registerda ve akıcı** yeniden kurmaktır. Olgu ekleme; kanıtsız övgüyü çıkar veya daralt.
@@ -216,9 +228,14 @@ Sadeleştirmenin yanında şu somut kuralları da uygula; hepsi TDK yazım kural
 2. Ana noktayı ve korunacak ses özelliklerini belirle.
 3. Kullanıcı tespit istediyse alıntılı bulguları ve düzeltme yönünü ver; yeniden yazmadan dur.
 4. Düzenleme istediyse iki geçişte çalış: **önce paragraf düzeyi** — jenerik açılış / klişe kapanış (kalıp 21/18/25), şahıs tutarlılığı ve genel akış; **sonra cümle düzeyi** kalıplar. Yalnız gerekli yerlere dokun; teknik blokları, tabloları ve komutları aynen koru. (En az değişiklik cümle düzeyinde geçerlidir; paragraf düzeyi klişe her koşulda gider.)
+4b. **Dosya hâlindeki metinde (README, doküman, rapor) sistemli geçiş:** önce `python3 scripts/tarama.py DOSYA` çalıştır (düzyazı kalıplarını satır satır listeler; kod, URL ve tablo ayracı taranmaz). Düzenledikten sonra `python3 scripts/tarama.py YENİ --onceki ESKİ` ile kalıp başına önce → sonra sayısına bak. **Her bulguyu gerekçeyle karara bağla:** düzelt ya da bırak (tür kapısı, yerleşik terim, kasıtlı vurgu). **↑** çıkan satır, düzenlemede *senin eklediğin* kalıptır; düzelt. Tarama bir kontrol listesidir, “yapay mı” kararı değildir; bulamadığı kalıbı (anlam, ritim, fail) okuyarak yakalarsın. Korumalı türde (`--tur resmi|akademik|hukuk`) tarama zaten devre dışıdır.
 5. Son okuma kapısı — geçmeden sunma: (a) akış/ritim korundu mu, art arda kopuk cümle kalmadı mı? (b) gramer şahsı metin boyunca tutarlı mı? (c) **hiçbir bilgi taşıyan cümle atılmadı mı** (özetlemedin mi)? Sonra `eval.md` kontrol listesini uygula; herhangi bir madde geçmiyorsa düzenlemeyi gözden geçir.
 6. Tam metni ve kısa **Ne değiştirdim** listesini ver; listeye **niteliksel kısalma** satırı ekle (“belirgin kısalma / hafif / yok”). Kelime sayısı verirsen “yaklaşık” olduğunu belirt — sayımın güvenilir değil, ona kapı kurma. **Asıl fren nicel değil nitel:** bir bilgi/cümle atıldıysa (özellikle bilgi/kurumsal/haber türünde) düzenlemeyi reddet, kalıbı sil değil DARALT. Değişiklik yoksa bunu açıkça söyle.
 
+## Bilinen sınır: okuyarak düzenleme kalıp kaçırır
+
+Kalıp listesi uzundur; metni tek geçişte okuyup “aklındakilere” göre düzenlemek bazı kalıpları kaçırır. 9 Ekim 2026'daki gerçek README denetiminde 12 “koşu”, 31 “çalışan”, iki başlık kalkı, düzyazıdaki ISO tarih ve düzenlemede kendi eklediğimiz “hoş görülür” gözden kaçtı. Bu yüzden dosya hâlindeki metinde `scripts/tarama.py` ile **sistemli** geç. Ayrıntı: [`docs/deneyler.md`](docs/deneyler.md) “Deney 8”.
+
 ## Başvuru dosyaları
 
-Mekanik eşlemeleri bağlama göre seçmek için [`references/degistirme-sozlugu.md`](references/degistirme-sozlugu.md) dosyasına; son okumada [`eval.md`](eval.md) dosyasına bak. Finans metninde ayrıca [`references/finans-terimleri.md`](references/finans-terimleri.md), [`references/finans-mevzuat.md`](references/finans-mevzuat.md) ve [`scripts/okunabilirlik.py`](scripts/okunabilirlik.py).
+Mekanik eşlemeleri bağlama göre seçmek için [`references/degistirme-sozlugu.md`](references/degistirme-sozlugu.md) dosyasına; son okumada [`eval.md`](eval.md) dosyasına bak. Dosya taraması için [`scripts/tarama.py`](scripts/tarama.py). Finans metninde ayrıca [`references/finans-terimleri.md`](references/finans-terimleri.md), [`references/finans-mevzuat.md`](references/finans-mevzuat.md) ve [`scripts/okunabilirlik.py`](scripts/okunabilirlik.py). Betik testleri: `python3 scripts/test_okunabilirlik.py`, `python3 scripts/test_tarama.py`.

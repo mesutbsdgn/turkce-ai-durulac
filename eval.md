@@ -1,4 +1,4 @@
-# Türkçe Humanizer öz denetimi
+# Durulaç öz denetimi
 
 Düzenleme sonrasında her soruya **Evet/Hayır** de. Bir yanıt Hayır ise metni düzeltmeden sunma. Tespit modunda yeniden yazmama kuralını ayrıca denetle.
 
@@ -23,6 +23,9 @@ Düzenleme sonrasında her soruya **Evet/Hayır** de. Bir yanıt Hayır ise metn
 - Bilgi taşıyan bir cümleyi/birimini tümüyle atmadım mı (sadeleştirme yaptım, özetleme değil)?
 - Niteliksel kısalma satırını ekledim mi; kelime sayısı verdiysem “yaklaşık” dedim mi (sayıyı uydurup kesin gibi sunmadım)?
 - Korumalı türde (resmî/akademik/hukuk) devre dışı kalıpları uygulamadım mı; bürokratik edatı başka edatla değiştirmedim mi?
+- Dosya hâlindeki metinde `scripts/tarama.py` ile önce ve sonra taradım mı; kalan her bulguyu gerekçelendirdim ya da düzelttim mi (özellikle `--onceki` karşılaştırmasında ↑ çıkanları)?
+- Çeviri izli metinde (README/doküman) başlıkları, rol adlarını (worker↔çalışan), “run/koşu”yu, “atıf/buluşsal/tolere” sözcüklerini ve düzyazıdaki ISO tarihi kontrol ettim mi?
+- Düzenlerken kendi eklediğim sözcüklerde (ör. “hoş görülür”) yeni bir yapaylık sokmadım mı; aynı kavrama belge boyunca tek terim verdim mi?
 - Temizle modunda tam metni ve “Ne değiştirdim” listesini verdim mi?
 - Tespit modunda kalıp adını ve alıntıyı verdim; yazarlık tahmini yapmadım mı?
 
