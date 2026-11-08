@@ -1,0 +1,99 @@
+{
+  "profil": "genel-ornek",
+  "aciklama": "ÖRNEK profil: kurumdan bağımsız, daha gevşek ve APA benzeri değerler. Kullanmak için: DURULAC_TEZ_PROFIL=<bu dosyanın yolu> (ya da değerleri tez-yazim-kilavuzu.json içine kopyalayın).",
+  "sayfa_duzeni": {
+    "kagit": "A4 (21 x 29.7 cm)",
+    "ust_kenar_cm": 2.5,
+    "alt_kenar_cm": 2.5,
+    "dis_kenar_cm": 2.5,
+    "ic_kenar_cm": 3.5,
+    "yazi_tipi": "Times New Roman",
+    "govde_punto": 12,
+    "dipnot_punto": 10,
+    "satir_araligi": 1.5,
+    "dipnot_satir_araligi": 1.0,
+    "ilk_satir_girinti_cm": 1.0,
+    "hizalama": "iki_yana_yasli",
+    "kenar_toleransi_cm": 0.15
+  },
+  "baslik": {
+    "duzey1_buyuk_harf": true,
+    "alt_duzey_baglac_kucuk": true,
+    "numara_sonrasi_bosluk": true
+  },
+  "terim_birligi_ciftleri": [
+    {
+      "id": "TRM-01",
+      "terim_a": "kanun",
+      "terim_b": "yasa"
+    },
+    {
+      "id": "TRM-02",
+      "terim_a": "teori",
+      "terim_b": "kuram"
+    },
+    {
+      "id": "TRM-03",
+      "terim_a": "tabiat",
+      "terim_b": "doğa"
+    },
+    {
+      "id": "TRM-04",
+      "terim_a": "yöntem",
+      "terim_b": "metot"
+    },
+    {
+      "id": "TRM-05",
+      "terim_a": "olanak",
+      "terim_b": "imkân"
+    },
+    {
+      "id": "TRM-06",
+      "terim_a": "koşul",
+      "terim_b": "şart"
+    },
+    {
+      "id": "TRM-07",
+      "terim_a": "siber uzay",
+      "terim_b": "siber alan"
+    },
+    {
+      "id": "TRM-08",
+      "terim_a": "uluslararası",
+      "terim_b": "milletlerarası"
+    }
+  ],
+  "ozet": {
+    "min_kelime": 150,
+    "maks_kelime": 300,
+    "min_anahtar_kelime": 3,
+    "maks_anahtar_kelime": 5
+  },
+  "sekil_tablo": {
+    "tablo_adi": "Tablo",
+    "sekil_adi": "Şekil",
+    "karisik_ad_uyar": true,
+    "bolum_numarali_uyar": false
+  },
+  "atif": {
+    "sayfa_bicimi": "iki_nokta",
+    "ampersand_uyar": true,
+    "ve_digerleri_uyar": true
+  },
+  "kaynakca": {
+    "alt_baslik_zorunlu": false,
+    "alt_basliklar": [
+      "KİTAPLAR",
+      "MAKALELER",
+      "ELEKTRONİK KAYNAKLAR"
+    ]
+  },
+  "kvkk_yasakli_bilgiler": [
+    "T.C. kimlik numarası",
+    "telefon numarası",
+    "e-posta adresi",
+    "doğum tarihi ve yeri",
+    "açık ev adresi",
+    "ORCID numarası"
+  ]
+}

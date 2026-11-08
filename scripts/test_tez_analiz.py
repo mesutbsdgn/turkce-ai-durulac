@@ -10,6 +10,7 @@ import unittest
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kilavuz  # noqa: E402
 import tez_analiz as ta  # noqa: E402
 
 
@@ -111,27 +112,101 @@ class TezAnalizTesti(unittest.TestCase):
         finally:
             os.unlink(f.name)
 
-    def test_iau_kilavuz_denetimi_terim_baslik_tablo_ve_kvkk(self):
-        metin = (
-            "# I. GİRİŞ\n"
-            "# II. Siber Güvenlik ve Ulusal Strateji\n"
-            "Realist teori ve kuram çerçevesinde 5651 sayılı kanun ve yasa hükümleri "
-            "Tablo 2 ve Şekil 1.2 içinde (Evans & Smith, 2019, s. 45) incelenmiştir.\n"
-        )
-        denetim = ta.iau_kilavuz_denetimi(
+    METIN_KILAVUZ = (
+        "# I. GİRİŞ\n"
+        "# II. Siber Güvenlik ve Ulusal Strateji\n"
+        "Realist teori ve kuram çerçevesinde 5651 sayılı kanun ve yasa hükümleri "
+        "Tablo 2 ve Şekil 1.2 içinde (Evans & Smith, 2019, s. 45) incelenmiştir.\n"
+    )
+
+    def _kilavuz_cagri(self, metin, profil):
+        return ta.kilavuz_denetimi(
             metin,
             on_sayfalar=["ÖZET", " ".join(["kelime"] * 120)],
             kaynakca_ham_satirlar=["YILMAZ, A. (2020). Siber Güvenlik, Ankara."],
-            ozgecmis_satirlari=["E-posta: ornek@aydin.edu.tr", "Doğum Tarihi: 01.01.1990"],
+            ozgecmis_satirlari=["E-posta: ornek@example.com", "Doğum Tarihi: 01.01.1990"],
             kenar_bosluklari={"ust_cm": 2.5, "alt_cm": 2.5, "sol_ic_cm": 3.0, "sag_dis_cm": 2.5},
+            profil=profil,
         )
+
+    def test_kilavuz_denetimi_varsayilan_profil_terim_baslik_tablo_ve_kvkk(self):
+        denetim = self._kilavuz_cagri(self.METIN_KILAVUZ, kilavuz.yukle())
         self.assertGreaterEqual(len(denetim["terim_ikilikleri"]), 2)
         self.assertGreaterEqual(len(denetim["baslik_ihlalleri"]), 1)
         self.assertGreaterEqual(len(denetim["sekil_cizelge_ihlalleri"]), 2)
         self.assertGreaterEqual(len(denetim["atif_bicim_ihlalleri"]), 2)
         self.assertFalse(denetim["ozet_denetimi"]["ozet_uygun"])
+        self.assertEqual(denetim["ozet_denetimi"]["sinir"], [250, 400])
         self.assertGreaterEqual(len(denetim["kenar_ihlalleri"]), 1)
         self.assertGreaterEqual(len(denetim["kvkk_ihlalleri"]), 2)
+        self.assertTrue(denetim["kaynakca_bicim_uyarilari"], "varsayılan profil kaynakça alt başlığı ister")
+
+    def test_genel_profil_tablo_ve_bolum_numarasini_sorun_saymaz(self):
+        denetim = self._kilavuz_cagri(self.METIN_KILAVUZ, kilavuz.genel_profil())
+        self.assertEqual(denetim["sekil_cizelge_ihlalleri"], [], "genel profil 'Tablo 2' ve 'Şekil 1.2' için uyarı vermez")
+        self.assertEqual(denetim["kaynakca_bicim_uyarilari"], [])
+        self.assertEqual(denetim["ozet_denetimi"]["sinir"], [150, 300])
+        self.assertGreaterEqual(len(denetim["terim_ikilikleri"]), 2)   # terim birliği her profilde aranır
+        self.assertGreaterEqual(len(denetim["kvkk_ihlalleri"]), 2)
+
+    def test_tablo_ve_cizelge_karisik_kullanimi_uyarilir(self):
+        denetim = self._kilavuz_cagri("Tablo 1 ve Çizelge 2 incelendi.", kilavuz.genel_profil())
+        self.assertEqual(len(denetim["sekil_cizelge_ihlalleri"]), 1)
+
+    def test_atif_sayfa_bicimi_profile_gore_denetlenir(self):
+        iki_nokta = kilavuz.yukle()
+        apa = kilavuz.yukle(); apa["atif"]["sayfa_bicimi"] = "apa7"
+        a = self._kilavuz_cagri("Bu sonuç (Kaya, 2020, s. 12) ve (Demir, 2019: 7) görülmüştür.", iki_nokta)["atif_bicim_ihlalleri"]
+        b = self._kilavuz_cagri("Bu sonuç (Kaya, 2020, s. 12) ve (Demir, 2019: 7) görülmüştür.", apa)["atif_bicim_ihlalleri"]
+        self.assertEqual(len(a), 1); self.assertIn("s. 12", a[0])
+        self.assertEqual(len(b), 1); self.assertIn("2019: 7", b[0])
+
+    def test_profil_dosyalari_kurumdan_bagimsizdir(self):
+        profil = kilavuz.yukle()
+        self.assertEqual(profil["profil"], "yazar-tezi")
+        for yol in (kilavuz.VARSAYILAN_YOL, os.path.join(os.path.dirname(kilavuz.VARSAYILAN_YOL), "tez-yazim-kilavuzu.ornek-genel.json")):
+            ham = open(yol, encoding="utf-8").read().lower()
+            for yasak in ("aydın", "iaü", "iau", "aydin.edu", "madde "):
+                self.assertNotIn(yasak, ham, yol)
+
+    def test_varsayilan_json_ile_kod_varsayilanlari_ayni(self):
+        """JSON silinse bile aynı değerlerle çalışılır: iki kaynak birbirinden ayrışmamalı."""
+        ham = json.load(open(kilavuz.VARSAYILAN_YOL, encoding="utf-8"))
+        kod = kilavuz.VARSAYILAN
+        for bolum in ("sayfa_duzeni", "baslik", "ozet", "sekil_tablo", "atif", "kaynakca"):
+            for anahtar, deger in kod[bolum].items():
+                self.assertEqual(ham[bolum][anahtar], deger, f"{bolum}.{anahtar}")
+        self.assertEqual(ham["terim_birligi_ciftleri"], kod["terim_birligi_ciftleri"])
+
+    def test_ornek_genel_json_genel_profille_ayni(self):
+        yol = os.path.join(os.path.dirname(kilavuz.VARSAYILAN_YOL), "tez-yazim-kilavuzu.ornek-genel.json")
+        yuklenen = kilavuz.yukle(yol); genel = kilavuz.genel_profil()
+        for bolum in ("sayfa_duzeni", "ozet", "sekil_tablo", "kaynakca", "atif", "baslik"):
+            for anahtar, deger in genel[bolum].items():
+                self.assertEqual(yuklenen[bolum][anahtar], deger, f"{bolum}.{anahtar}")
+
+    def test_ortam_degiskeni_ozel_profili_secer(self):
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
+            json.dump({"profil": "benim", "ozet": {"min_kelime": 100, "maks_kelime": 120}}, f); yol = f.name
+        eski = os.environ.get(kilavuz.ORTAM_DEGISKENI)
+        os.environ[kilavuz.ORTAM_DEGISKENI] = yol
+        try:
+            p = kilavuz.yukle()
+            self.assertEqual(p["profil"], "benim")
+            self.assertEqual(p["ozet"]["maks_kelime"], 120)
+            self.assertEqual(p["sayfa_duzeni"]["ic_kenar_cm"], 4.0, "eksik anahtarlar varsayılandan tamamlanır")
+        finally:
+            if eski is None: os.environ.pop(kilavuz.ORTAM_DEGISKENI, None)
+            else: os.environ[kilavuz.ORTAM_DEGISKENI] = eski
+            os.unlink(yol)
+
+    def test_bozuk_profil_dosyasi_varsayilana_duser(self):
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
+            f.write("{bozuk"); yol = f.name
+        try:
+            self.assertEqual(kilavuz.yukle(yol)["profil"], "yazar-tezi")
+        finally:
+            os.unlink(yol)
 
 
 KANARYA_TEZ = """# I. GİRİŞ

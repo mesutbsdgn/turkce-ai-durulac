@@ -66,28 +66,28 @@ YAPISAL_TEZ_CIFTLERI = [
         "output": "Bu çalışmada 2018-2022 dönemindeki 48 siber operasyon ele alınmış ve caydırıcılık sınırları doğrulanmıştır.",
     },
     {
-        "id": "IAU-001",
-        "alan": "iau_kilavuz",
+        "id": "KLV-001",
+        "alan": "kilavuz",
         "input": "Realist teori çerçevesinde devletlerin siber savunma kuramları (Yılmaz, 2020: 44) karşılaştırmalı metot ve nitel yöntem ile incelenmiştir.",
         "output": "Realist kuram çerçevesinde devletlerin siber savunma kuramları (Yılmaz, 2020: 44) karşılaştırmalı ve nitel yöntem ile incelenmiştir.",
     },
     {
-        "id": "IAU-002",
-        "alan": "iau_kilavuz",
+        "id": "KLV-002",
+        "alan": "kilavuz",
         "input": "Uluslararası hukukta 5651 sayılı yasa ve ilgili kanun hükümleri (Kaya, 2019: 18) siber alanda ve siber uzayda devlet sorumluluğunu düzenlemektedir.",
         "output": "Uluslararası hukukta 5651 sayılı kanun ve ilgili kanun hükümleri (Kaya, 2019: 18) siber uzayda devlet sorumluluğunu düzenlemektedir.",
     },
     {
-        "id": "IAU-003",
-        "alan": "iau_kilavuz",
+        "id": "KLV-003",
+        "alan": "kilavuz",
         "input": "Kritik altyapılara yönelik 2018-2022 dönemi siber saldırı verileri Tablo 12 içinde ve Şekil 5 kapsamında (Demir, 2021: 63) tehdit sergilemektedir.",
         "output": "Kritik altyapılara yönelik 2018-2022 dönemi siber saldırı verileri Çizelge 12 içinde ve Şekil 5 kapsamında (Demir, 2021: 63) tehdit oluşturmaktadır.",
     },
     {
-        "id": "IAU-004",
-        "alan": "iau_kilavuz",
-        "input": "Araştırmamızda ele aldığımız 3 temel hipotez gerçekleştirdik ve ulaştığımız bulgular ışığında politika inşa etmek kritik bir rol oynamaktadır (Aydın, 2022: 91).",
-        "output": "Bu çalışmada ele alınan 3 temel hipotez sınanmış ve ulaşılan bulgular ışığında politika geliştirmek belirleyici olmaktadır (Aydın, 2022: 91).",
+        "id": "KLV-004",
+        "alan": "kilavuz",
+        "input": "Araştırmamızda ele aldığımız 3 temel hipotez gerçekleştirdik ve ulaştığımız bulgular ışığında politika inşa etmek kritik bir rol oynamaktadır (Örnek, 2022: 91).",
+        "output": "Bu çalışmada ele alınan 3 temel hipotez sınanmış ve ulaşılan bulgular ışığında politika geliştirmek belirleyici olmaktadır (Örnek, 2022: 91).",
     },
 ]
 
@@ -95,7 +95,7 @@ ATIF_SABLONLARI = [
     ("Yılmaz, 2018: 42", "%64,2 oranında"),
     ("Kaya ve Demir, 2020: 118", "3 temel boyutta"),
     ("Öztürk, 2019", "%18,5 düzeyinde"),
-    ("Aydın, 2021: 77", "12 ülkede"),
+    ("Örnek, 2021: 77", "12 ülkede"),
 ]
 
 

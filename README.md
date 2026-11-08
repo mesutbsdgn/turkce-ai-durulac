@@ -107,7 +107,7 @@ Yüksek lisans ve doktora tezlerinde (`--tur tez`) kural tersine döner: edilgen
 - **Kaynaksız otorite:** "Araştırmacılara göre" der ama cümlede `(Yazar, Yıl)` ya da `[1]` yoksa işaretlenir.
 - **Ad tamlaması zinciri** (4 ve üzeri) ve **birinci şahıs sızıntısı** ("tezimizde", "ele aldık").
 - **Atıf ↔ kaynakça çapraz denetimi** (`scripts/atif_tani.py`): metinde olup kaynakçada olmayan, kaynakçada olup metinde anılmayan, yılı birbirini tutmayan künyeler.
-- **Kurum kılavuzu uygunluğu:** [`references/iau-tez-kilavuzu.json`](references/iau-tez-kilavuzu.json) İstanbul Aydın Üniversitesi Tez Yazım Kılavuzu'ndaki sayfa düzeni, başlık hiyerarşisi, atıf biçimi ve terim birliği kurallarını makine okunur biçimde tutar. Başka bir üniversiteye uyarlamak için aynı şemada yeni bir JSON yazmak yeterlidir.
+- **Tez yazım profili:** [`references/tez-yazim-kilavuzu.json`](references/tez-yazim-kilavuzu.json). Varsayılan değerler, bu beceriyi yazan kişinin tezinde uygulanan yazım kılavuzundan gelir (kurum adı yazılmamıştır). Başka bir kılavuza uyarlamak için aşağıdaki [uyarlama rehberine](#tez-profilini-kendi-kılavuzuna-uyarlama) bakın.
 
 Hepsini tek raporda toplayan araç:
 
@@ -121,6 +121,42 @@ python3 scripts/tez_analiz.py Tez.docx --tam            # ifadeleri aynen yazar 
 Varsayılan rapor **cümlesizdir**: tezin tek cümlesi bulunmaz, yalnız konum, kural kimliği, sayı ve geri döndürülemez kısa bir özet kalır. Raporu okuyan kişi ya da model metni görmez; bir bulut modeline tez yüklemek istemeyenler için tasarlandı. Alan beyaz listesi vardır, bir de sızıntı bekçisi: rapor yazılmadan önce tez gövdesinden ardışık beş sözcük arar, bulursa raporu yazmaz ve 3 koduyla çıkar. Testler bekçiyi kasten kapatıp testin kırıldığını da doğrular.
 
 İstersen kendi Ollama sunucundaki bir modelden cümle önerisi de alınabilir: `DURULAC_UZAK_SSH` (ssh takma adı) ve `DURULAC_UZAK_MODEL` ortam değişkenlerini tanımlayıp `--uzak` ver. Bu bayrak, eş dizim bulunan cümlelerden birini (en çok 500 karakter) senin verdiğin ssh takma adına gönderir; bayrak ya da değişken yoksa hiçbir şey gönderilmez. [`references/Modelfile.durulac-tez.sablon`](references/Modelfile.durulac-tez.sablon) kendi temel modeline bağlayacağın bir şablondur; hazır bir model dağıtılmaz.
+
+## Tez profilini kendi kılavuzuna uyarlama
+
+Tez denetimi (`scripts/tez_analiz.py`) ve Word onarımı (`scripts/tez_onar.py`) kuralları **tek bir profilden** okur. **Varsayılan profil**, bu beceriyi yazan kişinin kendi tezinde uygulanan kılavuzun değerleridir (kurum adı yok); sizin enstitünüz farklı ise yalnız profili değiştirmeniz yeterlidir, kodu değil.
+
+**Üç yol (öncelik sırasıyla):**
+1. Python'dan: `kilavuz.yukle("/yol/profilim.json")`.
+2. Ortam değişkeni: `DURULAC_TEZ_PROFIL=/yol/profilim.json python3 scripts/tez_analiz.py ...` — kendi JSON'unuza yalnız **değiştirdiğiniz anahtarları** yazmanız yeter; eksikler varsayılandan tamamlanır.
+3. `references/tez-yazim-kilavuzu.json` dosyasını doğrudan düzenlemek.
+
+Daha gevşek, APA benzeri hazır bir örnek: [`references/tez-yazim-kilavuzu.ornek-genel.json`](references/tez-yazim-kilavuzu.ornek-genel.json) (`DURULAC_TEZ_PROFIL` ile seçilir).
+
+**Neyi nereden değiştirirsiniz** (anahtarlar `tez-yazim-kilavuzu.json` içindedir; varsayılan değer parantezde):
+
+| Kılavuzunuzdaki kural | JSON anahtarı | Varsayılan | Denetim kodu |
+|---|---|---|---|
+| Kenar boşlukları (cm) | `sayfa_duzeni.ust_kenar_cm`, `alt_kenar_cm`, `dis_kenar_cm`, `ic_kenar_cm`, `kenar_toleransi_cm` | 2,5 / 2,5 / 2,5 / **4,0** / 0,15 | `tez_analiz.kilavuz_denetimi` (§6); `tez_onar --kenar` üst kenarı kullanır |
+| Özet / Abstract kelime sınırı | `ozet.min_kelime`, `ozet.maks_kelime` | **250–400** | `kilavuz_denetimi` (§5) |
+| Tablo adı ("Tablo" mu "Çizelge" mi) | `sekil_tablo.tablo_adi` | **Çizelge** | `kilavuz_denetimi` (§3) |
+| Tablo ve "Çizelge" karışık kullanımı uyarısı | `sekil_tablo.karisik_ad_uyar` | açık | aynı |
+| Bölüm numaralı şekil (Şekil 1.1) uyarısı | `sekil_tablo.bolum_numarali_uyar` | **açık** (sıralı numara ister) | aynı |
+| Atıf sayfa biçimi | `atif.sayfa_bicimi`: `"iki_nokta"` → `(Soyad, 2014: 102)`, `"apa7"` → `(Soyad, 2014, s. 102)` | `iki_nokta` | `kilavuz_denetimi` (§4) ve `tez_onar` ATIF_SAYFA kuralı (profil `apa7` ise kapanır) |
+| `&` ve "ve diğerleri" uyarıları | `atif.ampersand_uyar`, `atif.ve_digerleri_uyar` | açık | `kilavuz_denetimi` (§4) |
+| 1. düzey başlık TAMAMI BÜYÜK, alt başlıkta bağlaç küçük, numaradan sonra boşluk | `baslik.duzey1_buyuk_harf`, `alt_duzey_baglac_kucuk`, `numara_sonrasi_bosluk` | açık / açık / açık | `kilavuz_denetimi` (§2) |
+| Eş anlamlı terimlerde tek terim (kanun/yasa …) | `terim_birligi_ciftleri` (liste; `terim_a`, `terim_b`) | 8 çift | `kilavuz_denetimi` (§1) |
+| Kaynakça alt başlıkları (KİTAPLAR, MAKALELER …) | `kaynakca.alt_baslik_zorunlu`, `kaynakca.alt_basliklar` | **zorunlu** | `kilavuz_denetimi` (§7) |
+| Özgeçmişte yasak kişisel veri | `kvkk_yasakli_bilgiler` (yalnız bilgi; kontrol kodda: e-posta, telefon, doğum/adres/kimlik/ORCID) | 6 madde | `kilavuz_denetimi` (§8) |
+
+**Profile bağlı olmayan, kodda sabit kalanlar** (başka bir kılavuz için kodu değiştirmeniz gerekir):
+- `tez_onar.py` başlık düzeltmeleri (BASLIK_BOSLUK, BASLIK_BUYUK) yalnız **Romen rakamlı** birinci düzey başlıklara (`IX. SONUÇ`) uygulanır. Ondalık numaralı başlıklarda (`1.`, `1.1`) çalışmaz.
+- KVKK denetimi (e-posta, telefon, doğum tarihi/yeri, adres, kimlik, ORCID) `tez_analiz.py` içindeki düzenli ifadelerle yapılır; JSON'daki `kvkk_yasakli_bilgiler` listesi açıklayıcıdır.
+- Yazı tipi, punto, satır aralığı gibi **biçim** değerleri (`sayfa_duzeni.yazi_tipi` vb.) profilde belgelenmiştir ama otomatik denetlenmez; yalnız kenar boşlukları denetlenir.
+- Kelime mantığı (eş dizim) kuralları kılavuzdan bağımsızdır: `references/akademik-esdizim.json`.
+- `references/Modelfile.durulac-tez.sablon` ve `scripts/egitim_hazirla.py` içindeki örnekler varsayılan profili anlatır; profili değiştirirseniz bu metinleri de güncelleyin.
+
+**Doğrulama:** profil değiştirdikten sonra `cd scripts && python3 -I -m pytest -q`. Testler profil dosyasının varsayılanlarla uyumunu ve ortam değişkeni ile profil seçimini kontrol eder.
 
 ## Word izli değişiklik hattı
 

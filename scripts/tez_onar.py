@@ -4,10 +4,10 @@
 Yalnız standart kütüphane. Orijinal dosyaya dokunmaz; yeni .docx yazar.
 
 Kurallar (hepsi belirleyici, model yok):
-  ATIF_SAYFA     (Soyad, 2014, s.102) -> (Soyad, 2014: 102)         İAÜ Madde V.A
+  ATIF_SAYFA     (Soyad, 2014, s.102) -> (Soyad, 2014: 102)         atıf profili "iki_nokta" ise
   BENZESME       Kitap'da -> Kitap'ta, 1960'da -> 1960'ta            ünsüz benzeşmesi
-  BASLIK_BOSLUK  IX.SONUÇ -> IX. SONUÇ                               İAÜ Madde III.C
-  BASLIK_BUYUK   1. düzey başlık tamamı BÜYÜK HARF                   İAÜ Madde III.C
+  BASLIK_BOSLUK  IX.SONUÇ -> IX. SONUÇ                               Romen rakamlı başlıklar
+  BASLIK_BUYUK   1. düzey başlık tamamı BÜYÜK HARF                   Romen rakamlı başlıklar
 Biçim (izsiz, günlüğe yazılır): üst/alt kenar boşluğu 2,5 cm (--kenar).
 
 Kullanım:
@@ -28,7 +28,7 @@ from xml.sax.saxutils import escape, unescape
 sys.dont_write_bytecode = True
 
 YAZAR = "Durulaç-Ajan"
-KENAR_TWIPS = 1417  # 2,5 cm
+KENAR_TWIPS = 1417  # varsayılan 2,5 cm; aşağıda profildeki üst kenardan yeniden hesaplanır
 W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 W = "{%s}" % W_NS
 
@@ -44,7 +44,15 @@ EK_DUZELT = {"da": "ta", "de": "te", "dan": "tan", "den": "ten"}
 SAYI_BENZESME_RE = re.compile(r"\b(\d*(?:[345]|[467]0))\s*['’]\s*(da|de|dan|den)\b")
 KELIME_BENZESME_RE = re.compile(
     r"\b([A-Za-zÇĞİÖŞÜçğıöşüÂÎÛâîû]{2,}[fstkçşhpFSTKÇŞHP])\s*['’]\s*(da|de|dan|den)\b")
-ATIF_SAYFA_RE = re.compile(r",\s*(?:s|p|pp|ss)\.\s*(?=\d)")
+import kilavuz  # noqa: E402
+
+KENAR_TWIPS = int(kilavuz.yukle()["sayfa_duzeni"]["ust_kenar_cm"] * 566.929)  # üst/alt kenar düzeltmesi (--kenar)
+
+# Atıf profili "apa7" ise (Soyad, Yıl, s. N) zaten doğrudur; ATIF_SAYFA kuralı hiçbir şeyi eşleştirmez.
+if kilavuz.yukle()["atif"]["sayfa_bicimi"] == "iki_nokta":
+    ATIF_SAYFA_RE = re.compile(r",\s*(?:s|p|pp|ss)\.\s*(?=\d)")
+else:
+    ATIF_SAYFA_RE = re.compile(r"(?!x)x")
 YIL_SONU_RE = re.compile(r"(?:19|20)\d\d[a-z]?$")
 
 

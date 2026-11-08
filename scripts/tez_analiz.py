@@ -35,6 +35,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 import bilgi_koruma as bk  # noqa: E402
+import kilavuz  # noqa: E402
 import esdizim as esd  # noqa: E402
 import okunabilirlik as ok  # noqa: E402
 import tarama as tr  # noqa: E402
@@ -270,34 +271,21 @@ def bolumlere_ayir(metin):
     return bolumler
 
 
-def iau_kilavuz_denetimi(
+def kilavuz_denetimi(
     ana_metin,
     on_sayfalar=None,
     kaynakca_ham_satirlar=None,
     ozgecmis_satirlari=None,
     kenar_bosluklari=None,
+    profil=None,
 ):
-    """İstanbul Aydın Üniversitesi (İAÜ) Lisansüstü Eğitim Enstitüsü Tez Yazım Kılavuzu kurallarını denetler."""
-    k_yol = os.path.join(HERE, "..", "references", "iau-tez-kilavuzu.json")
-    kilavuz = {}
-    if os.path.isfile(k_yol):
-        with open(k_yol, encoding="utf-8") as f:
-            kilavuz = json.load(f)
-
+    """Tez yazım profilini (references/tez-yazim-kilavuzu.json; varsayılan: standart profil) denetler."""
+    profil = profil or kilavuz.yukle()
     metin_kucuk = kucult_tr(ana_metin)
-    # 1. Terim Birliği Denetimi (Madde I.C.1, s. 4)
+
+    # 1. Terim birliği: eş anlamlı terim çiftlerinde tek terim seçilmeli
     terim_ikilikleri = []
-    varsayilan_ciftler = kilavuz.get("terim_birligi_ciftleri", [
-        {"id": "TRM-01", "terim_a": "kanun", "terim_b": "yasa", "kaynak_madde": "I.C.1 (s. 4)"},
-        {"id": "TRM-02", "terim_a": "teori", "terim_b": "kuram", "kaynak_madde": "I.C.1 (s. 4)"},
-        {"id": "TRM-03", "terim_a": "tabiat", "terim_b": "doğa", "kaynak_madde": "I.C.1 (s. 4)"},
-        {"id": "TRM-04", "terim_a": "yöntem", "terim_b": "metot", "kaynak_madde": "I.C.1"},
-        {"id": "TRM-05", "terim_a": "olanak", "terim_b": "imkân", "kaynak_madde": "I.C.1"},
-        {"id": "TRM-06", "terim_a": "koşul", "terim_b": "şart", "kaynak_madde": "I.C.1"},
-        {"id": "TRM-07", "terim_a": "siber uzay", "terim_b": "siber alan", "kaynak_madde": "I.C.1"},
-        {"id": "TRM-08", "terim_a": "uluslararası", "terim_b": "milletlerarası", "kaynak_madde": "I.C.1"},
-    ])
-    for c in varsayilan_ciftler:
+    for c in profil["terim_birligi_ciftleri"]:
         ta_str, tb_str = c["terim_a"], c["terim_b"]
         # İmkân / imkan her iki yazılışı da say
         rx_a = re.compile(rf"\b{re.escape(ta_str)}\w*\b")
@@ -313,64 +301,74 @@ def iau_kilavuz_denetimi(
                 "adet_a": say_a,
                 "terim_b": tb_str,
                 "adet_b": say_b,
-                "oneri": f"İAÜ Kılavuzu Madde I.C.1 gereği terim birliği sağlayın ('{baskin}' teriminde birleştirin).",
+                "oneri": f"Terim birliği için tek terim kullanın ('{baskin}' teriminde birleştirin).",
             })
 
-    # 2. Başlık Hiyerarşisi ve Biçim Denetimi (Madde III.C, s. 8-9)
+    # 2. Başlık biçimi
+    bp = profil["baslik"]
     baslik_ihlalleri = []
     for n, s in enumerate(ana_metin.splitlines(), 1):
         st = s.strip()
         if st.startswith("# "):
             b_metin = st[2:].strip()
-            # 1. Düzey Romen rakamı sonrası boşluk ve TAMAMI BÜYÜK HARF kuralı
-            if re.match(r"^[IVX]+\.\S", b_metin):
+            # Numara noktasından sonra boşluk (Romen: "IX.SONUÇ", ondalık: "1.GİRİŞ")
+            if bp["numara_sonrasi_bosluk"] and re.match(r"^(?:[IVX]+|\d+)\.\S", b_metin):
                 baslik_ihlalleri.append({
                     "satir": n,
                     "baslik": b_metin,
-                    "kural": "Madde III.C (1. Düzey Başlık): Romen rakamı noktasından sonra 1 boşluk bırakılmalıdır.",
+                    "kural": "1. düzey başlıkta numaradan sonra 1 boşluk bırakılmalıdır.",
                 })
-            # Küçük harf içeriyor mu?
             harfler = [ch for ch in b_metin if ch.isalpha()]
-            if harfler and any(ch.islower() for ch in harfler):
+            if bp["duzey1_buyuk_harf"] and harfler and any(ch.islower() for ch in harfler):
                 baslik_ihlalleri.append({
                     "satir": n,
                     "baslik": b_metin,
-                    "kural": "Madde III.C (1. Düzey Başlık, s. 8-9): Birinci düzey başlıklarda tüm kelimeler ('VE', 'VEYA', 'İLE' dâhil) BÜYÜK HARF olmalıdır.",
+                    "kural": "1. düzey başlıklarda tüm kelimeler ('VE', 'VEYA', 'İLE' dâhil) BÜYÜK HARF olmalıdır.",
                 })
         elif st.startswith("## ") or st.startswith("### "):
             b_metin = st.lstrip("#").strip()
-            if re.search(r"\b(?:VE|VEYA|İLE)\b", b_metin):
+            if bp["alt_duzey_baglac_kucuk"] and re.search(r"\b(?:VE|VEYA|İLE)\b", b_metin):
                 baslik_ihlalleri.append({
                     "satir": n,
                     "baslik": b_metin,
-                    "kural": "Madde III.C (2./3. Düzey Başlık, s. 9): Alt başlıklarda 've', 'veya', 'ile' bağlaçları küçük harfle yazılmalıdır.",
+                    "kural": "Alt başlıklarda 've', 'veya', 'ile' bağlaçları küçük harfle yazılmalıdır.",
                 })
 
-    # 3. Şekil ve Çizelge Adlandırma Denetimi (Madde IV.J, s. 13-14)
+    # 3. Şekil / tablo adlandırma
+    st_p = profil["sekil_tablo"]
     sekil_cizelge_ihlalleri = []
-    tablo_kullanimlari = re.findall(r"\bTablo\s*\d+(?:\.\d+)?\b", ana_metin, flags=re.I)
-    if tablo_kullanimlari:
-        sekil_cizelge_ihlalleri.append(
-            f"Madde IV.J (s. 13-14): Metinde {len(tablo_kullanimlari)} kez 'Tablo' kullanılmış ({', '.join(tablo_kullanimlari[:5])}); İAÜ kılavuzuna göre 'Çizelge 1, Çizelge 2...' kullanılmalıdır."
-        )
-    bolumlu_sekil = re.findall(r"\b(?:Şekil|Çizelge|Tablo)\s+\d+\.\d+\b", ana_metin, flags=re.I)
-    if bolumlu_sekil:
-        sekil_cizelge_ihlalleri.append(
-            f"Madde IV.J (s. 13): Bölüm numaralı şekil/çizelge ({', '.join(bolumlu_sekil[:5])}) kullanılmış; bölüm numarası içermeksizin 'Şekil 1, Şekil 2' şeklinde numaralanmalıdır."
-        )
+    beklenen = st_p["tablo_adi"]
+    diger = "Çizelge" if beklenen == "Tablo" else "Tablo"
+    if st_p["karisik_ad_uyar"]:
+        digerleri = re.findall(rf"\b{diger}\s*\d+(?:\.\d+)?\b", ana_metin, flags=re.I)
+        if digerleri:
+            sekil_cizelge_ihlalleri.append(
+                f"Metinde {len(digerleri)} kez '{diger}' kullanılmış ({', '.join(digerleri[:5])}); profilde tablo adı '{beklenen}' olarak tanımlı, "
+                f"tek ad kullanın."
+            )
+    if st_p["bolum_numarali_uyar"]:
+        bolumlu_sekil = re.findall(r"\b(?:Şekil|Çizelge|Tablo)\s+\d+\.\d+\b", ana_metin, flags=re.I)
+        if bolumlu_sekil:
+            sekil_cizelge_ihlalleri.append(
+                f"Bölüm numaralı şekil/tablo ({', '.join(bolumlu_sekil[:5])}) kullanılmış; profil sıralı numaralandırma ('Şekil 1, Şekil 2') ister."
+            )
 
-    # 4. Metin İçi APA Atıf Biçimi Denetimi (Madde V.A & Ek-1, s. 16, 21)
+    # 4. Metin içi atıf biçimi
+    ap = profil["atif"]
     atif_bicim_ihlalleri = []
     for m in ATIF_RE.finditer(ana_metin):
         a_metin = m.group(0)
-        if "&" in a_metin:
-            atif_bicim_ihlalleri.append(f"{a_metin} -> İAÜ Ek-1.b: '&' yerine Türkçe kaynakta 've', İngilizce kaynakta 'and' kullanılmalıdır.")
-        if re.search(r"\b(?:s\.|p\.|pp\.|ss\.)\s*\d+", a_metin, flags=re.I):
-            atif_bicim_ihlalleri.append(f"{a_metin} -> İAÜ Madde V.A: Metin içi APA atfında 's./p.' yazılmaz, 'Soyadı, Yıl: Sayfa' biçimi kullanılır.")
-        if re.search(r"\bve\s+diğerleri\b", a_metin, flags=re.I):
-            atif_bicim_ihlalleri.append(f"{a_metin} -> İAÜ Madde V.A: 've diğerleri' yerine 'vd.' (İngilizce kaynakta 'et al.') yazılmalıdır.")
+        if ap["ampersand_uyar"] and "&" in a_metin:
+            atif_bicim_ihlalleri.append(f"{a_metin} -> '&' yerine Türkçe kaynakta 've', İngilizce kaynakta 'and' kullanılmalıdır.")
+        if ap["sayfa_bicimi"] == "iki_nokta" and re.search(r"\b(?:s\.|p\.|pp\.|ss\.)\s*\d+", a_metin, flags=re.I):
+            atif_bicim_ihlalleri.append(f"{a_metin} -> Profil 'Soyadı, Yıl: Sayfa' biçimini ister; 's./p.' yazılmaz.")
+        if ap["sayfa_bicimi"] == "apa7" and re.search(r"(?:19|20)\d\d\s*:\s*\d+", a_metin):
+            atif_bicim_ihlalleri.append(f"{a_metin} -> Profil APA 7 biçimini ister: 'Soyadı, Yıl, s. Sayfa'.")
+        if ap["ve_digerleri_uyar"] and re.search(r"\bve\s+diğerleri\b", a_metin, flags=re.I):
+            atif_bicim_ihlalleri.append(f"{a_metin} -> 've diğerleri' yerine 'vd.' (İngilizce kaynakta 'et al.') yazılmalıdır.")
 
-    # 5. ÖZET / ABSTRACT Kelime Sınırı Denetimi (Madde IV.F-G, s. 13: 250-400 kelime)
+    # 5. ÖZET / ABSTRACT kelime sınırı
+    op = profil["ozet"]
     ozet_denetimi = {}
     if on_sayfalar:
         aktif_kisim = None
@@ -382,7 +380,7 @@ def iau_kilavuz_denetimi(
                 aktif_kisim = "ozet"; continue
             elif ust == "ABSTRACT":
                 aktif_kisim = "abstract"; continue
-            elif ust in ("İÇİNDEKİLER", "ÖNSÖZ", "ONUR SÖZÜ", "KISALTMALAR LİSTESİ", "ŞEKİLLER LİSTESİ", "ÇİZELGELER LİSTESİ"):
+            elif ust in ("İÇİNDEKİLER", "ÖNSÖZ", "ONUR SÖZÜ", "KISALTMALAR LİSTESİ", "ŞEKİLLER LİSTESİ", "ÇİZELGELER LİSTESİ", "TABLOLAR LİSTESİ"):
                 aktif_kisim = None; continue
             if aktif_kisim == "ozet" and not ust.startswith("ANAHTAR KELİME"):
                 ozet_kelimeler.extend(p_metin.split())
@@ -391,42 +389,45 @@ def iau_kilavuz_denetimi(
         if ozet_kelimeler:
             oz_say = len(ozet_kelimeler)
             ozet_denetimi["ozet_kelime"] = oz_say
-            ozet_denetimi["ozet_uygun"] = (250 <= oz_say <= 400)
+            ozet_denetimi["ozet_uygun"] = (op["min_kelime"] <= oz_say <= op["maks_kelime"])
         if abstract_kelimeler:
             ab_say = len(abstract_kelimeler)
             ozet_denetimi["abstract_kelime"] = ab_say
-            ozet_denetimi["abstract_uygun"] = (250 <= ab_say <= 400)
+            ozet_denetimi["abstract_uygun"] = (op["min_kelime"] <= ab_say <= op["maks_kelime"])
+        if ozet_denetimi:
+            ozet_denetimi["sinir"] = [op["min_kelime"], op["maks_kelime"]]
 
-    # 6. Sayfa Kenar Boşlukları Denetimi (Madde III.A, s. 8: İç/Sol 4.0 cm, Üst/Alt/Dış 2.5 cm)
+    # 6. Sayfa kenar boşlukları
+    sd = profil["sayfa_duzeni"]
     kenar_ihlalleri = []
+    hedefler = {"ust_cm": sd["ust_kenar_cm"], "alt_cm": sd["alt_kenar_cm"], "sol_ic_cm": sd["ic_kenar_cm"], "sag_dis_cm": sd["dis_kenar_cm"]}
     if kenar_bosluklari:
-        hedefler = {"ust_cm": 2.5, "alt_cm": 2.5, "sol_ic_cm": 4.0, "sag_dis_cm": 2.5}
         for k_ad, hedef in hedefler.items():
             mevcut = kenar_bosluklari.get(k_ad)
-            if mevcut is not None and abs(mevcut - hedef) > 0.15:
-                kenar_ihlalleri.append(f"{k_ad}={mevcut} cm (İAÜ Kılavuzu Madde III.A hedefi: {hedef} cm)")
+            if mevcut is not None and abs(mevcut - hedef) > sd["kenar_toleransi_cm"]:
+                kenar_ihlalleri.append(f"{k_ad}={mevcut} cm (profil hedefi: {hedef} cm)")
 
-    # 7. Kaynakça Alt Başlık ve URL-1 Denetimi (Madde IV.L & Ek-15, s. 15, 41-42)
+    # 7. Kaynakça alt başlıkları (yalnız profil istiyorsa)
+    kp = profil["kaynakca"]
     kaynakca_bicim_uyarilari = []
-    if kaynakca_ham_satirlar:
+    if kp["alt_baslik_zorunlu"] and kaynakca_ham_satirlar:
         ham_ust = {s.strip().upper() for s in kaynakca_ham_satirlar}
-        beklenen_alt = {"KİTAPLAR", "MAKALELER", "ELEKTRONİK KAYNAKLAR"}
-        eksik_alt = beklenen_alt - ham_ust
+        eksik_alt = set(kp["alt_basliklar"]) - ham_ust
         if eksik_alt:
             kaynakca_bicim_uyarilari.append(
-                f"Madde IV.L & Ek-15 (s. 15, 41): Kaynakça İAÜ kılavuzundaki alt başlıklara (KİTAPLAR, MAKALELER, ELEKTRONİK KAYNAKLAR, TEZLER, DİĞER KAYNAKLAR) ayrılmamış."
+                f"Kaynakça profildeki alt başlıklara ({', '.join(kp['alt_basliklar'])}) ayrılmamış; eksik: {', '.join(sorted(eksik_alt))}."
             )
 
-    # 8. KVKK Özgeçmiş Denetimi (s. 21, 43)
+    # 8. KVKK özgeçmiş denetimi
     kvkk_ihlalleri = []
     if ozgecmis_satirlari:
         oz_metin = "\n".join(ozgecmis_satirlari)
         if re.search(r"[\w.+-]+@[\w-]+\.[\w.-]+", oz_metin):
-            kvkk_ihlalleri.append("Özgeçmişte e-posta adresi yer alıyor (İAÜ Kılavuzu s. 43 KVKK uyarısı gereği kaldırılmalıdır).")
+            kvkk_ihlalleri.append("Özgeçmişte e-posta adresi yer alıyor (kişisel veri; KVKK uyarısı gereği kaldırılmalıdır).")
         if re.search(r"\b(?:0?5\d{2}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}|\+90\s*\d{3})\b", oz_metin):
-            kvkk_ihlalleri.append("Özgeçmişte telefon numarası yer alıyor (İAÜ Kılavuzu s. 43 KVKK uyarısı gereği kaldırılmalıdır).")
+            kvkk_ihlalleri.append("Özgeçmişte telefon numarası yer alıyor (kişisel veri; KVKK uyarısı gereği kaldırılmalıdır).")
         if re.search(r"\b(?:doğum\s+tarihi|doğum\s+yeri|t\.?c\.?\s*kimlik|orcid|adres)\b", oz_metin, flags=re.I):
-            kvkk_ihlalleri.append("Özgeçmişte doğum tarihi/yeri, adres veya kimlik/ORCID alanı yer alıyor (İAÜ Kılavuzu s. 43 KVKK uyarısı gereği kaldırılmalıdır).")
+            kvkk_ihlalleri.append("Özgeçmişte doğum tarihi/yeri, adres veya kimlik/ORCID alanı yer alıyor (kişisel veri; KVKK uyarısı gereği kaldırılmalıdır).")
 
     return {
         "terim_ikilikleri": terim_ikilikleri,
@@ -435,6 +436,7 @@ def iau_kilavuz_denetimi(
         "atif_bicim_ihlalleri": atif_bicim_ihlalleri[:25],
         "ozet_denetimi": ozet_denetimi,
         "kenar_bosluklari": kenar_bosluklari or {},
+        "kenar_hedefleri": hedefler,
         "kenar_ihlalleri": kenar_ihlalleri,
         "kaynakca_bicim_uyarilari": kaynakca_bicim_uyarilari,
         "kvkk_ihlalleri": kvkk_ihlalleri,
@@ -466,7 +468,7 @@ def metin_analiz_et(
     okunabilirlik_ozet = ok.olc(metin)
     atiflar = ATIF_RE.findall(metin)
     atif_capraz = atif_kaynakca_denetimi(metin, kaynakca_satirlari or [])
-    iau_denetim = iau_kilavuz_denetimi(
+    kilavuz_sonuc = kilavuz_denetimi(
         metin,
         on_sayfalar=on_sayfalar,
         kaynakca_ham_satirlar=kaynakca_ham_satirlar,
@@ -508,12 +510,12 @@ def metin_analiz_et(
         juri_riskleri.append(f"Kaynakçada yer alıp metinde hiç atıf yapılmayan kaynak ({len(atif_capraz['metinde_eksik_kaynaklar'])} adet): Metinde atıf verin ya da Kaynakçadan çıkarın.")
     if bilgi_kaybi:
         juri_riskleri.append(f"Bilgi/sayı/atıf kaybı ({', '.join(bilgi_kaybi.keys())}): Önceki taslağa göre düşen sayı, özel ad veya atıfları kontrol edin.")
-    if iau_denetim["terim_ikilikleri"]:
-        juri_riskleri.append(f"İAÜ Kılavuzu Terim Birliği ihlali ({len(iau_denetim['terim_ikilikleri'])} terim çifti): Madde I.C.1 gereği kanun/yasa, teori/kuram vb. eş anlamlılarda tek terim tercih edilmelidir.")
-    if iau_denetim["baslik_ihlalleri"]:
-        juri_riskleri.append(f"İAÜ Kılavuzu Başlık Biçimi ihlali ({len(iau_denetim['baslik_ihlalleri'])} başlık): Madde III.C gereği 1. düzey başlıklar tamamı BÜYÜK HARF, Romen rakamı sonrası boşluklu olmalıdır.")
-    if iau_denetim["kvkk_ihlalleri"]:
-        juri_riskleri.append(f"İAÜ Kılavuzu KVKK ihlali ({len(iau_denetim['kvkk_ihlalleri'])} bulgu): Özgeçmiş/Ekler kısmında kişisel veri (e-posta, telefon, doğum tarihi/yeri vb.) yer almamalıdır.")
+    if kilavuz_sonuc["terim_ikilikleri"]:
+        juri_riskleri.append(f"Terim birliği ihlali ({len(kilavuz_sonuc['terim_ikilikleri'])} terim çifti): kanun/yasa, teori/kuram vb. eş anlamlılarda tek terim tercih edilmelidir.")
+    if kilavuz_sonuc["baslik_ihlalleri"]:
+        juri_riskleri.append(f"Başlık biçimi ihlali ({len(kilavuz_sonuc['baslik_ihlalleri'])} başlık): tez yazım profiline göre 1. düzey başlık biçimini ve numara sonrası boşluğu düzeltin.")
+    if kilavuz_sonuc["kvkk_ihlalleri"]:
+        juri_riskleri.append(f"KVKK ihlali ({len(kilavuz_sonuc['kvkk_ihlalleri'])} bulgu): Özgeçmiş/Ekler kısmında kişisel veri (e-posta, telefon, doğum tarihi/yeri vb.) yer almamalıdır.")
 
     return {
         "okunabilirlik": {
@@ -524,7 +526,7 @@ def metin_analiz_et(
         },
         "atif_sayisi": len(atiflar),
         "atif_kaynakca_denetimi": atif_capraz,
-        "iau_kilavuz_denetimi": iau_denetim,
+        "kilavuz_denetimi": kilavuz_sonuc,
         "toplam_tarama_bulgusu": len(tarama_bulgulari),
         "esdizim_bulgulari": esdizim_bulgulari,
         "kaynaksiz_otorite": [
@@ -791,30 +793,32 @@ def rapor_uret(analiz):
             icerik = f"«{y['metin']}»" if "metin" in y else f"({y['metin_uzunluk']} karakterlik not)"
             satirlar.append(f"- **[{y['yazar']} · {y['tarih']}]** {icerik}")
 
-    iau = analiz.get("iau_kilavuz_denetimi") or {}
-    if any(iau.get(k) for k in ("terim_ikilikleri", "baslik_ihlalleri", "sekil_cizelge_ihlalleri", "atif_bicim_ihlalleri", "ozet_denetimi", "kenar_ihlalleri", "kaynakca_bicim_uyarilari", "kvkk_ihlalleri")):
-        satirlar.extend(["", "## 11. İAÜ Tez Yazım Kılavuzu Uygunluk Denetimi"])
-        oz_d = iau.get("ozet_denetimi") or {}
+    kd = analiz.get("kilavuz_denetimi") or {}
+    if any(kd.get(k) for k in ("terim_ikilikleri", "baslik_ihlalleri", "sekil_cizelge_ihlalleri", "atif_bicim_ihlalleri", "ozet_denetimi", "kenar_ihlalleri", "kaynakca_bicim_uyarilari", "kvkk_ihlalleri")):
+        satirlar.extend(["", "## 11. Tez Yazım Kılavuzu Uygunluk Denetimi"])
+        oz_d = kd.get("ozet_denetimi") or {}
         if oz_d:
-            oz_durum = "✅ Uygun (250-400 sınırında)" if oz_d.get("ozet_uygun") else "⚠️ Sınır dışı (İAÜ kuralı: 250-400 kelime)"
-            ab_durum = "✅ Uygun (250-400 sınırında)" if oz_d.get("abstract_uygun") else "⚠️ Sınır dışı (İAÜ kuralı: 250-400 kelime)"
-            satirlar.append(f"- **Özet / Abstract Kelime Sayısı (Madde IV.F-G):** ÖZET `{oz_d.get('ozet_kelime', '-')}` kelime ({oz_durum}) · ABSTRACT `{oz_d.get('abstract_kelime', '-')}` kelime ({ab_durum})")
-        kb = iau.get("kenar_bosluklari") or {}
+            lo, hi = (oz_d.get("sinir") or [0, 0])
+            oz_durum = f"✅ Uygun ({lo}-{hi} sınırında)" if oz_d.get("ozet_uygun") else f"⚠️ Sınır dışı (profil: {lo}-{hi} kelime)"
+            ab_durum = f"✅ Uygun ({lo}-{hi} sınırında)" if oz_d.get("abstract_uygun") else f"⚠️ Sınır dışı (profil: {lo}-{hi} kelime)"
+            satirlar.append(f"- **Özet / Abstract Kelime Sayısı:** ÖZET `{oz_d.get('ozet_kelime', '-')}` kelime ({oz_durum}) · ABSTRACT `{oz_d.get('abstract_kelime', '-')}` kelime ({ab_durum})")
+        kb = kd.get("kenar_bosluklari") or {}
         if kb:
-            satirlar.append(f"- **Sayfa Kenar Boşlukları (Madde III.A):** Sol/İç `{kb.get('sol_ic_cm')}` cm (Hedef: 4.0) · Üst `{kb.get('ust_cm')}` cm · Alt `{kb.get('alt_cm')}` cm · Sağ/Dış `{kb.get('sag_dis_cm')}` cm (Hedef: 2.5)")
-        for b_ih in iau.get("baslik_ihlalleri", []):
+            h = kd.get("kenar_hedefleri") or {}
+            satirlar.append(f"- **Sayfa Kenar Boşlukları:** Sol/İç `{kb.get('sol_ic_cm')}` cm (Hedef: {h.get('sol_ic_cm')}) · Üst `{kb.get('ust_cm')}` cm · Alt `{kb.get('alt_cm')}` cm · Sağ/Dış `{kb.get('sag_dis_cm')}` cm (Hedef: {h.get('sag_dis_cm')})")
+        for b_ih in kd.get("baslik_ihlalleri", []):
             satirlar.append(f"- **Başlık Kuralı İhlali (Satır {b_ih['satir']}):** «{b_ih['baslik']}» → {b_ih['kural']}")
-        for sc in iau.get("sekil_cizelge_ihlalleri", []):
-            satirlar.append(f"- **Şekil/Çizelge Kuralı:** {sc}")
-        for kb_u in iau.get("kaynakca_bicim_uyarilari", []):
+        for sc in kd.get("sekil_cizelge_ihlalleri", []):
+            satirlar.append(f"- **Şekil/Tablo Kuralı:** {sc}")
+        for kb_u in kd.get("kaynakca_bicim_uyarilari", []):
             satirlar.append(f"- **Kaynakça Düzeni:** {kb_u}")
-        for kv in iau.get("kvkk_ihlalleri", []):
+        for kv in kd.get("kvkk_ihlalleri", []):
             satirlar.append(f"- **KVKK Kişisel Veri Uyarısı:** {kv}")
-        for ab_ih in iau.get("atif_bicim_ihlalleri", [])[:10]:
-            satirlar.append(f"- **Metin İçi APA Biçim Uyarısı:** {ab_ih}")
-        if iau.get("terim_ikilikleri"):
-            satirlar.append("- **Terim Birliği İkilikleri (Madde I.C.1, s. 4 — tek terim seçilmeli):**")
-            for ti in iau["terim_ikilikleri"]:
+        for ab_ih in kd.get("atif_bicim_ihlalleri", [])[:10]:
+            satirlar.append(f"- **Metin İçi Atıf Biçimi Uyarısı:** {ab_ih}")
+        if kd.get("terim_ikilikleri"):
+            satirlar.append("- **Terim Birliği İkilikleri (tek terim seçilmeli):**")
+            for ti in kd["terim_ikilikleri"]:
                 satirlar.append(f"  - `{ti['terim_a']}` ({ti['adet_a']} kez) ↔ `{ti['terim_b']}` ({ti['adet_b']} kez) — {ti['oneri']}")
 
     if analiz.get("uzak_ornek_oneri"):

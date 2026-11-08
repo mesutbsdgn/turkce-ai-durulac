@@ -11,8 +11,8 @@ import benzerlik as bz  # noqa: E402
 import test_tez_onar as tt  # noqa: E402
 import tez_onar as to  # noqa: E402
 
-ESKI = "Uydurma kurum siber olaylara karşı yeni bir koordinasyon modeli geliştirmiş ve bunu 2025 yılında uygulamaya koymuştur (Aydın, 2020)."
-YENI = "Bu kurum 2025 yılında, siber olaylara karşı geliştirdiği yeni koordinasyon yapısını yürürlüğe koymuştur (Aydın, 2020)."
+ESKI = "Uydurma kurum siber olaylara karşı yeni bir koordinasyon modeli geliştirmiş ve bunu 2025 yılında uygulamaya koymuştur (Örnek, 2020)."
+YENI = "Bu kurum 2025 yılında, siber olaylara karşı geliştirdiği yeni koordinasyon yapısını yürürlüğe koymuştur (Örnek, 2020)."
 ESL = "siber olaylara karşı yeni bir koordinasyon modeli geliştirmiş ve bunu 2025".split()
 
 
@@ -24,17 +24,17 @@ class DogrulamaTesti(unittest.TestCase):
         self.assertEqual(bz.dogrula_cumle(ESKI, YENI.replace("2025", "2026"), ESL), "sayi")
 
     def test_atif_degisirse_reddedilir(self):
-        self.assertEqual(bz.dogrula_cumle(ESKI, YENI.replace("Aydın", "Yılmaz"), ESL), "atif")
+        self.assertEqual(bz.dogrula_cumle(ESKI, YENI.replace("Örnek", "Yılmaz"), ESL), "atif")
 
     def test_yeni_ozel_ad_reddedilir(self):
         self.assertEqual(bz.dogrula_cumle(ESKI, YENI.replace("Bu kurum", "Bu kurum Interpol"), ESL), "ozel_ad")
 
     def test_eslesme_kalirsa_reddedilir(self):
-        yeni = "Kurum, siber olaylara karşı yeni bir koordinasyon modeli geliştirdi; 2025 yılında yürürlüğe koymuştur (Aydın, 2020)."
+        yeni = "Kurum, siber olaylara karşı yeni bir koordinasyon modeli geliştirdi; 2025 yılında yürürlüğe koymuştur (Örnek, 2020)."
         self.assertEqual(bz.dogrula_cumle(ESKI, yeni, ESL), "eslesme_kaldi")
 
     def test_uzunluk_ve_noktalama(self):
-        self.assertEqual(bz.dogrula_cumle(ESKI, "Kısa 2025 (Aydın, 2020).", ESL), "uzunluk")
+        self.assertEqual(bz.dogrula_cumle(ESKI, "Kısa 2025 (Örnek, 2020).", ESL), "uzunluk")
         self.assertEqual(bz.dogrula_cumle(ESKI, YENI.rstrip(".") + "!", ESL), "noktalama")
 
     def test_temizle(self):
@@ -43,12 +43,12 @@ class DogrulamaTesti(unittest.TestCase):
 
 class EkKuralTesti(unittest.TestCase):
     def test_terim_birligi(self):
-        self.assertEqual(bz.dogrula_cumle("Bu kanun siber uzayda geçerlidir (Aydın, 2020).", "Bu yasa siber uzayda uygulanır (Aydın, 2020).", [], 6), "terim_birligi")
+        self.assertEqual(bz.dogrula_cumle("Bu kanun siber uzayda geçerlidir (Örnek, 2020).", "Bu yasa siber uzayda uygulanır (Örnek, 2020).", [], 6), "terim_birligi")
 
     def test_birinci_sahis_ve_tablo(self):
-        e = "Veriler analiz edilmiş ve sonuçlar sunulmuştur (Aydın, 2020)."
-        self.assertEqual(bz.dogrula_cumle(e, "Verileri inceledik ve sonuçları sunduk (Aydın, 2020).", [], 6), "birinci_sahis")
-        self.assertEqual(bz.dogrula_cumle("Sonuçlar Çizelge 3 içinde sunulmuştur (Aydın, 2020).", "Bulgular Tablo 3 içinde verilmiştir (Aydın, 2020).", [], 6), "tablo_cizelge")
+        e = "Veriler analiz edilmiş ve sonuçlar sunulmuştur (Örnek, 2020)."
+        self.assertEqual(bz.dogrula_cumle(e, "Verileri inceledik ve sonuçları sunduk (Örnek, 2020).", [], 6), "birinci_sahis")
+        self.assertEqual(bz.dogrula_cumle("Sonuçlar Çizelge 3 içinde sunulmuştur (Örnek, 2020).", "Bulgular Tablo 3 içinde verilmiştir (Örnek, 2020).", [], 6), "tablo_cizelge")
 
 
 class SozcukFarkiTesti(unittest.TestCase):
@@ -77,8 +77,8 @@ class SozcukFarkiTesti(unittest.TestCase):
 
 class SurumDenetimTesti(unittest.TestCase):
     def test_degisen_ve_ihlal(self):
-        eski = ["Başlık", "Veriler 2020 yılında toplandı (Aydın, 2020). Kanun siber uzayı kapsar.", "Sabit paragraf."]
-        yeni = ["Başlık", "Veriler 2021 yılında toplandı (Aydın, 2020). Yasa siber uzayı kapsar.", "Sabit paragraf."]
+        eski = ["Başlık", "Veriler 2020 yılında toplandı (Örnek, 2020). Kanun siber uzayı kapsar.", "Sabit paragraf."]
+        yeni = ["Başlık", "Veriler 2021 yılında toplandı (Örnek, 2020). Yasa siber uzayı kapsar.", "Sabit paragraf."]
         s = bz.surum_denetle(eski, yeni)
         self.assertEqual(s["degisen_paragraf"], 1)
         self.assertEqual(sorted(s["degisenler"][0]["ihlal"]), ["sayi", "terim_birligi"])
@@ -116,8 +116,8 @@ class MetinDenetimTesti(unittest.TestCase):
 
 
 class MetinGuncelleTesti(unittest.TestCase):
-    ESKI = "Uzun bir cümle burada yer alır ve bir türlü bitmez, ikinci kısım da buna eklenir (Aydın, 2020: 5)."
-    YENI = "Uzun bir cümle burada yer alır. İkinci kısım da buna eklenir (Aydın, 2020: 5)."
+    ESKI = "Uzun bir cümle burada yer alır ve bir türlü bitmez, ikinci kısım da buna eklenir (Örnek, 2020: 5)."
+    YENI = "Uzun bir cümle burada yer alır. İkinci kısım da buna eklenir (Örnek, 2020: 5)."
 
     def test_izli_guncelleme_ve_geri_alma(self):
         belge = tt.KOK_ETIKET + tt.par(f'<w:r><w:t xml:space="preserve">{self.ESKI}</w:t></w:r>') + tt.SON
@@ -193,7 +193,7 @@ class UcUcaTesti(unittest.TestCase):
         def yaz(cumle, ek="", sicaklik=0.3):
             gelen.append(ek)
             if not ek:
-                return "Kurum, siber olaylara karşı yeni bir koordinasyon modeli geliştirdi; 2025 yılında yürürlüğe koymuştur (Aydın, 2020)."
+                return "Kurum, siber olaylara karşı yeni bir koordinasyon modeli geliştirdi; 2025 yılında yürürlüğe koymuştur (Örnek, 2020)."
             return YENI
         kanca = bz.Kanca(hedef, yaz)
         yeni, _, sayac, _ = to.belge_onar(belge, ek_oneri=kanca)

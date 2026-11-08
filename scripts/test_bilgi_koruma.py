@@ -11,14 +11,14 @@ import bilgi_koruma as bk  # noqa: E402
 
 BETIK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bilgi_koruma.py")
 
-# 23 Ekim 2026 bülteninden: 30 sözcük sınırı için kısaltılan gerçek maddeler.
-GAZZE_ONCE = ("Wafa'ya göre İsrail saldırıları Gazze'de dört kişiyi öldürdü, Sağlık Bakanlığı "
-              "Ekim 2025 ateşkesinden bu yana en az 1.538 kişinin öldüğünü bildirdi; WFP'nin "
-              "yardımı azaltmasıyla 500 bin kişinin etkilendiği belirtildi.")
-GAZZE_SONRA = "Wafa'ya göre İsrail saldırıları Gazze'de dört kişiyi öldürdü."
-HURMUZ_ONCE = ("Devrim Muhafızları yedi tankerin hasar gördüğünü açıkladı; ABD Merkez "
-               "Komutanlığı mayın iddiasını reddedip gemilerin %95'inin geçtiğini söyledi.")
-HURMUZ_SONRA = "Devrim Muhafızları yedi tankerin hasar gördüğünü açıkladı."
+# 30 sözcük sınırı için kısaltılan haber maddelerinin kurgusal (gerçek kişi/kurum içermeyen) örnekleri.
+GAZZE_ONCE = ("Ajansa göre Örnekova'daki sel dört kişinin ölümüne yol açtı, Afet Kurumu "
+              "geçen aydan bu yana en az 1.538 kişinin tahliye edildiğini bildirdi; AYV'nin "
+              "desteği azaltmasıyla 500 bin kişinin etkilendiği belirtildi.")
+GAZZE_SONRA = "Ajansa göre Örnekova'daki sel dört kişinin ölümüne yol açtı."
+HURMUZ_ONCE = ("Örnek Grup yedi geminin hasar gördüğünü açıkladı; Bölge "
+               "Komutanlığı iddiayı reddedip gemilerin %95'inin geçtiğini söyledi.")
+HURMUZ_SONRA = "Örnek Grup yedi geminin hasar gördüğünü açıkladı."
 
 
 class BilgiKoruma(unittest.TestCase):
@@ -26,23 +26,23 @@ class BilgiKoruma(unittest.TestCase):
         k = bk.kayiplar(GAZZE_ONCE, GAZZE_SONRA)
         self.assertIn("1.538", k["sayı"])
         self.assertIn("500bin", k["sayı"])
-        self.assertIn("WFP", k["ad"])
+        self.assertIn("AYV", k["ad"])
 
     def test_karsi_aciklama_kaybi(self):
         k = bk.kayiplar(HURMUZ_ONCE, HURMUZ_SONRA)
         self.assertIn("ret", k["atıf"])
-        self.assertIn("Merkez", k["ad"])
+        self.assertIn("Bölge", k["ad"])
         self.assertIn("%95", k["sayı"])
 
     def test_alinti_kaybi_ve_alinti_ici_ad_sayilmaz(self):
-        once = 'Trump "Belki biraz daha ileri gidebiliriz" dedi.'
-        k = bk.kayiplar(once, "Trump konuştu.")
+        once = 'Başkan Yılmaz "Belki biraz daha ileri gidebiliriz" dedi.'
+        k = bk.kayiplar(once, "Başkan Yılmaz konuştu.")
         self.assertEqual(k["alıntı"], ["belki biraz daha ileri gidebiliriz"])
         self.assertNotIn("ad", k)
 
     def test_sadelestirme_kayipsiz(self):
-        once = "Bakanlık, 12 ilde 340 okulun onarımının gerçekleştirildiğini Sabah'a göre açıkladı."
-        sonra = "Sabah'a göre Bakanlık 12 ilde 340 okulu onardı."
+        once = "Bakanlık, 12 ilde 340 okulun onarımının gerçekleştirildiğini Haber Ajansı'na göre açıkladı."
+        sonra = "Haber Ajansı'na göre Bakanlık 12 ilde 340 okulu onardı."
         self.assertEqual(bk.kayiplar(once, sonra), {})
 
     def test_ay_adi_ad_sayilmaz(self):
