@@ -20,6 +20,9 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 - [Bir örnek](#bir-örnek)
 - [Üç çalışma biçimi](#üç-çalışma-biçimi)
 - [Finans metinleri](#finans-metinleri)
+- [Akademik tez modu](#akademik-tez-modu)
+- [Word izli değişiklik hattı](#word-izli-değişiklik-hattı)
+- [Bilgi koruma denetimi](#bilgi-koruma-denetimi)
 - [Ne yapar, ne yapmaz](#ne-yapar-ne-yapmaz)
 - [Kurulum](#kurulum)
 - [Kullanım](#kullanım)
@@ -94,7 +97,54 @@ python3 scripts/okunabilirlik.py once.txt sonra.txt
 python3 scripts/tarama.py README.tr.md --onceki README.tr.eski.md
 ```
 
-Testler: `python3 scripts/test_okunabilirlik.py` ve `python3 scripts/test_tarama.py`.
+Testler: `scripts/` içindeki her `test_*.py` dosyası tek başına çalışır (`python3 -B scripts/test_tarama.py` gibi); ek kenar durum testleri için `python3 -m pytest scripts/tests`. v1.4'te toplam 284 test vardır (193 unittest + 91 pytest) ve hepsi geçer.
+
+## Akademik tez modu
+
+Yüksek lisans ve doktora tezlerinde (`--tur tez`) kural tersine döner: edilgen çatı (`-ılmıştır`, `tarafından`), `kapsamında`, `söz konusu` gibi akademik kalıplar bilinçlidir, bu yüzden muaf tutulur. Bunun yerine tezlere özgü sorunlar aranır:
+
+- **Çeviri kokusu ve eş dizim hataları:** "tehdit sergilemek" yerine "tehdit oluşturmak", "politika inşa etmek" yerine "politika geliştirmek", "boşluğu doldurmak" yerine "eksikliği gidermek". 105 kurallı [`references/akademik-esdizim.json`](references/akademik-esdizim.json) çekim eklerini soyarak çalışır (`scripts/esdizim.py`).
+- **Kaynaksız otorite:** "Araştırmacılara göre" der ama cümlede `(Yazar, Yıl)` ya da `[1]` yoksa işaretlenir.
+- **Ad tamlaması zinciri** (4 ve üzeri) ve **birinci şahıs sızıntısı** ("tezimizde", "ele aldık").
+- **Atıf ↔ kaynakça çapraz denetimi** (`scripts/atif_tani.py`): metinde olup kaynakçada olmayan, kaynakçada olup metinde anılmayan, yılı birbirini tutmayan künyeler.
+- **Kurum kılavuzu uygunluğu:** [`references/iau-tez-kilavuzu.json`](references/iau-tez-kilavuzu.json) İstanbul Aydın Üniversitesi Tez Yazım Kılavuzu'ndaki sayfa düzeni, başlık hiyerarşisi, atıf biçimi ve terim birliği kurallarını makine okunur biçimde tutar. Başka bir üniversiteye uyarlamak için aynı şemada yeni bir JSON yazmak yeterlidir.
+
+Hepsini tek raporda toplayan araç:
+
+```bash
+python3 scripts/tez_analiz.py Tez.docx                 # jüri/üslup raporu (varsayılan: cümlesiz)
+python3 scripts/tez_analiz.py Tez.docx --cikti rapor.md
+python3 scripts/tez_analiz.py yeni.md --onceki eski.md  # iki sürümü karşılaştırır
+python3 scripts/tez_analiz.py Tez.docx --tam            # ifadeleri aynen yazar (yalnız kendi kullanımın için)
+```
+
+Varsayılan rapor **cümlesizdir**: tezin tek cümlesi bulunmaz, yalnız konum, kural kimliği, sayı ve geri döndürülemez kısa bir özet kalır. Raporu okuyan kişi ya da model metni görmez; bir bulut modeline tez yüklemek istemeyenler için tasarlandı. Alan beyaz listesi vardır, bir de sızıntı bekçisi: rapor yazılmadan önce tez gövdesinden ardışık beş sözcük arar, bulursa raporu yazmaz ve 3 koduyla çıkar. Testler bekçiyi kasten kapatıp testin kırıldığını da doğrular.
+
+İstersen kendi Ollama sunucundaki bir modelden cümle önerisi de alınabilir: `DURULAC_UZAK_SSH` (ssh takma adı) ve `DURULAC_UZAK_MODEL` ortam değişkenlerini tanımlayıp `--uzak` ver. Bu bayrak, eş dizim bulunan cümlelerden birini (en çok 500 karakter) senin verdiğin ssh takma adına gönderir; bayrak ya da değişken yoksa hiçbir şey gönderilmez. [`references/Modelfile.durulac-tez.sablon`](references/Modelfile.durulac-tez.sablon) kendi temel modeline bağlayacağın bir şablondur; hazır bir model dağıtılmaz.
+
+## Word izli değişiklik hattı
+
+Tez metnine dokunacak her şey Word'ün **izli değişikliği** olarak yazılır (yazar etiketi `Durulaç-Ajan`); reddedersen orijinal geri gelir. Orijinal dosya hiç değişmez, yeni `.docx` yazılır. Bu betikler yalnız Python standart kütüphanesiyle çalışır:
+
+| Betik | İş |
+|---|---|
+| `tez_onar.py` | Kural tabanlı onarım: yazım ve biçim düzeltmeleri, izli değişiklik olarak |
+| `denetci.py` | Özgün ve ajan çıktısını karşılaştırır; sayı, atıf, özel ad ve cümle sayısı kaybını yakalar |
+| `benzerlik.py` | Quetext raporundaki atıfsız ve yüksek benzerlikli eşleşmeleri yerel Ollama modeliyle yeniden kurar (izli değişiklik); kaynak künyesi uydurmaz, atıf yerini işaretler. Rapor cümlesizdir |
+| `yerlestir.py` | Onaylanmış yeni paragrafı gömme (embedding) benzerliğiyle en yakın gövde paragrafının ardına koyar; eşik altındaysa yerleştirmez |
+| `intihal.py` | Tez ile verdiğin korpus arasında yerel benzerlik ön kontrolü (Python 3.12+). Turnitin gibi geniş veri tabanlarının yerini tutmaz; korpus eksikse tespit de eksiktir |
+| `icerik.py`, `rapor_ozet.py` | Konu listesi kapsama kontrolü ve Quetext PDF raporundan cümlesiz özet (`pdftotext` gerekir) |
+| `tez_ajan.py` | Yukarıdakileri tek kök dizinde, `ayar.json` ile yöneten görev koşturucu (`TEZ_AJAN_KOK`); adında “orijinal” geçen dosyayla çalışmayı reddeder |
+
+`yerlestir.py` gömme için yerel Ollama'da `bge-m3` kullanır. Betikler 127.0.0.1 dışına çıkmaz; tek istisna yukarıdaki açık `--uzak` bayrağıdır.
+
+## Bilgi koruma denetimi
+
+`scripts/bilgi_koruma.py` yalnız finansta değil her Temizle işinde çalışır. Önce ve sonra metnini karşılaştırır, kaybolan sayıyı, alıntıyı, özel adı ve atfı listeler. Uzunluk sınırı geldiğinde (“en çok 30 sözcük”) karşı açıklamanın, kaynak atfının, toplam sayının ve hedef bilgisinin düşmesini önlemek için eklendi: 23 Ekim 2026'da 42 maddelik bir bültende kısaltma 17 maddede bu bilgileri düşürmüştü ve betik hepsini yakaladı.
+
+```bash
+python3 scripts/bilgi_koruma.py once.txt sonra.txt
+```
 
 ## Ne yapar, ne yapmaz
 
@@ -102,7 +152,7 @@ Yapar:
 
 - Metnin türünü önce belirler ve her türe kendi kuralıyla yaklaşır. Resmî yazı, dilekçe, akademik makale ve sözleşmede o türe özgü kalıplar (edilgen çatı, "arz ederim", "işbu") bilinçlidir; onlara dokunmaz. Haberde kaynak atfını, altyazıda kısa satırları, sosyal medyada hashtag ve emojiyi, edebî metinde devrik cümleyi korur.
 - Sohbeti sohbet bırakır. Devrik cümleyi, günlük dolguyu, "bence" gibi yumuşatıcıları ve kişisel sesi rapor diline çevirmez.
-- Elli kalıp aşkın yapay/bürokratik kalıbı tanır: klişe giriş, boş sıfat dizisi, plaza İngilizcesi, sahte-derin kapanış ve daha fazlası. Yerleşik olmayan eş dizimleri de düzeltir ("etki üretmek" yerine "etki yaratmak").
+- Onlarca yapay/bürokratik kalıbı tanır (61–66 numaralı kalıplar yalnız tez modunda): klişe giriş, boş sıfat dizisi, plaza İngilizcesi, sahte-derin kapanış ve daha fazlası. Yerleşik olmayan eş dizimleri de düzeltir ("etki üretmek" yerine "etki yaratmak").
 - Bir şey silerken yerine akış bırakır. Dolgu attığında cümleleri kopuk kopuk bırakmaz, bağlaçla toparlar.
 - Sadeleştirir, özetlemez. Kelime yükünü azaltır ama bilgi taşıyan cümleyi atmaz.
 - Finans metninde rakamları, yasal terimleri ve zorunlu uyarıları korur; yatırım reklamındaki yasak vaatleri işaretler.
@@ -165,6 +215,8 @@ Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Ö
 - Son söz sende. Altındaki değişiklik listesini oku, onaylamadığını geri al.
 - Finans eklentisi hukuk ya da uyum danışmanlığı değildir. Mevzuat notundaki bazı madde numaraları ikincil kaynakla doğrulandı ve dosyada öyle işaretli; resmî kullanımda aslından kontrol et.
 - Tarama betiği bağlamı bilmez: doğru kullanımı da işaretleyebilir ve bulmadığı kalıbı (anlam, ritim, fail) bulmaz. Bulguları gerekçeyle karara bağla.
+- Tez modu bir danışman ya da jüri yerine geçmez. Bulduğu şey kural ihlali ve olası çeviri kokusudur, bilimsel değerlendirme değil. Eş dizim kuralları derlenmiş bir listedir (`korpus_pmi.py` onu bir korpusla genişletmek içindir, listedeki kurallar yayımlanmış bir korpusa dayanmaz); her kuralın örneği var ama kapsam dar, bulmadığı hatayı yok sayma.
+- Yerel küçük bir modelin (7-8 milyar parametre) akademik cümleyi yeniden yazması denendi; bu sürümde modelin kalitesi ölçülmedi, bu yüzden model önerisi **isteğe bağlı bir ek** olarak bırakıldı. Asıl denetim 0-token betiklerdedir; bir modeli tezde kullanmadan önce kendi örneklerinle ölç.
 - Okunabilirlik formülleri sözcük ve hece uzunluğuna bakar, anlamı ölçmez. Kısa metinde puan oynaktır; puanı tek başına başarı ölçüsü sayma.
 
 ## Katkı

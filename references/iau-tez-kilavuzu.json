@@ -1,0 +1,78 @@
+{
+  "kurum": "İstanbul Aydın Üniversitesi Lisansüstü Eğitim Enstitüsü",
+  "belge": "Tez ve Proje Yazım Kılavuzu (Türkçe)",
+  "surum": "Aralık 2021 (2024/06 EYK Güncellemeli)",
+  "kaynak_url": "https://www.aydin.edu.tr/tr-tr/akademik/lisansustu-egitim-enstitusu/Documents/Tez%20ve%20Proje%20Yaz%C4%B1m%20K%C4%B1lavuzu%20(T%C3%BCrk%C3%A7e).pdf",
+  "sayfa_duzeni": {
+    "kagit": "A4 (21 x 29.7 cm)",
+    "ust_kenar_cm": 2.5,
+    "alt_kenar_cm": 2.5,
+    "dis_kenar_cm": 2.5,
+    "ic_kenar_cm": 4.0,
+    "yazi_tipi": "Times New Roman",
+    "govde_punto": 12,
+    "dipnot_punto": 10,
+    "satir_araligi": 1.5,
+    "dipnot_satir_araligi": 1.0,
+    "paragraf_oncesi_nk": 6,
+    "paragraf_sonrasi_nk": 6,
+    "ilk_satir_girinti_cm": 1.0,
+    "hizalama": "iki_yana_yasli"
+  },
+  "baslik_hiyerarsisi": {
+    "ozel_sayfa_basliklari": "TAMAMI BÜYÜK HARF, Koyu, 14 punto, Ortalanmış (ÖZET, ABSTRACT, İÇİNDEKİLER, ŞEKİLLER LİSTESİ, ÇİZELGELER LİSTESİ, KISALTMALAR LİSTESİ, ÖNSÖZ, ÖZGEÇMİŞ)",
+    "duzey_1": "Büyük Romen rakamı (I., II., III.), 14 punto, sola dayalı, koyu, TÜM KELİMELER BÜYÜK HARF ('VE', 'VEYA', 'İLE' bağlaçları dâhil büyük harf), önce 72 nk, sonra 18 nk",
+    "duzey_2": "Büyük Latin harfi (A., B., C.), 12 punto, sola dayalı, koyu, Her Kelimenin İlk Harfi Büyük ('ve', 'veya', 'ile' bağlaçları küçük harf), önce 18 nk, sonra 12 nk",
+    "duzey_3": "Latin rakamı (1., 2., 3.), 12 punto, sola dayalı, koyu, Her Kelimenin İlk Harfi Büyük ('ve', 'veya', 'ile' bağlaçları küçük harf), önce 12 nk, sonra 6 nk",
+    "duzey_4": "Küçük Latin harfi (a., b., c.), 12 punto, sola dayalı, koyu, Yalnızca birinci kelimenin ilk harfi büyük, önce 6 nk, sonra 6 nk",
+    "duzey_5": "Küçük Romen rakamı (i., ii., iii.), 12 punto, sola dayalı, koyu, Yalnızca birinci sözcüğün ilk harfi büyük, önce 6 nk, sonra 6 nk"
+  },
+  "terim_birligi_ciftleri": [
+    {"id": "TRM-01", "terim_a": "kanun", "terim_b": "yasa", "kaynak_madde": "I.C.1 (s. 4)"},
+    {"id": "TRM-02", "terim_a": "teori", "terim_b": "kuram", "kaynak_madde": "I.C.1 (s. 4)"},
+    {"id": "TRM-03", "terim_a": "tabiat", "terim_b": "doğa", "kaynak_madde": "I.C.1 (s. 4)"},
+    {"id": "TRM-04", "terim_a": "yöntem", "terim_b": "metot", "kaynak_madde": "I.C.1 (Genel Akademik)"},
+    {"id": "TRM-05", "terim_a": "olanak", "terim_b": "imkân", "kaynak_madde": "I.C.1 (Genel Akademik)"},
+    {"id": "TRM-06", "terim_a": "koşul", "terim_b": "şart", "kaynak_madde": "I.C.1 (Genel Akademik)"},
+    {"id": "TRM-07", "terim_a": "siber uzay", "terim_b": "siber alan", "kaynak_madde": "I.C.1 (Alan Terimi)"},
+    {"id": "TRM-08", "terim_a": "uluslararası", "terim_b": "milletlerarası", "kaynak_madde": "I.C.1 (Alan Terimi)"}
+  ],
+  "ozet_kurallari": {
+    "min_kelime": 250,
+    "maks_kelime": 400,
+    "anahtar_kelime_etiketi": "Anahtar Kelimeler:",
+    "min_anahtar_kelime": 3,
+    "maks_anahtar_kelime": 5,
+    "yasaklar": ["dipnot", "şekil", "başlık"]
+  },
+  "sekil_cizelge_kurallari": {
+    "tablo_yerine_cizelge": "İAÜ kılavuzuna göre tablo adı olarak 'Tablo' değil 'Çizelge' (Çizelge 1, Çizelge 2...) veya 'Şekil' kullanılır.",
+    "numaralandirma": "Bölüm numarası içermez: 'Şekil 1.1' veya 'Çizelge 2.1' yerine 'Şekil 1', 'Şekil 2', 'Çizelge 1', 'Çizelge 2' şeklinde sıralı numaralanır.",
+    "konum": "Şekil açıklaması şeklin altına, Çizelge açıklaması çizelgenin üstüne yazılır (önce 6 nk, sonra 6 nk)."
+  },
+  "atif_ve_kaynakca_kurallari": {
+    "apa_bicimi": "(Soyadı, Yıl: Sayfa) — yıldan sonra iki nokta üst üste (:) konur, 's.' veya 'p.' yazılmaz.",
+    "iki_yazar_dil_kurali": "Kaynak İngilizce ise 'and' (Evans and Smith, 1967: 150), Türkçe ise 've' (Kaya ve Çetin, 2008: 61) kullanılır; '&' kullanılmaz.",
+    "cok_yazar_dil_kurali": "İkiden fazla yazarda kaynak İngilizce ise 'et al.' (Evans et al., 1967: 150), Türkçe ise 'vd.' (Evans vd., 1967: 150) kullanılır.",
+    "dogrudan_alinti": "Tek satıra sığan alıntılar tırnak içinde ve italik; 2-10 satır arası tırnak içinde, italik ve ayrı paragraf; 10 satırdan uzun alıntılar Ekler kısmında verilir.",
+    "kaynakca_alt_basliklari": [
+      "KİTAPLAR",
+      "MAKALELER",
+      "ANSİKLOPEDİLER",
+      "ELEKTRONİK KAYNAKLAR",
+      "TEZLER",
+      "DİĞER KAYNAKLAR"
+    ],
+    "kaynakca_bicimi": "Yazar soyadı en başta BÜYÜK HARF; kitap ve dergi adları koyu (bold); makale ve tez adları çift tırnak içinde; yazarı belirsiz internet kaynakları tezdeki sıraya göre URL-1, URL-2 şeklinde."
+  },
+  "kvkk_yasakli_bilgiler": [
+    "T.C. Kimlik numarası",
+    "telefon numarası",
+    "e-posta adresi",
+    "doğum tarihi ve yeri",
+    "fotoğraf",
+    "açık ev adresi",
+    "ORCID numarası",
+    "ıslak imzalı belge"
+  ]
+}

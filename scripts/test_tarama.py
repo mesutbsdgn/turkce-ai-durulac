@@ -151,5 +151,67 @@ class Komut(unittest.TestCase):
         self.assertIn("Toplam 1 bulgu", cikti)
 
 
+class TezModu(unittest.TestCase):
+    def setUp(self):
+        self.tez_kurallari = t.derle(tur="tez")
+
+    def tez_adlar(self, metin):
+        return {b[3] for b in t.tara(metin, self.tez_kurallari, tur="tez")}
+
+    def test_tez_modu_edilgen_ve_resmi_kaliplar_muaf(self):
+        metin = (
+            "Söz konusu güvenlik stratejisi araştırmacılar tarafından güvenlik "
+            "çerçevesinde ve ulusal politika kapsamında incelenmektedir."
+        )
+        a = self.tez_adlar(metin)
+        self.assertNotIn("tarafından", a)
+        self.assertNotIn("-mekte/-makta", a)
+        self.assertNotIn("amacıyla/kapsamında sarmalı", a)
+        self.assertNotIn("söz konusu/bahse konu", a)
+        self.assertNotIn("sözlük: tarafından", a)
+        self.assertNotIn("sözlük: çerçevesinde", a)
+
+    def test_tez_modu_akademik_ceviri_esdizim_ve_klise_yakalar(self):
+        metin = (
+            "Bu çalışma literatür boşluğunu doldurmak ve sorunu adreslemek için "
+            "yeni bir politika inşa etmekte, aktörler tehdit sergilemekte ve "
+            "süreç kritik bir rol oynamaktadır."
+        )
+        a = self.tez_adlar(metin)
+        self.assertIn("akademik çeviri kokusu (boşluğu doldurmak)", a)
+        self.assertIn("akademik çeviri kokusu (adreslemek)", a)
+        self.assertIn("akademik eş dizim hatası (politika inşa etmek)", a)
+        self.assertIn("akademik eş dizim hatası (tehdit sergilemek)", a)
+        self.assertIn("akademik klişe (kritik/merkezi rol oynamak)", a)
+
+    def test_tez_modu_kaynaksiz_otorite_ve_atifli_muafiyet(self):
+        kaynaksiz = "Araştırmacılara göre siber caydırıcılık doğrusal ilerlemez."
+        atifli_apa = "Araştırmacılara göre (Yılmaz, 2021) siber caydırıcılık doğrusal ilerlemez."
+        atifli_ieee = "Uzmanlara göre [14] siber caydırıcılık doğrusal ilerlemez."
+        self.assertIn("kaynaksız otorite (tez)", self.tez_adlar(kaynaksiz))
+        self.assertNotIn("kaynaksız otorite (tez)", self.tez_adlar(atifli_apa))
+        self.assertNotIn("kaynaksız otorite (tez)", self.tez_adlar(atifli_ieee))
+
+    def test_tez_modu_tamlama_zinciri_yakalar(self):
+        metin = "Uluslararası sistemin aktörlerinin güvenlik stratejilerinin dönüşümünün etkileri incelenmiştir."
+        self.assertIn("belirtili ad tamlaması zinciri (4+)", self.tez_adlar(metin))
+
+    def test_tez_modu_birinci_sahis_sizintisi_yakalar(self):
+        metin = "Tezimizde bu hipotezi ele aldık ve kanaatimce sonuçlar tutarlıdır."
+        a = self.tez_adlar(metin)
+        self.assertIn("tezde 1. şahıs sızıntısı", a)
+
+    def test_komut_tur_tez_aktif_calisir(self):
+        d = dosya("Araştırmacılara göre bu tehdit sergilemektedir.")
+        try:
+            kod, cikti, _ = calistir(d, "--tur", "tez")
+            self.assertEqual(kod, 0)
+            self.assertNotIn("devre dışı", cikti)
+            self.assertIn("kaynaksız otorite (tez)", cikti)
+            self.assertIn("tehdit sergilemek", cikti)
+        finally:
+            os.unlink(d)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

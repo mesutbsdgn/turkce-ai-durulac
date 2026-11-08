@@ -9,11 +9,12 @@ kararı vermez.
 Kullanım:
   python3 tarama.py README.tr.md                      # bulgular + özet
   python3 tarama.py yeni.md --onceki eski.md          # kalıp başına önce → sonra sayıları
+  python3 tarama.py tez.md --tur tez                  # akademik tez ve kelime mantığı (eş dizim) modu
   python3 tarama.py metin.md --tur resmi              # korumalı tür: tarama devre dışı
   python3 tarama.py - < metin.md                      # standart girdi
 Seçenekler:
   --onceki DOSYA       karşılaştırma için eski sürüm
-  --tur TÜR            resmi | akademik | hukuk → "kalıp taraması devre dışı" der (tür kapısı)
+  --tur TÜR            tez → akademik tez/eş dizim modu; resmi | akademik | hukuk → tarama devre dışı
   --ingilizce-terim    sözlükteki "İngilizce terim" bölümünü de tara (varsayılan: kapalı, teknik metin)
   --ozet               yalnız özet
 Yok sayılanlar: ``` kod çitleri, `satır içi kod`, URL'ler, markdown bağlantı hedefleri, HTML etiketleri,
@@ -30,8 +31,11 @@ sys.dont_write_bytecode = True
 HERE = os.path.dirname(os.path.abspath(__file__))
 SOZLUK = os.path.join(HERE, os.pardir, "references", "degistirme-sozlugu.md")
 KORUMALI = {"resmi", "resmî", "akademik", "hukuk"}
+# Tez modunda edilgen çatı ve akademik resmiyet meşrudur; bu kalıplar susturulur:
+TEZ_MUAF_NO = {3, 15, 31, 44, 54}
+TEZ_SOZLUK_ACIK = ("Yardımcı fiil", "Arkaik", "Plaza", "Eş dizim", "Reklam sıfatı", "Akademik eş dizim")
 
-# (kalıp no, ad, regex, öneri)  — no, SKILL.md "Kalıplar" numaralarıdır; 55+ "Çeviri kokusu" bölümüdür.
+# (kalıp no, ad, regex, öneri)  — no, SKILL.md "Kalıplar" numaralarıdır; 55+ "Çeviri kokusu", 61+ "Tez ve kelime mantığı" bölümüdür.
 KURALLAR = [
     (28, "uzun çizgi (—)", r"\s—\s|—", "ara söz için virgül/ayraç; konuşma çizgisi değilse kısa çizgi ya da iki nokta"),
     (29, "ve/veya", r"\bve/veya\b", "“veya” kapsayıcıdır"),
@@ -72,6 +76,24 @@ KURALLAR = [
     (56, "çalışan (worker)", r"\bçalışan\w*", "worker anlamındaysa Türkçede insan çalışan çağrışımı var: “alt ajan”/tanımlı terim; ilk geçişte tanımla"),
 ]
 
+# Akademik tez ve Türkçe kelime mantığı (eş dizim) kuralları (--tur tez ile etkinleşir)
+TEZ_KURALLARI = [
+    (61, "akademik çeviri kokusu (adreslemek)", r"\badresle\w*", "“ele almak / irdelemek / çözüm aramak”"),
+    (61, "akademik çeviri kokusu (karakterize edilmek)", r"\bkarakterize\s+edil\w*", "“belirginleşmek / öne çıkmak / tanımlanmak”"),
+    (61, "akademik çeviri kokusu (argüman ileri sürmek)", r"\bargüman\w*\s+ileri\s+sür\w*", "“savunmak / öne sürmek / iddia etmek”"),
+    (61, "akademik çeviri kokusu (ışık tutmak klişesi)", r"\bışık\s+tut\w*", "“aydınlatmak / açıklamak / ortaya koymak”"),
+    (61, "akademik çeviri kokusu (boşluğu doldurmak)", r"\bliteratür\w*\s+boşlu\w*\s+doldur\w*|\bboşluğu\s+doldur\w*", "“eksikliği gidermek / literatüre katkı sunmak”"),
+    (62, "akademik eş dizim hatası (tehdit sergilemek)", r"\btehdit\w*\s+sergile\w*", "Türkçe kelime mantığı: “tehdit oluşturmak / doğurmak / yaratmak”"),
+    (62, "akademik eş dizim hatası (politika inşa etmek)", r"\bpolitika\w*\s+inşa\s+(?:et|ed)\w*", "Türkçe kelime mantığı: “politika geliştirmek / oluşturmak / izlemek”"),
+    (62, "akademik eş dizim hatası (hipotez gerçekleştirmek/yapmak)", r"\bhipotez\w*\s+(?:gerçekleştir|yap)\w*", "Türkçe kelime mantığı: “hipotez kurmak / sınamak / doğrulamak”"),
+    (62, "akademik eş dizim hatası (risk üretmek/yapmak)", r"\brisk\w*\s+(?:üret|yap)\w*", "Türkçe kelime mantığı: “risk oluşturmak / doğurmak / taşımak”"),
+    (62, "akademik eş dizim hatası (analiz/araştırma sağlamak)", r"\b(?:analiz|araştırma|inceleme)\w*\s+sağla\w*", "Türkçe kelime mantığı: “analiz yapmak / çözümlemek, araştırma yürütmek”"),
+    (62, "akademik eş dizim hatası (etki üretmek)", r"\betki\w*\s+üret\w*", "Türkçe kelime mantığı: “etki yaratmak / doğurmak / göstermek”"),
+    (62, "akademik eş dizim hatası (bulgu üretmek/inşa etmek)", r"\bbulgu\w*\s+(?:üret|inşa\s+et|inşa\s+ed)\w*", "Türkçe kelime mantığı: “bulgu elde etmek / bulguya ulaşmak”"),
+    (63, "akademik klişe (kritik/merkezi rol oynamak)", r"\b(?:kritik|merkezi|hayati|kilit)\s+(?:bir\s+)?rol\s+oyna\w*", "mekanizmayı doğrudan söyle; “belirleyici olmak / işlev üstlenmek”"),
+    (63, "akademik klişe (hayati öneme sahip olmak)", r"\bhayati\s+(?:bir\s+)?öneme\s+sahip\w*", "neden önemli olduğunu kanıtla ya da “belirleyici olmak”"),
+]
+
 # Sözlükte taranacak bölümler (başlık içinde geçen ifadeler). İngilizce terim bölümü varsayılan kapalı.
 SOZLUK_ACIK = ("Yardımcı fiil", "Bürokratik edat", "-mekte", "Arkaik", "Plaza", "Eş dizim", "Reklam sıfatı")  # "Çeviri kokusu" bölümü KURALLAR'da
 SOZLUK_KAPALI_VARSAYILAN = ("İngilizce terim",)
@@ -101,7 +123,7 @@ def temizle(metin):
     return satirlar
 
 
-def sozluk_kurallari(ingilizce_terim=False):
+def sozluk_kurallari(ingilizce_terim=False, tur=None):
     """references/degistirme-sozlugu.md → (ad, regex, öneri) listesi."""
     kurallar, acik = [], False
     try:
@@ -109,11 +131,12 @@ def sozluk_kurallari(ingilizce_terim=False):
             satirlar = f.read().split("\n")
     except OSError:
         return kurallar
+    acik_bolumler = TEZ_SOZLUK_ACIK if tur == "tez" else SOZLUK_ACIK
     kapali = SOZLUK_KAPALI_VARSAYILAN if not ingilizce_terim else ()
     for l in satirlar:
         if l.startswith("## "):
             baslik = l[3:]
-            acik = any(a in baslik for a in SOZLUK_ACIK) or (ingilizce_terim and any(k in baslik for k in SOZLUK_KAPALI_VARSAYILAN))
+            acik = any(a in baslik for a in acik_bolumler) or (ingilizce_terim and any(k in baslik for k in SOZLUK_KAPALI_VARSAYILAN))
             if any(k in baslik for k in kapali):
                 acik = False
             continue
@@ -137,9 +160,11 @@ def sozluk_kurallari(ingilizce_terim=False):
     return kurallar
 
 
-def derle(ingilizce_terim=False):
-    kurallar = [(no, ad, re.compile(rx, re.IGNORECASE), oneri) for no, ad, rx, oneri in KURALLAR]
-    kurallar += sozluk_kurallari(ingilizce_terim)
+def derle(ingilizce_terim=False, tur=None):
+    temel = [k for k in KURALLAR if k[0] not in TEZ_MUAF_NO] if tur == "tez" else KURALLAR
+    ek = TEZ_KURALLARI if tur == "tez" else []
+    kurallar = [(no, ad, re.compile(rx, re.IGNORECASE), oneri) for no, ad, rx, oneri in temel + ek]
+    kurallar += sozluk_kurallari(ingilizce_terim, tur=tur)
     return kurallar
 
 
@@ -151,7 +176,58 @@ def uzun_cumleler(satirlar, esik=35):
         for cumle in re.split(r"(?<=[.!?…])\s+", s):
             sozcuk = re.findall(r"[A-Za-zÇĞİÖŞÜçğıöşüÂÎÛâîû]+", cumle)
             if len(sozcuk) > esik:
-                bulgu.append((n, 1, 36, f"uzun cümle ({len(sozcuk)} sözcük)", cumle.strip()[:70], "böl; ana bilgiyi öne al"))
+                bulgu.append((n, 1, 36, f"uzun cümle ({len(sozcuk)} sözcük)", cumle.strip()[:70], "iki cümleye böl; ana bilgiyi öne al; bilgi atma"))
+    return bulgu
+
+
+def kaynaksiz_otorite(satirlar):
+    """Tez modunda (Yazar, Yıl) veya [sayı] atfı olmadan geçen belirsiz otorite ifadelerini yakalar."""
+    kalip = re.compile(
+        r"\b(?:araştırmacılara\s+göre|uzmanlara\s+göre|literatürde\s+genel\s+kabul\s+gördüğü\s+üzere|"
+        r"birçok\s+araştırmacı|çeşitli\s+çalışmalar\s+göstermektedir\s+ki|genel\s+kanıya\s+göre)\b",
+        re.IGNORECASE,
+    )
+    atif_var = re.compile(r"\(\s*[^)]*(?:19|20)\d\d[^)]*\)|\[\d+(?:\s*[-,]\s*\d+)*\]")
+    bulgu = []
+    for n, s in enumerate(satirlar, 1):
+        if not s.strip():
+            continue
+        for m in kalip.finditer(s):
+            if not atif_var.search(s):
+                bulgu.append((n, m.start() + 1, 64, "kaynaksız otorite (tez)", m.group(0).strip(), "cümleye (Yazar, Yıl) kaynağı ekle ya da genellemeyi somutlaştır"))
+    return bulgu
+
+
+def tamlama_zinciri(satirlar):
+    """En az 4 tamlayan eki (-nın/-nin/-nun/-nün/-in) içeren zincirleme ad tamlamalarını yakalar."""
+    kelime_tamlayan = r"\b[A-Za-zÇĞİÖŞÜçğıöşüÂÎÛâîû]{3,}(?:nın|nin|nun|nün|ın|in|un|ün)\b"
+    ara_isim = r"(?:\s+[A-Za-zÇĞİÖŞÜçğıöşüÂÎÛâîû]{3,})?"
+    tamlayan = re.compile(
+        r"(?:" + kelime_tamlayan + ara_isim + r"\s+){3,}" + kelime_tamlayan,
+        re.IGNORECASE,
+    )
+    bulgu = []
+    for n, s in enumerate(satirlar, 1):
+        if not s.strip():
+            continue
+        for m in tamlayan.finditer(s):
+            bulgu.append((n, m.start() + 1, 65, "belirtili ad tamlaması zinciri (4+)", m.group(0).strip(), "tamlama zincirini kır; fiilimsi veya edatla sadeleştir"))
+    return bulgu
+
+
+def tez_sahis_uyumu(satirlar):
+    """Tez modunda edilgen/3. kişi akademik üslubu bozan 1. tekil/çoğul şahıs kullanımlarını yakalar."""
+    sahis = re.compile(
+        r"\b(?:bence|kanaatimce|kanaatimizce|düşünüyorum|düşünüyoruz|ele\s+aldım|ele\s+aldık|"
+        r"inceledim|inceledik|saptadım|saptadık|tezimizde|araştırmamızda|çalışmamızda)\b",
+        re.IGNORECASE,
+    )
+    bulgu = []
+    for n, s in enumerate(satirlar, 1):
+        if not s.strip():
+            continue
+        for m in sahis.finditer(s):
+            bulgu.append((n, m.start() + 1, 66, "tezde 1. şahıs sızıntısı", m.group(0).strip(), "akademik 3. kişi/edilgen üslup kullan: “bu çalışmada incelenmiştir / değerlendirilmektedir”"))
     return bulgu
 
 
@@ -169,14 +245,14 @@ def sahis_karisimi(metin_temiz):
 def ayni_baglac(metin):
     acilis = Counter()
     for par in re.split(r"\n\s*\n", metin):
-        ilk = re.match(r"\s*(Ayrıca|Bununla birlikte|Ek olarak|Dolayısıyla|Ancak|Öte yandan)\b", par)
+        ilk = re.match(r"\s*(Ayrıca|Bununla birlikte|Ek olarak|Dolayısıyla|Ancak|Öte yandan|Bu bağlamda|Bu doğrultuda)\b", par)
         if ilk:
             acilis[ilk.group(1)] += 1
     return [(1, 1, 52, "aynı bağlaçla paragraf açma", f"“{b}” {n} paragrafı açıyor", "bağlacı değiştir ya da at")
             for b, n in acilis.items() if n >= 3]
 
 
-def tara(metin, kurallar):
+def tara(metin, kurallar, tur=None):
     satirlar = temizle(metin)
     bulgu = []
     for n, s in enumerate(satirlar, 1):
@@ -185,7 +261,18 @@ def tara(metin, kurallar):
         for no, ad, rx, oneri in kurallar:
             for m in rx.finditer(s):
                 bulgu.append((n, m.start() + 1, no, ad, m.group(0).strip(), oneri))
-    bulgu += uzun_cumleler(satirlar) + sahis_karisimi(satirlar) + ayni_baglac(metin)
+    esik = 42 if tur == "tez" else 35
+    bulgu += uzun_cumleler(satirlar, esik=esik) + sahis_karisimi(satirlar) + ayni_baglac(metin)
+    if tur == "tez":
+        bulgu += kaynaksiz_otorite(satirlar) + tamlama_zinciri(satirlar) + tez_sahis_uyumu(satirlar)
+        try:
+            import esdizim
+            mevcut_62 = {(b[0], b[1]) for b in bulgu if b[2] == 62}
+            for eb in esdizim.tarama_bulgularina_donustur(satirlar):
+                if (eb[0], eb[1]) not in mevcut_62:
+                    bulgu.append(eb)
+        except Exception:
+            pass
     bulgu.sort(key=lambda b: (b[0], b[1]))
     return bulgu
 
@@ -238,8 +325,8 @@ def main(arg):
     if tur in KORUMALI:
         print(f"Korumalı tür ({tur}): kalıp taraması devre dışı. Varsayılan 0 değişiklik; yalnız açık yazım/noktalama hatası düzeltilir.")
         return 0
-    kurallar = derle(ingilizce)
-    yeni = tara(oku(dosya), kurallar)
+    kurallar = derle(ingilizce, tur=tur)
+    yeni = tara(oku(dosya), kurallar, tur=tur)
     if not sadece_ozet:
         for n, s, no, ad, alinti, oneri in yeni:
             etiket = f"kalıp {no}" if no else "sözlük"
@@ -247,7 +334,7 @@ def main(arg):
     sy = ozet_sayilari(yeni)
     print(f"\nToplam {len(yeni)} bulgu · {len(sy)} kalıp türü")
     if onceki:
-        eski = ozet_sayilari(tara(oku(onceki), kurallar))
+        eski = ozet_sayilari(tara(oku(onceki), kurallar, tur=tur))
         print("\nKalıp                                         önce → sonra")
         for anahtar in sorted(set(eski) | set(sy), key=lambda k: (k[0], k[1])):
             e, y = eski.get(anahtar, 0), sy.get(anahtar, 0)

@@ -1,0 +1,1056 @@
+{
+  "surum": "1.0",
+  "aciklama": "Türkçe akademik tez ve makaleler için kelime mantığı (fiil-nesne ve sıfat-isim eş dizim) kuralları",
+  "kurallar": [
+    {
+      "id": "ESD-001",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["tehdit", "tehdid"],
+      "yanlis_fiil_kokleri": ["sergile", "inşa et", "üret", "yap", "sağla"],
+      "dogru_fiiller": ["oluşturmak", "doğurmak", "yaratmak", "teşkil etmek"],
+      "aciklama": "Tehdit sergilenmez veya inşa edilmez; oluşturulur veya doğurulur.",
+      "ornek_yanlis": "Siber saldırılar ulusal güvenliğe ciddi bir tehdit sergilemektedir.",
+      "ornek_dogru": "Siber saldırılar ulusal güvenliğe ciddi bir tehdit oluşturmaktadır."
+    },
+    {
+      "id": "ESD-002",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["risk"],
+      "yanlis_fiil_kokleri": ["üret", "yap", "sergile", "inşa et", "sağla"],
+      "dogru_fiiller": ["oluşturmak", "doğurmak", "taşımak", "barındırmak"],
+      "aciklama": "Risk üretilmez veya yapılmaz; doğurulur, oluşturulur ya da taşınır.",
+      "ornek_yanlis": "Kritik altyapı açıkları yüksek düzeyde risk üretmektedir.",
+      "ornek_dogru": "Kritik altyapı açıkları yüksek düzeyde risk doğurmaktadır."
+    },
+    {
+      "id": "ESD-003",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["politika"],
+      "yanlis_fiil_kokleri": ["inşa et", "yap", "sergile", "gerçekleştir"],
+      "dogru_fiiller": ["geliştirmek", "oluşturmak", "belirlemek", "izlemek", "uygulamak"],
+      "aciklama": "İngilizce 'build policy' çevirisiyle politika inşa edilmez; geliştirilir, oluşturulur veya izlenir.",
+      "ornek_yanlis": "Devletler siber uzayda yeni güvenlik politikaları inşa etmektedir.",
+      "ornek_dogru": "Devletler siber uzayda yeni güvenlik politikaları geliştirmektedir."
+    },
+    {
+      "id": "ESD-004",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["strateji"],
+      "yanlis_fiil_kokleri": ["inşa et", "yap", "sergile", "gerçekleştir"],
+      "dogru_fiiller": ["geliştirmek", "belirlemek", "oluşturmak", "izlemek", "uygulamak"],
+      "aciklama": "Strateji inşa edilmez veya gerçekleştirilmez; belirlenir, geliştirilir ya da uygulanır.",
+      "ornek_yanlis": "Kurumlar caydırıcılık stratejilerini yeniden inşa etmiştir.",
+      "ornek_dogru": "Kurumlar caydırıcılık stratejilerini yeniden belirlemiştir."
+    },
+    {
+      "id": "ESD-005",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["hipotez"],
+      "yanlis_fiil_kokleri": ["gerçekleştir", "yap", "üret", "inşa et", "sağla"],
+      "dogru_fiiller": ["kurmak", "geliştirmek", "sınamak", "test etmek", "doğrulamak"],
+      "aciklama": "Hipotez yapılmaz veya gerçekleştirilmez; kurulur ve sınanır.",
+      "ornek_yanlis": "Araştırmada üç temel hipotez gerçekleştirilmiştir.",
+      "ornek_dogru": "Araştırmada üç temel hipotez kurulmuş ve sınanmıştır."
+    },
+    {
+      "id": "ESD-006",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["analiz"],
+      "yanlis_fiil_kokleri": ["sağla", "inşa et", "üret", "sergile"],
+      "dogru_fiiller": ["yapmak", "yürütmek", "gerçekleştirmek", "çözümlemek"],
+      "aciklama": "İngilizce 'provide analysis' çevirisiyle analiz sağlanmaz; analiz yapılır veya çözümlenir.",
+      "ornek_yanlis": "Dördüncü bölümde karşılaştırmalı vaka analizi sağlanmaktadır.",
+      "ornek_dogru": "Dördüncü bölümde karşılaştırmalı vaka analizi yapılmaktadır."
+    },
+    {
+      "id": "ESD-007",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["araştırma"],
+      "yanlis_fiil_kokleri": ["sağla", "inşa et", "üret", "sergile"],
+      "dogru_fiiller": ["yürütmek", "yapmak", "gerçekleştirmek"],
+      "aciklama": "Araştırma sağlanmaz veya inşa edilmez; yürütülür veya yapılır.",
+      "ornek_yanlis": "Bu kapsamda nitel bir saha araştırması sağlanmıştır.",
+      "ornek_dogru": "Bu kapsamda nitel bir saha araştırması yürütülmüştür."
+    },
+    {
+      "id": "ESD-008",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["inceleme"],
+      "yanlis_fiil_kokleri": ["sağla", "inşa et", "üret", "sergile"],
+      "dogru_fiiller": ["yapmak", "yürütmek", "gerçekleştirmek"],
+      "aciklama": "İnceleme sağlanmaz; yapılır veya yürütülür.",
+      "ornek_yanlis": "Arşiv belgeleri üzerinden ayrıntılı inceleme sağlanmıştır.",
+      "ornek_dogru": "Arşiv belgeleri üzerinden ayrıntılı inceleme yapılmıştır."
+    },
+    {
+      "id": "ESD-009",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["bulgu"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["elde etmek", "ortaya koymak", "saptamak", "ulaşmak"],
+      "aciklama": "Bulgu üretilmez veya inşa edilmez; bulgu elde edilir veya bulguya ulaşılır.",
+      "ornek_yanlis": "Saha çalışması çarpıcı ampirik bulgular üretmiştir.",
+      "ornek_dogru": "Saha çalışmasında çarpıcı ampirik bulgular elde edilmiştir."
+    },
+    {
+      "id": "ESD-010",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["sonuç", "sonuc"],
+      "yanlis_fiil_kokleri": ["inşa et", "sergile", "yap"],
+      "dogru_fiiller": ["elde etmek", "ulaşmak", "ortaya koymak", "doğurmak"],
+      "aciklama": "Sonuç inşa edilmez veya sergilenmez; sonuca ulaşılır veya sonuç elde edilir.",
+      "ornek_yanlis": "Model istatistiksel olarak anlamlı sonuçlar inşa etmektedir.",
+      "ornek_dogru": "Modelde istatistiksel olarak anlamlı sonuçlara ulaşılmaktadır."
+    },
+    {
+      "id": "ESD-011",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["veri"],
+      "yanlis_fiil_kokleri": ["inşa et", "gerçekleştir", "sergile", "yap"],
+      "dogru_fiiller": ["toplamak", "elde etmek", "derlemek", "işlemek", "çözümlemek"],
+      "aciklama": "Veri inşa edilmez veya gerçekleştirilmez; toplanır, derlenir veya elde edilir.",
+      "ornek_yanlis": "İkincil kaynaklardan kapsamlı veriler inşa edilmiştir.",
+      "ornek_dogru": "İkincil kaynaklardan kapsamlı veriler derlenmiştir."
+    },
+    {
+      "id": "ESD-012",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["örneklem"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["seçmek", "belirlemek", "oluşturmak"],
+      "aciklama": "Örneklem yapılmaz veya üretilmez; seçilir veya belirlenir.",
+      "ornek_yanlis": "Amaçlı örnekleme yöntemiyle 45 uzmanlık bir örneklem yapılmıştır.",
+      "ornek_dogru": "Amaçlı örnekleme yöntemiyle 45 uzmandan oluşan bir örneklem belirlenmiştir."
+    },
+    {
+      "id": "ESD-013",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["korelasyon"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["hesaplamak", "saptamak", "bulunmak", "gözlemlenmek"],
+      "aciklama": "Korelasyon yapılmaz veya üretilmez; hesaplanır veya değişkenler arasında saptanır.",
+      "ornek_yanlis": "İki değişken arasında pozitif korelasyon üretilmiştir.",
+      "ornek_dogru": "İki değişken arasında pozitif korelasyon saptanmıştır."
+    },
+    {
+      "id": "ESD-014",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["nedensellik", "nedenselliğ"],
+      "yanlis_fiil_kokleri": ["üret", "yap", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["kurmak", "saptamak", "ortaya koymak", "açıklamak"],
+      "aciklama": "Nedensellik üretilmez veya yapılmaz; nedensellik bağı kurulur veya saptanır.",
+      "ornek_yanlis": "Bu yaklaşım değişkenler arasında doğrudan nedensellik üretmektedir.",
+      "ornek_dogru": "Bu yaklaşım değişkenler arasında doğrudan nedensellik bağı kurmaktadır."
+    },
+    {
+      "id": "ESD-015",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["çerçeve"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["kurmak", "oluşturmak", "çizmek", "belirlemek"],
+      "aciklama": "Kavramsal/kuramsal çerçeve inşa edilmez veya üretilmez; kurulur, çizilir veya oluşturulur.",
+      "ornek_yanlis": "İkinci bölümde tezin kuramsal çerçevesi inşa edilmektedir.",
+      "ornek_dogru": "İkinci bölümde tezin kuramsal çerçevesi oluşturulmaktadır."
+    },
+    {
+      "id": "ESD-016",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["argüman"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["geliştirmek", "öne sürmek", "savunmak", "ortaya koymak"],
+      "aciklama": "Argüman inşa edilmez veya üretilmez; sav/argüman geliştirilir veya öne sürülür.",
+      "ornek_yanlis": "Realist yazarlar güç dengesi üzerinden temel bir argüman inşa etmektedir.",
+      "ornek_dogru": "Realist yazarlar güç dengesi üzerinden temel bir sav geliştirmektedir."
+    },
+    {
+      "id": "ESD-017",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["varsayım"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["dayanmak", "kabul etmek", "sınamak", "öne sürmek"],
+      "aciklama": "Varsayım üretilmez veya gerçekleştirilmez; varsayıma dayanılır veya varsayım sınanır.",
+      "ornek_yanlis": "Klasik caydırıcılık kuramı rasyonel aktör varsayımı üretmektedir.",
+      "ornek_dogru": "Klasik caydırıcılık kuramı rasyonel aktör varsayımına dayanmaktadır."
+    },
+    {
+      "id": "ESD-018",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["boşluk", "boşluğ"],
+      "yanlis_fiil_kokleri": ["doldur", "adresle", "kapat", "inşa et"],
+      "dogru_fiiller": ["gidermek", "katkı sunmak", "tamamlamak", "ele almak"],
+      "aciklama": "İngilizce 'fill the gap in the literature' kalıbı yerine 'literatürdeki eksikliği gidermek' kullanılır.",
+      "ornek_yanlis": "Bu tez siber güvenlik literatüründeki önemli bir boşluğu doldurmaktadır.",
+      "ornek_dogru": "Bu tez siber güvenlik literatüründeki önemli bir eksikliği gidermektedir."
+    },
+    {
+      "id": "ESD-019",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["sorun", "problem", "sorunsal"],
+      "yanlis_fiil_kokleri": ["adresle", "inşa et", "sergile", "gerçekleştir"],
+      "dogru_fiiller": ["ele almak", "irdelemek", "çözümlemek", "tartışmak", "gidermek"],
+      "aciklama": "İngilizce 'address the problem' çevirisiyle sorun adreslenmez; ele alınır veya irdelenir.",
+      "ornek_yanlis": "Çalışma atfedilebilirlik sorununu doğrudan adreslemektedir.",
+      "ornek_dogru": "Çalışma atfedilebilirlik sorununu doğrudan ele almaktadır."
+    },
+    {
+      "id": "ESD-020",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["konu", "mesele", "olgu"],
+      "yanlis_fiil_kokleri": ["adresle", "inşa et", "ışık tut", "mercek altına al", "masaya yatır"],
+      "dogru_fiiller": ["ele almak", "incelemek", "irdelemek", "açıklığa kavuşturmak", "tartışmak"],
+      "aciklama": "Gazetecilik/çeviri klişeleri ('ışık tutmak', 'masaya yatırmak', 'adreslemek') yerine akademik fiiller kullanılır.",
+      "ornek_yanlis": "Makale hibrit savaş olgusuna ışık tutmaktadır.",
+      "ornek_dogru": "Makale hibrit savaş olgusunu incelemektedir."
+    },
+    {
+      "id": "ESD-021",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["etki"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["yaratmak", "doğurmak", "bırakmak", "göstermek"],
+      "aciklama": "Etki üretilmez veya inşa edilmez; etki yaratılır veya doğurulur.",
+      "ornek_yanlis": "Stuxnet operasyonu uluslararası hukukta kalıcı bir etki üretmiştir.",
+      "ornek_dogru": "Stuxnet operasyonu uluslararası hukukta kalıcı bir etki yaratmıştır."
+    },
+    {
+      "id": "ESD-022",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["mülakat", "görüşme"],
+      "yanlis_fiil_kokleri": ["sağla", "üret", "inşa et", "sergile"],
+      "dogru_fiiller": ["yapmak", "gerçekleştirmek", "yürütmek"],
+      "aciklama": "Mülakat/görüşme sağlanmaz veya üretilmez; yapılır veya gerçekleştirilir.",
+      "ornek_yanlis": "Bakanlık uzmanlarıyla yarı yapılandırılmış görüşmeler sağlanmıştır.",
+      "ornek_dogru": "Bakanlık uzmanlarıyla yarı yapılandırılmış görüşmeler yapılmıştır."
+    },
+    {
+      "id": "ESD-023",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["anket"],
+      "yanlis_fiil_kokleri": ["sağla", "üret", "inşa et", "sergile"],
+      "dogru_fiiller": ["uygulamak", "yapmak", "düzenlemek"],
+      "aciklama": "Anket sağlanmaz veya inşa edilmez; uygulanır veya yapılır.",
+      "ornek_yanlis": "Katılımcılara çevrim içi anket sağlanmıştır.",
+      "ornek_dogru": "Katılımcılara çevrim içi anket uygulanmıştır."
+    },
+    {
+      "id": "ESD-024",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["ölçek", "ölceğ"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["geliştirmek", "uyarlamak", "kullanmak", "uygulamak"],
+      "aciklama": "Ölçek yapılmaz veya inşa edilmez; geliştirilir, uyarlanır veya uygulanır.",
+      "ornek_yanlis": "Siber güvenlik farkındalığını ölçmek için yeni bir ölçek yapılmıştır.",
+      "ornek_dogru": "Siber güvenlik farkındalığını ölçmek için yeni bir ölçek geliştirilmiştir."
+    },
+    {
+      "id": "ESD-025",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["değişken"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["belirlemek", "tanımlamak", "modele dahil etmek", "kontrol etmek"],
+      "aciklama": "Değişken yapılmaz veya üretilmez; belirlenir veya tanımlanır.",
+      "ornek_yanlis": "Analizde üç bağımsız değişken üretilmiştir.",
+      "ornek_dogru": "Analizde üç bağımsız değişken belirlenmiştir."
+    },
+    {
+      "id": "ESD-026",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["geçerlilik", "geçerliliğ", "güvenilirlik", "güvenilirliğ"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["sağlamak", "sınamak", "doğrulamak", "hesaplamak"],
+      "aciklama": "Geçerlilik ve güvenilirlik üretilmez veya yapılmaz; sınanır, doğrulanır veya sağlanır.",
+      "ornek_yanlis": "Cronbach alfa katsayısıyla ölçeğin güvenilirliği üretilmiştir.",
+      "ornek_dogru": "Cronbach alfa katsayısıyla ölçeğin güvenilirliği sınanmıştır."
+    },
+    {
+      "id": "ESD-027",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["model"],
+      "yanlis_fiil_kokleri": ["yap", "sağla", "sergile", "gerçekleştir"],
+      "dogru_fiiller": ["kurmak", "geliştirmek", "oluşturmak", "tasarlamak", "sınamak"],
+      "aciklama": "Akademik model sağlanmaz veya gerçekleştirilmez; kurulur, geliştirilir veya tasarlanır.",
+      "ornek_yanlis": "Regresyon tahminleri için ekonometrik bir model sağlanmıştır.",
+      "ornek_dogru": "Regresyon tahminleri için ekonometrik bir model kurulmuştur."
+    },
+    {
+      "id": "ESD-028",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["kuram", "teori"],
+      "yanlis_fiil_kokleri": ["yap", "sağla", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["geliştirmek", "ortaya koymak", "öne sürmek", "dayanmak"],
+      "aciklama": "Kuram/teori yapılmaz veya sağlanmaz; geliştirilir veya ortaya konulur.",
+      "ornek_yanlis": "Kopenhag Okulu güvenlikleştirme kuramını sağlamıştır.",
+      "ornek_dogru": "Kopenhag Okulu güvenlikleştirme kuramını geliştirmiştir."
+    },
+    {
+      "id": "ESD-029",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["kavram"],
+      "yanlis_fiil_kokleri": ["yap", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["tanımlamak", "geliştirmek", "ortaya atmak", "kavramsallaştırmak"],
+      "aciklama": "Kavram yapılmaz veya sağlanmaz; tanımlanır, geliştirilir veya ortaya atılır.",
+      "ornek_yanlis": "Nye yumuşak güç kavramını 1990 yılında sağlamıştır.",
+      "ornek_dogru": "Nye yumuşak güç kavramını 1990 yılında ortaya atmıştır."
+    },
+    {
+      "id": "ESD-030",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["tanım"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "gerçekleştir", "sergile", "sağla"],
+      "dogru_fiiller": ["yapmak", "geliştirmek", "önermek", "benimsemek"],
+      "aciklama": "Tanım inşa edilmez veya üretilmez; tanım yapılır veya önerilir.",
+      "ornek_yanlis": "Literatürde siber terörizm için farklı tanımlar inşa edilmiştir.",
+      "ornek_dogru": "Literatürde siber terörizm için farklı tanımlar yapılmıştır."
+    },
+    {
+      "id": "ESD-031",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["sınıflandırma", "tipoloji", "taksonomi"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "gerçekleştir", "sergile", "sağla"],
+      "dogru_fiiller": ["yapmak", "oluşturmak", "geliştirmek", "önermek"],
+      "aciklama": "Sınıflandırma/tipoloji inşa edilmez veya sağlanmaz; yapılır veya geliştirilir.",
+      "ornek_yanlis": "Saldırı türleri için dört aşamalı bir tipoloji sağlanmıştır.",
+      "ornek_dogru": "Saldırı türleri için dört aşamalı bir tipoloji geliştirilmiştir."
+    },
+    {
+      "id": "ESD-032",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["eleştiri"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["yöneltmek", "getirmek", "yapmak"],
+      "aciklama": "Eleştiri üretilmez veya inşa edilmez; eleştiri yöneltilir veya getirilir.",
+      "ornek_yanlis": "Eleştirel güvenlik çalışmaları devlet merkezli yaklaşıma ciddi eleştiriler üretmektedir.",
+      "ornek_dogru": "Eleştirel güvenlik çalışmaları devlet merkezli yaklaşıma ciddi eleştiriler yöneltmektedir."
+    },
+    {
+      "id": "ESD-033",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["katkı"],
+      "yanlis_fiil_kokleri": ["yap", "koy", "üret", "inşa et", "gerçekleştir"],
+      "dogru_fiiller": ["sağlamak", "sunmak", "bulunmak"],
+      "aciklama": "Katkı yapılmaz veya üretilmez; katkı sağlanır, sunulur veya katkıda bulunulur.",
+      "ornek_yanlis": "Bu çalışma uluslararası ilişkiler literatürüne özgün bir katkı üretmektedir.",
+      "ornek_dogru": "Bu çalışma uluslararası ilişkiler literatürüne özgün bir katkı sunmaktadır."
+    },
+    {
+      "id": "ESD-034",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["caydırıcılık", "caydırıcılığ"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["sağlamak", "oluşturmak", "tesis etmek", "güçlendirmek"],
+      "aciklama": "Caydırıcılık yapılmaz veya üretilmez; sağlanır veya tesis edilir.",
+      "ornek_yanlis": "Siber alanda misilleme kapasitesi caydırıcılık üretmektedir.",
+      "ornek_dogru": "Siber alanda misilleme kapasitesi caydırıcılık sağlamaktadır."
+    },
+    {
+      "id": "ESD-035",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["kriz"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["çıkarmak", "doğurmak", "tetiklemek", "yönetmek", "tırmandırmak"],
+      "aciklama": "Kriz üretilmez veya inşa edilmez; kriz doğurulur, tetiklenir veya yönetilir.",
+      "ornek_yanlis": "Sınır ötesi siber operasyonlar diplomatik kriz üretmiştir.",
+      "ornek_dogru": "Sınır ötesi siber operasyonlar diplomatik krize yol açmıştır."
+    },
+    {
+      "id": "ESD-036",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["çatışma"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "sağla", "sergile"],
+      "dogru_fiiller": ["doğurmak", "tetiklemek", "tırmandırmak", "önlemek", "sonlandırmak"],
+      "aciklama": "Çatışma üretilmez veya sağlanmaz; tetiklenir, tırmandırılır veya önlenir.",
+      "ornek_yanlis": "Kaynak rekabeti bölgesel çatışmalar üretmektedir.",
+      "ornek_dogru": "Kaynak rekabeti bölgesel çatışmaları tetiklemektedir."
+    },
+    {
+      "id": "ESD-037",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["yaptırım"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["uygulamak", "koymak", "kaldırmak", "dayatmak"],
+      "aciklama": "Yaptırım yapılmaz veya gerçekleştirilmez; yaptırım uygulanır.",
+      "ornek_yanlis": "Birleşmiş Milletler Güvenlik Konseyi ekonomik yaptırımlar gerçekleştirmiştir.",
+      "ornek_dogru": "Birleşmiş Milletler Güvenlik Konseyi ekonomik yaptırımlar uygulamıştır."
+    },
+    {
+      "id": "ESD-038",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["ittifak"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["kurmak", "oluşturmak", "güçlendirmek", "bozmak", "sürdürmek"],
+      "aciklama": "İttifak yapılmaz veya üretilmez; ittifak kurulur veya oluşturulur.",
+      "ornek_yanlis": "Bölgesel güçler asimetrik tehditlere karşı yeni ittifaklar üretmektedir.",
+      "ornek_dogru": "Bölgesel güçler asimetrik tehditlere karşı yeni ittifaklar kurmaktadır."
+    },
+    {
+      "id": "ESD-039",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["egemenlik", "egemenliğ"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["kullanmak", "korumak", "devretmek", "sınırlandırmak", "ihlal etmek"],
+      "aciklama": "Egemenlik üretilmez veya sergilenmez; kullanılır, korunur veya ihlal edilir.",
+      "ornek_yanlis": "Devletler dijital sınırlar üzerinde mutlak egemenlik sergilemektedir.",
+      "ornek_dogru": "Devletler dijital sınırlar üzerinde egemenlik haklarını kullanmaktadır."
+    },
+    {
+      "id": "ESD-040",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["meşruiyet"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["kazanmak", "sağlamak", "kaybetmek", "zedelemek", "inşa etmek"],
+      "aciklama": "Meşruiyet yapılmaz veya sergilenmez; kazanılır, sağlanır veya zedelenir.",
+      "ornek_yanlis": "Uluslararası örgüt kararları müdahale için meşruiyet üretmektedir.",
+      "ornek_dogru": "Uluslararası örgüt kararları müdahaleye meşruiyet kazandırmaktadır."
+    },
+    {
+      "id": "ESD-041",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["saldırı", "operasyon", "harekat", "harekât"],
+      "yanlis_fiil_kokleri": ["sağla", "üret", "inşa et", "sergile"],
+      "dogru_fiiller": ["düzenlemek", "gerçekleştirmek", "icra etmek", "yürütmek", "başlatmak"],
+      "aciklama": "Saldırı veya operasyon sağlanmaz ya da üretilmez; düzenlenir veya icra edilir.",
+      "ornek_yanlis": "APT grupları enerji altyapısına koordineli saldırılar sağlamıştır.",
+      "ornek_dogru": "APT grupları enerji altyapısına koordineli saldırılar düzenlemiştir."
+    },
+    {
+      "id": "ESD-042",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["savunma"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["yapmak", "geliştirmek", "kurmak", "güçlendirmek", "sağlamak"],
+      "aciklama": "Savunma üretilmez veya gerçekleştirilmez; savunma hattı kurulur veya savunma güçlendirilir.",
+      "ornek_yanlis": "Ulusal siber olaylara müdahale merkezleri proaktif savunma üretmektedir.",
+      "ornek_dogru": "Ulusal siber olaylara müdahale merkezleri proaktif savunma geliştirmektedir."
+    },
+    {
+      "id": "ESD-043",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["rol"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["üstlenmek", "oynamak"],
+      "aciklama": "Rol üretilmez veya gerçekleştirilmez; rol/işlev üstlenilir.",
+      "ornek_yanlis": "İstihbarat paylaşımı erken uyarıda belirleyici bir rol gerçekleştirmektedir.",
+      "ornek_dogru": "İstihbarat paylaşımı erken uyarıda belirleyici bir işlev üstlenmektedir."
+    },
+    {
+      "id": "ESD-044",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["soru"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["sormak", "yöneltmek", "belirlemek", "yanıtlamak", "ele almak"],
+      "aciklama": "Araştırma sorusu inşa edilmez veya üretilmez; belirlenir, yöneltilir veya yanıtlanır.",
+      "ornek_yanlis": "Tez kapsamında iki temel araştırma sorusu inşa edilmiştir.",
+      "ornek_dogru": "Tez kapsamında iki temel araştırma sorusu belirlenmiştir."
+    },
+    {
+      "id": "ESD-045",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["algı"],
+      "yanlis_fiil_kokleri": ["yap", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["oluşturmak", "yaratmak", "yönetmek", "şekillendirmek", "değiştirmek"],
+      "aciklama": "Algı yapılmaz veya gerçekleştirilmez; oluşturulur, şekillendirilir veya yönetilir.",
+      "ornek_yanlis": "Dezenformasyon kampanyaları kamuoyunda güvensizlik algısı gerçekleştirmektedir.",
+      "ornek_dogru": "Dezenformasyon kampanyaları kamuoyunda güvensizlik algısı oluşturmaktadır."
+    },
+    {
+      "id": "ESD-046",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["müzakere"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sergile", "sağla"],
+      "dogru_fiiller": ["yürütmek", "başlatmak", "sürdürmek", "sonuçlandırmak"],
+      "aciklama": "Müzakere üretilmez veya sağlanmaz; yürütülür, başlatılır veya sürdürülür.",
+      "ornek_yanlis": "Taraflar diplomatik müzakereler sağlamaktadır.",
+      "ornek_dogru": "Taraflar diplomatik müzakereler yürütmektedir."
+    },
+    {
+      "id": "ESD-047",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["antlaşma", "anlaşma"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["imzalamak", "akdetmek", "bağıtlamak", "yürürlüğe koymak"],
+      "aciklama": "Antlaşma üretilmez veya inşa edilmez; imzalanır veya akdedilir.",
+      "ornek_yanlis": "İki devlet arasında saldırmazlık antlaşması inşa edilmiştir.",
+      "ornek_dogru": "İki devlet arasında saldırmazlık antlaşması imzalanmıştır."
+    },
+    {
+      "id": "ESD-048",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["diplomasi"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["yürütmek", "izlemek", "işletmek"],
+      "aciklama": "Diplomasi üretilmez veya gerçekleştirilmez; yürütülür veya izlenir.",
+      "ornek_yanlis": "Kriz sürecinde çok taraflı diplomasi gerçekleştirilmiştir.",
+      "ornek_dogru": "Kriz sürecinde çok taraflı diplomasi yürütülmüştür."
+    },
+    {
+      "id": "ESD-049",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["barış"],
+      "yanlis_fiil_kokleri": ["üret", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["tesis etmek", "sağlamak", "korumak", "inşa etmek"],
+      "aciklama": "Barış üretilmez veya sergilenmez; tesis edilir, sağlanır veya korunur.",
+      "ornek_yanlis": "Bölgesel mekanizmalar kalıcı barış üretmektedir.",
+      "ornek_dogru": "Bölgesel mekanizmalar kalıcı barış tesis etmektedir."
+    },
+    {
+      "id": "ESD-050",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["ateşkes"],
+      "yanlis_fiil_kokleri": ["üret", "yap", "inşa et", "sergile"],
+      "dogru_fiiller": ["ilan etmek", "sağlamak", "imzalamak", "ihlal etmek"],
+      "aciklama": "Ateşkes üretilmez veya inşa edilmez; ilan edilir, sağlanır veya imzalanır.",
+      "ornek_yanlis": "Arabulucular sahada geçici ateşkes inşa etmiştir.",
+      "ornek_dogru": "Arabulucular sahada geçici ateşkes sağlamıştır."
+    },
+    {
+      "id": "ESD-051",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["abluka", "ambargo"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["uygulamak", "koymak", "kaldırmak", "delmek"],
+      "aciklama": "Abluka ve ambargo yapılmaz veya üretilmez; uygulanır veya konulur.",
+      "ornek_yanlis": "Koalisyon güçleri deniz ablukası gerçekleştirmiştir.",
+      "ornek_dogru": "Koalisyon güçleri deniz ablukası uygulamıştır."
+    },
+    {
+      "id": "ESD-052",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["müdahale"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["bulunmak", "etmek", "gerçekleştirmek", "önlemek"],
+      "aciklama": "Müdahale üretilmez veya sağlanmaz; müdahalede bulunulur veya müdahale edilir.",
+      "ornek_yanlis": "Siber olaylara müdahale ekipleri anında müdahale sağlamıştır.",
+      "ornek_dogru": "Siber olaylara müdahale ekipleri anında müdahalede bulunmuştur."
+    },
+    {
+      "id": "ESD-053",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["istihbarat"],
+      "yanlis_fiil_kokleri": ["yap", "inşa et", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["toplamak", "sağlamak", "paylaşmak", "değerlendirmek"],
+      "aciklama": "İstihbarat yapılmaz veya inşa edilmez; toplanır, paylaşılır veya değerlendirilir.",
+      "ornek_yanlis": "Açık kaynaklardan stratejik istihbarat gerçekleştirilmiştir.",
+      "ornek_dogru": "Açık kaynaklardan stratejik istihbarat toplanmıştır."
+    },
+    {
+      "id": "ESD-054",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["casusluk", "casusluğ"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "yürütmek", "önlemek"],
+      "aciklama": "Casusluk üretilmez veya sağlanmaz; yapılır veya yürütülür.",
+      "ornek_yanlis": "Devlet destekli gruplar endüstriyel casusluk sağlamaktadır.",
+      "ornek_dogru": "Devlet destekli gruplar endüstriyel casusluk yürütmektedir."
+    },
+    {
+      "id": "ESD-055",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["propaganda"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "gerçekleştir"],
+      "dogru_fiiller": ["yapmak", "yürütmek", "yaymak"],
+      "aciklama": "Propaganda inşa edilmez veya sağlanmaz; yapılır veya yürütülür.",
+      "ornek_yanlis": "Sosyal medya ağlarında yoğun propaganda sağlanmaktadır.",
+      "ornek_dogru": "Sosyal medya ağlarında yoğun propaganda yürütülmektedir."
+    },
+    {
+      "id": "ESD-056",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["dezenformasyon"],
+      "yanlis_fiil_kokleri": ["inşa et", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["yaymak", "yürütmek", "üretmek", "önlemek"],
+      "aciklama": "Dezenformasyon inşa edilmez veya sağlanmaz; yayılır, üretilir veya önlenir.",
+      "ornek_yanlis": "Bot hesaplar seçim döneminde dezenformasyon sağlamaktadır.",
+      "ornek_dogru": "Bot hesaplar seçim döneminde dezenformasyon yaymaktadır."
+    },
+    {
+      "id": "ESD-057",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["radikalleşme"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["önlemek", "hızlandırmak", "tetiklemek", "gözlemlenmek"],
+      "aciklama": "Radikalleşme yapılmaz veya gerçekleştirilmez; tetiklenir, hızlanır veya önlenir.",
+      "ornek_yanlis": "Çevrim içi kapalı forumlar radikalleşme gerçekleştirmektedir.",
+      "ornek_dogru": "Çevrim içi kapalı forumlar radikalleşmeyi hızlandırmaktadır."
+    },
+    {
+      "id": "ESD-058",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["terörizm"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "inşa et", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["önlemek", "mücadele etmek", "finanse etmek"],
+      "aciklama": "Terörizm (olgu/kavram olarak) yapılmaz veya üretilmez; terör eylemi gerçekleştirilir, terörizmle mücadele edilir.",
+      "ornek_yanlis": "Örgüt siber terörizm üretmektedir.",
+      "ornek_dogru": "Devletler siber terörizmle mücadele etmektedir."
+    },
+    {
+      "id": "ESD-059",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["güvenlikleştirme"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "başvurmak", "gerçekleştirmek"],
+      "aciklama": "Güvenlikleştirme üretilmez veya sergilenmez; güvenlikleştirmeye başvurulur.",
+      "ornek_yanlis": "Siyasi elitler göç konusunda güvenlikleştirme üretmektedir.",
+      "ornek_dogru": "Siyasi elitler göç konusunda güvenlikleştirmeye başvurmaktadır."
+    },
+    {
+      "id": "ESD-060",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["hegemonya"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["kurmak", "tesis etmek", "sürdürmek", "sarsmak"],
+      "aciklama": "Hegemonya yapılmaz veya üretilmez; hegemonya kurulur veya sürdürülür.",
+      "ornek_yanlis": "Küresel güçler dijital alanda hegemonya üretmektedir.",
+      "ornek_dogru": "Küresel güçler dijital alanda hegemonya kurmaktadır."
+    },
+    {
+      "id": "ESD-061",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["denge"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["kurmak", "sağlamak", "korumak", "bozmak"],
+      "aciklama": "Güç dengesi üretilmez veya gerçekleştirilmez; kurulur, sağlanır veya bozulur.",
+      "ornek_yanlis": "Yeni ittifaklar bölgede güç dengesi üretmektedir.",
+      "ornek_dogru": "Yeni ittifaklar bölgede güç dengesi kurmaktadır."
+    },
+    {
+      "id": "ESD-062",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["istikrar"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["sağlamak", "korumak", "tesis etmek", "bozmak"],
+      "aciklama": "İstikrar üretilmez veya sergilenmez; sağlanır, korunur veya bozulur.",
+      "ornek_yanlis": "Ekonomik karşılıklı bağımlılık bölgesel istikrar üretmektedir.",
+      "ornek_dogru": "Ekonomik karşılıklı bağımlılık bölgesel istikrar sağlamaktadır."
+    },
+    {
+      "id": "ESD-063",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["kutuplaşma", "polarizasyon"],
+      "yanlis_fiil_kokleri": ["inşa et", "yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["yaratmak", "derinleştirmek", "artırmak", "doğurmak"],
+      "aciklama": "Kutuplaşma sağlanmaz veya gerçekleştirilmez; derinleşir veya yaratılır.",
+      "ornek_yanlis": "Algoritmik yankı odaları siyasal kutuplaşma sağlamaktadır.",
+      "ornek_dogru": "Algoritmik yankı odaları siyasal kutuplaşmayı derinleştirmektedir."
+    },
+    {
+      "id": "ESD-064",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["entegrasyon", "bütünleşme"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "sergile"],
+      "dogru_fiiller": ["sağlamak", "derinleştirmek", "tamamlamak", "hızlandırmak"],
+      "aciklama": "Entegrasyon/bütünleşme üretilmez veya sergilenmez; sağlanır veya derinleştirilir.",
+      "ornek_yanlis": "Ortak pazar anlaşmaları ekonomik bütünleşme üretmektedir.",
+      "ornek_dogru": "Ortak pazar anlaşmaları ekonomik bütünleşme sağlamaktadır."
+    },
+    {
+      "id": "ESD-065",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["bağımlılık", "bağımlılığ"],
+      "yanlis_fiil_kokleri": ["inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["yaratmak", "azaltmak", "artırmak", "doğurmak"],
+      "aciklama": "Bağımlılık yapılmaz veya gerçekleştirilmez; bağımlılık yaratılır veya azaltılır.",
+      "ornek_yanlis": "Yabancı yazılım altyapısı stratejik bağımlılık gerçekleştirmektedir.",
+      "ornek_dogru": "Yabancı yazılım altyapısı stratejik bağımlılık yaratmaktadır."
+    },
+    {
+      "id": "ESD-066",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["direnç", "direnc"],
+      "yanlis_fiil_kokleri": ["üret", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["göstermek", "geliştirmek", "artırmak", "kırmak"],
+      "aciklama": "Direnç üretilmez veya gerçekleştirilmez; direnç gösterilir veya geliştirilir.",
+      "ornek_yanlis": "Yedekli ağ mimarisi siber saldırılara karşı direnç üretmektedir.",
+      "ornek_dogru": "Yedekli ağ mimarisi siber saldırılara karşı direnç göstermektedir."
+    },
+    {
+      "id": "ESD-067",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["kapasite"],
+      "yanlis_fiil_kokleri": ["yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["geliştirmek", "artırmak", "inşa etmek", "güçlendirmek"],
+      "aciklama": "Kapasite yapılmaz veya gerçekleştirilmez; geliştirilir, artırılır veya güçlendirilir.",
+      "ornek_yanlis": "Kurumlar siber savunma kapasitesi gerçekleştirmektedir.",
+      "ornek_dogru": "Kurumlar siber savunma kapasitesi geliştirmektedir."
+    },
+    {
+      "id": "ESD-068",
+      "alan": "guvenlik_ir",
+      "nesne_kokleri": ["zafiyet", "zaafiyet"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["oluşturmak", "doğurmak", "gidermek", "barındırmak"],
+      "aciklama": "Zafiyet inşa edilmez veya gerçekleştirilmez; doğurulur, oluşturulur veya giderilir.",
+      "ornek_yanlis": "Güncellenmeyen sistemler güvenlik zafiyeti üretmektedir.",
+      "ornek_dogru": "Güncellenmeyen sistemler güvenlik zafiyeti doğurmaktadır."
+    },
+    {
+      "id": "ESD-069",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["ihlal"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["etmek", "gerçekleştirmek", "saptamak", "önlemek"],
+      "aciklama": "İhlal üretilmez veya sağlanmaz; ihlal edilir, saptanır veya önlenir.",
+      "ornek_yanlis": "Sınır ötesi operasyonlar egemenlik ihlali üretmektedir.",
+      "ornek_dogru": "Sınır ötesi operasyonlar egemenlik ihlali oluşturmaktadır."
+    },
+    {
+      "id": "ESD-070",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["yükümlülük", "yükümlülüğ"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "sergile"],
+      "dogru_fiiller": ["getirmek", "doğurmak", "yerine getirmek", "üstlenmek"],
+      "aciklama": "Yükümlülük üretilmez veya yapılmaz; doğurulur, getirilir veya yerine getirilir.",
+      "ornek_yanlis": "Sözleşme taraf devletlere bildirim yükümlülüğü üretmektedir.",
+      "ornek_dogru": "Sözleşme taraf devletlere bildirim yükümlülüğü getirmektedir."
+    },
+    {
+      "id": "ESD-071",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["sorumluluk", "sorumluluğ"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["üstlenmek", "taşımak", "yüklemek", "doğurmak"],
+      "aciklama": "Sorumluluk üretilmez veya gerçekleştirilmez; üstlenilir, taşınır veya doğurulur.",
+      "ornek_yanlis": "Uluslararası hukukta devlet sorumluluğu inşa edilmektedir.",
+      "ornek_dogru": "Uluslararası hukukta devlet sorumluluğu doğmaktadır."
+    },
+    {
+      "id": "ESD-072",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["yetki"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["kullanmak", "tanımak", "devretmek", "aşmak"],
+      "aciklama": "Yetki üretilmez veya gerçekleştirilmez; kullanılır, tanınır veya devredilir.",
+      "ornek_yanlis": "Kurul düzenleyici yetkisini gerçekleştirmektedir.",
+      "ornek_dogru": "Kurul düzenleyici yetkisini kullanmaktadır."
+    },
+    {
+      "id": "ESD-073",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["yargı"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["varmak", "ulaşmak", "yürütmek", "denetlemek"],
+      "aciklama": "Yargı üretilmez veya sağlanmaz; yargıya varılır veya yargılama yürütülür.",
+      "ornek_yanlis": "Komisyon deliller üzerinden kesin bir yargı üretmiştir.",
+      "ornek_dogru": "Komisyon deliller üzerinden kesin bir yargıya varmıştır."
+    },
+    {
+      "id": "ESD-074",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["mevzuat"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["hazırlamak", "düzenlemek", "yürürlüğe koymak", "uyumlaştırmak"],
+      "aciklama": "Mevzuat üretilmez veya inşa edilmez; hazırlanır, düzenlenir veya uyumlaştırılır.",
+      "ornek_yanlis": "Avrupa Birliği siber güvenlik alanında yeni mevzuat inşa etmiştir.",
+      "ornek_dogru": "Avrupa Birliği siber güvenlik alanında yeni mevzuat yürürlüğe koymuştur."
+    },
+    {
+      "id": "ESD-075",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["düzenleme"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sergile"],
+      "dogru_fiiller": ["yapmak", "getirmek", "yürürlüğe koymak"],
+      "aciklama": "Yasal düzenleme üretilmez veya inşa edilmez; yapılır veya yürürlüğe konulur.",
+      "ornek_yanlis": "Kanun koyucu kişisel veriler için yasal düzenleme üretmiştir.",
+      "ornek_dogru": "Kanun koyucu kişisel veriler için yasal düzenleme yapmıştır."
+    },
+    {
+      "id": "ESD-076",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["reform"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "gerçekleştirmek", "uygulamak"],
+      "aciklama": "Reform üretilmez veya sağlanmaz; yapılır, gerçekleştirilir veya uygulanır.",
+      "ornek_yanlis": "Kamu yönetiminde yapısal reformlar sağlanmıştır.",
+      "ornek_dogru": "Kamu yönetiminde yapısal reformlar gerçekleştirilmiştir."
+    },
+    {
+      "id": "ESD-077",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["denetim"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sergile"],
+      "dogru_fiiller": ["yapmak", "sağlamak", "yürütmek", "tabi tutmak"],
+      "aciklama": "Denetim üretilmez veya inşa edilmez; yapılır, yürütülür veya sağlanır.",
+      "ornek_yanlis": "Bağımsız kurullar düzenli denetim üretmektedir.",
+      "ornek_dogru": "Bağımsız kurullar düzenli denetim yürütmektedir."
+    },
+    {
+      "id": "ESD-078",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["yönetişim"],
+      "yanlis_fiil_kokleri": ["üret", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["sağlamak", "geliştirmek", "oluşturmak"],
+      "aciklama": "Yönetişim üretilmez veya yapılmaz; sağlanır veya geliştirilir.",
+      "ornek_yanlis": "Çok paydaşlı internet yönetişimi gerçekleştirilmektedir.",
+      "ornek_dogru": "Çok paydaşlı internet yönetişimi sağlanmaktadır."
+    },
+    {
+      "id": "ESD-079",
+      "alan": "hukuk_kamu",
+      "nesne_kokleri": ["bürokrasi"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["azaltmak", "işletmek", "yönlendirmek"],
+      "aciklama": "Bürokrasi yapılmaz veya gerçekleştirilmez; azaltılır veya işletilir.",
+      "ornek_yanlis": "Dijital dönüşüm projeleri bürokrasi gerçekleştirmektedir.",
+      "ornek_dogru": "Dijital dönüşüm projeleri bürokrasiyi azaltmaktadır."
+    },
+    {
+      "id": "ESD-080",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["paradigma"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["değiştirmek", "oluşturmak", "benimsemek", "dönüştürmek"],
+      "aciklama": "Paradigma yapılmaz veya sağlanmaz; oluşturulur, benimsenir veya değiştirilir.",
+      "ornek_yanlis": "Siber uzay güvenlik çalışmalarında yeni bir paradigma sağlamıştır.",
+      "ornek_dogru": "Siber uzay güvenlik çalışmalarında yeni bir paradigma oluşturmuştur."
+    },
+    {
+      "id": "ESD-081",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["doktrin"],
+      "yanlis_fiil_kokleri": ["yap", "üret", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["geliştirmek", "benimsemek", "ortaya koymak", "uygulamak"],
+      "aciklama": "Doktrin yapılmaz veya üretilmez; geliştirilir, benimsenir veya uygulanır.",
+      "ornek_yanlis": "Savunma bakanlığı aktif caydırıcılık doktrini üretmiştir.",
+      "ornek_dogru": "Savunma bakanlığı aktif caydırıcılık doktrini benimsemiştir."
+    },
+    {
+      "id": "ESD-082",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["perspektif"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["sunmak", "kazandırmak", "sağlamak", "benimsemek"],
+      "aciklama": "Perspektif üretilmez veya inşa edilmez; sunulur, kazandırılır veya benimsenir.",
+      "ornek_yanlis": "İnşacı kuram uluslararası ilişkilere farklı bir perspektif üretmiştir.",
+      "ornek_dogru": "İnşacı kuram uluslararası ilişkilere farklı bir perspektif kazandırmıştır."
+    },
+    {
+      "id": "ESD-083",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["yaklaşım"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["benimsemek", "geliştirmek", "sergilemek", "ortaya koymak"],
+      "aciklama": "Yaklaşım yapılmaz veya gerçekleştirilmez; benimsenir, geliştirilir veya sergilenir.",
+      "ornek_yanlis": "Çalışmada disiplinlerarası bir yaklaşım gerçekleştirilmiştir.",
+      "ornek_dogru": "Çalışmada disiplinlerarası bir yaklaşım benimsenmiştir."
+    },
+    {
+      "id": "ESD-084",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["bağlam"],
+      "yanlis_fiil_kokleri": ["üret", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["değerlendirmek", "ele almak", "oluşturmak", "oturtmak"],
+      "aciklama": "Bağlam yapılmaz veya sergilenmez; tarihsel/kuramsal bağlama oturtulur veya bağlamda ele alınır.",
+      "ornek_yanlis": "Olaylar tarihsel bir bağlam sergilemektedir.",
+      "ornek_dogru": "Olaylar tarihsel bir bağlamda değerlendirilmektedir."
+    },
+    {
+      "id": "ESD-085",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["söylem"],
+      "yanlis_fiil_kokleri": ["yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["üretmek", "inşa etmek", "geliştirmek", "çözümlemek"],
+      "aciklama": "Söylem yapılmaz veya sağlanmaz; söylem üretilir, inşa edilir veya çözümlenir.",
+      "ornek_yanlis": "Medya organları güvenlikçi bir söylem sağlamaktadır.",
+      "ornek_dogru": "Medya organları güvenlikçi bir söylem üretmektedir."
+    },
+    {
+      "id": "ESD-086",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["kimlik", "kimliğ"],
+      "yanlis_fiil_kokleri": ["yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["inşa etmek", "kazanmak", "korumak", "tanımlamak"],
+      "aciklama": "Kimlik yapılmaz veya sağlanmaz; inşa edilir, kazanılır veya korunur.",
+      "ornek_yanlis": "Ulus devletler ortak tarihsel anlatılarla kolektif kimlik sağlamaktadır.",
+      "ornek_dogru": "Ulus devletler ortak tarihsel anlatılarla kolektif kimlik inşa etmektedir."
+    },
+    {
+      "id": "ESD-087",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["norm"],
+      "yanlis_fiil_kokleri": ["yap", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["oluşturmak", "koymak", "benimsemek", "içselleştirmek"],
+      "aciklama": "Norm yapılmaz veya sağlanmaz; oluşturulur, benimsenir veya içselleştirilir.",
+      "ornek_yanlis": "Birleşmiş Milletler siber uzayda bağlayıcı normlar sağlamaktadır.",
+      "ornek_dogru": "Birleşmiş Milletler siber uzayda bağlayıcı normlar oluşturmaktadır."
+    },
+    {
+      "id": "ESD-088",
+      "alan": "kuram_arguman",
+      "nesne_kokleri": ["ilke", "prensip"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["benimsemek", "belirlemek", "koymak", "uymak"],
+      "aciklama": "İlke/prensip üretilmez veya inşa edilmez; belirlenir, benimsenir veya konulur.",
+      "ornek_yanlis": "Örgüt egemen eşitlik ilkesini inşa etmiştir.",
+      "ornek_dogru": "Örgüt egemen eşitlik ilkesini benimsemiştir."
+    },
+    {
+      "id": "ESD-089",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["değerlendirme"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "bulunmak", "tabi tutmak"],
+      "aciklama": "Değerlendirme üretilmez veya sağlanmaz; yapılır veya değerlendirmede bulunulur.",
+      "ornek_yanlis": "Sonuç bölümünde genel bir değerlendirme sağlanmaktadır.",
+      "ornek_dogru": "Sonuç bölümünde genel bir değerlendirme yapılmaktadır."
+    },
+    {
+      "id": "ESD-090",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["karşılaştırma", "mukayese"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "yürütmek"],
+      "aciklama": "Karşılaştırma üretilmez veya sağlanmaz; karşılaştırma yapılır.",
+      "ornek_yanlis": "İki dönem arasında tarihsel karşılaştırma sağlanmıştır.",
+      "ornek_dogru": "İki dönem arasında tarihsel karşılaştırma yapılmıştır."
+    },
+    {
+      "id": "ESD-091",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["gözlem"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "gerçekleştirmek", "kaydetmek"],
+      "aciklama": "Gözlem üretilmez veya sağlanmaz; gözlem yapılır veya kaydedilir.",
+      "ornek_yanlis": "Saha araştırmasında katılımcı gözlem sağlanmıştır.",
+      "ornek_dogru": "Saha araştırmasında katılımcı gözlem yapılmıştır."
+    },
+    {
+      "id": "ESD-092",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["deney"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "tasarlamak", "yürütmek", "gerçekleştirmek"],
+      "aciklama": "Deney üretilmez veya sağlanmaz; tasarlanır, yürütülür veya yapılır.",
+      "ornek_yanlis": "Laboratuvar ortamında kontrollü deneyler sağlanmıştır.",
+      "ornek_dogru": "Laboratuvar ortamında kontrollü deneyler yürütülmüştür."
+    },
+    {
+      "id": "ESD-093",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["simülasyon", "benzetim"],
+      "yanlis_fiil_kokleri": ["inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "çalıştırmak", "kurgulamak", "gerçekleştirmek"],
+      "aciklama": "Simülasyon sağlanmaz veya sergilenmez; kurgulanır, çalıştırılır veya yapılır.",
+      "ornek_yanlis": "Ağ trafiği üzerinde saldırı simülasyonu sağlanmıştır.",
+      "ornek_dogru": "Ağ trafiği üzerinde saldırı simülasyonu gerçekleştirilmiştir."
+    },
+    {
+      "id": "ESD-094",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["senaryo"],
+      "yanlis_fiil_kokleri": ["inşa et", "sağla", "sergile", "gerçekleştir"],
+      "dogru_fiiller": ["kurgulamak", "geliştirmek", "oluşturmak", "yazmak"],
+      "aciklama": "Senaryo sağlanmaz veya gerçekleştirilmez; kurgulanır, geliştirilir veya oluşturulur.",
+      "ornek_yanlis": "Kriz yönetimi için üç farklı senaryo gerçekleştirilmiştir.",
+      "ornek_dogru": "Kriz yönetimi için üç farklı senaryo kurgulanmıştır."
+    },
+    {
+      "id": "ESD-095",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["tahmin", "öngörü"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "bulunmak", "geliştirmek"],
+      "aciklama": "Tahmin/öngörü inşa edilmez veya üretilmez; tahmin yapılır veya öngörüde bulunulur.",
+      "ornek_yanlis": "Zaman serisi modeliyle beş yıllık tahminler üretilmiştir.",
+      "ornek_dogru": "Zaman serisi modeliyle beş yıllık tahminler yapılmıştır."
+    },
+    {
+      "id": "ESD-096",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["çıkarım"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "bulunmak", "ulaşmak"],
+      "aciklama": "Çıkarım inşa edilmez veya üretilmez; çıkarım yapılır veya çıkarımda bulunulur.",
+      "ornek_yanlis": "Bulgular üzerinden kuramsal çıkarımlar inşa edilmiştir.",
+      "ornek_dogru": "Bulgular üzerinden kuramsal çıkarımlarda bulunulmuştur."
+    },
+    {
+      "id": "ESD-097",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["genelleme"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "gerçekleştir", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "gitmek", "kaçınmak"],
+      "aciklama": "Genelleme üretilmez veya inşa edilmez; genelleme yapılır veya genellemeden kaçınılır.",
+      "ornek_yanlis": "Tekil vaka çalışmasından evrensel genellemeler üretilmemelidir.",
+      "ornek_dogru": "Tekil vaka çalışmasından evrensel genellemelere gidilmemelidir."
+    },
+    {
+      "id": "ESD-098",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["sınırlılık", "sınırlılığ"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["taşımak", "barındırmak", "belirtmek", "aşmak"],
+      "aciklama": "Araştırma sınırlılığı üretilmez veya yapılmaz; taşınır, barındırılır veya belirtilir.",
+      "ornek_yanlis": "Veri setinin darlığı metodolojik sınırlılık üretmektedir.",
+      "ornek_dogru": "Veri setinin darlığı metodolojik sınırlılık oluşturmaktadır."
+    },
+    {
+      "id": "ESD-099",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["kapsam"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["belirlemek", "genişletmek", "daraltmak", "sınırlandırmak"],
+      "aciklama": "Araştırma kapsamı üretilmez veya inşa edilmez; belirlenir, genişletilir veya sınırlandırılır.",
+      "ornek_yanlis": "Birinci bölümde araştırmanın kapsamı inşa edilmiştir.",
+      "ornek_dogru": "Birinci bölümde araştırmanın kapsamı belirlenmiştir."
+    },
+    {
+      "id": "ESD-100",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["yöntem", "metodoloji"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["kullanmak", "benimsemek", "geliştirmek", "uygulamak"],
+      "aciklama": "Yöntem/metodoloji yapılmaz veya sağlanmaz; kullanılır, benimsenir veya uygulanır.",
+      "ornek_yanlis": "Araştırmada karma yöntem sağlanmıştır.",
+      "ornek_dogru": "Araştırmada karma yöntem kullanılmıştır."
+    },
+    {
+      "id": "ESD-101",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["teknik", "tekniğ"],
+      "yanlis_fiil_kokleri": ["inşa et", "üret", "yap", "gerçekleştir", "sağla"],
+      "dogru_fiiller": ["kullanmak", "uygulamak", "geliştirmek"],
+      "aciklama": "Analiz tekniği inşa edilmez veya sağlanmaz; kullanılır veya uygulanır.",
+      "ornek_yanlis": "Metinleri kodlamak için içerik analizi tekniği sağlanmıştır.",
+      "ornek_dogru": "Metinleri kodlamak için içerik analizi tekniği uygulanmıştır."
+    },
+    {
+      "id": "ESD-102",
+      "alan": "metodoloji",
+      "nesne_kokleri": ["tutarlılık", "tutarlılığ"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir"],
+      "dogru_fiiller": ["göstermek", "sağlamak", "korumak", "sınamak"],
+      "aciklama": "Tutarlılık üretilmez veya yapılmaz; gösterilir, sağlanır veya sınanır.",
+      "ornek_yanlis": "Alt boyutlar kendi içinde yüksek tutarlılık üretmektedir.",
+      "ornek_dogru": "Alt boyutlar kendi içinde yüksek tutarlılık göstermektedir."
+    },
+    {
+      "id": "ESD-103",
+      "alan": "ekonomi_diplomasi",
+      "nesne_kokleri": ["bütçe", "fon"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "yap", "gerçekleştir", "sergile"],
+      "dogru_fiiller": ["ayırmak", "tahsis etmek", "oluşturmak", "kullanmak"],
+      "aciklama": "Bütçe/fon üretilmez veya inşa edilmez; ayrılır, tahsis edilir veya kullanılır.",
+      "ornek_yanlis": "Savunma harcamaları için ek bütçe inşa edilmiştir.",
+      "ornek_dogru": "Savunma harcamaları için ek bütçe tahsis edilmiştir."
+    },
+    {
+      "id": "ESD-104",
+      "alan": "ekonomi_diplomasi",
+      "nesne_kokleri": ["yatırım"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sağla", "sergile"],
+      "dogru_fiiller": ["yapmak", "çekmek", "yönlendirmek", "gerçekleştirmek"],
+      "aciklama": "Yatırım üretilmez veya inşa edilmez; yapılır, çekilir veya gerçekleştirilir.",
+      "ornek_yanlis": "Kritik teknoloji sektörüne doğrudan yabancı yatırım üretilmiştir.",
+      "ornek_dogru": "Kritik teknoloji sektörüne doğrudan yabancı yatırım yapılmıştır."
+    },
+    {
+      "id": "ESD-105",
+      "alan": "ekonomi_diplomasi",
+      "nesne_kokleri": ["işbirliği", "işbirliğ"],
+      "yanlis_fiil_kokleri": ["üret", "inşa et", "sergile"],
+      "dogru_fiiller": ["yapmak", "geliştirmek", "kurmak", "güçlendirmek", "sağlamak"],
+      "aciklama": "İşbirliği üretilmez veya sergilenmez; yapılır, geliştirilir veya güçlendirilir.",
+      "ornek_yanlis": "Üye ülkeler siber tehditlere karşı istihbarat işbirliği üretmektedir.",
+      "ornek_dogru": "Üye ülkeler siber tehditlere karşı istihbarat işbirliği geliştirmektedir."
+    }
+  ]
+}

@@ -131,6 +131,39 @@
 - `ihtiyaç hâsıl olmak` → `ihtiyaç doğmak` / `gerekmek`
 - `karar çıkarmak` → `karar almak`  [bağlama bağlı]
 
+## Akademik eş dizim (tez ve makale kelime mantığı)
+
+> Akademik metinlerde İngilizceden birebir çeviri (calque) veya yanlış eylem-nesne eşleşmesi sonucu oluşan bozuk eş dizimlerdir (`--tur tez` ve varsayılan taramada aktiftir).
+
+- `tehdit sergilemek` → `tehdit oluşturmak` / `tehdit doğurmak`
+- `risk üretmek` → `risk doğurmak` / `risk oluşturmak`
+- `risk yapmak` → `risk oluşturmak`
+- `politika inşa etmek` → `politika geliştirmek` / `politika oluşturmak`
+- `strateji inşa etmek` → `strateji geliştirmek` / `strateji belirlemek`
+- `kavramsal çerçeve inşa etmek` → `kavramsal çerçeve kurmak` / `kavramsal çerçeve oluşturmak`
+- `hipotez gerçekleştirmek` → `hipotez kurmak` / `hipotez sınamak`
+- `hipotez yapmak` → `hipotez kurmak` / `hipotez geliştirmek`
+- `analiz sağlamak` → `analiz yapmak` / `çözümlemek`
+- `araştırma sağlamak` → `araştırma yürütmek` / `araştırmak`
+- `inceleme sağlamak` → `incelemek` / `inceleme yapmak`
+- `bulgu üretmek` → `bulgu elde etmek` / `bulguya ulaşmak`
+- `bulgu inşa etmek` → `bulguya ulaşmak` / `bulgu ortaya koymak`
+- `sonuç inşa etmek` → `sonuca ulaşmak` / `sonuç elde etmek`
+- `veri toplama sağlamak` → `veri toplamak`
+- `örneklem yapmak` → `örneklem seçmek` / `örneklem belirlemek`
+- `korelasyon yapmak` → `korelasyon hesaplamak` / `ilişki saptamak`
+- `nedensellik üretmek` → `nedensellik kurmak` / `nedensel bağ kurmak`
+- `argüman ileri sürmek` → `sav ileri sürmek` / `iddia etmek` / `tartışmak`
+- `argüman yapmak` → `sav geliştirmek` / `tartışmak`
+- `sorunu adreslemek` → `sorunu ele almak` / `soruna eğilmek`
+- `konuyu adreslemek` → `konuyu ele almak` / `konuyu incelemek`
+- `boşluğu doldurmak` → `eksikliği gidermek` / `alana katkıda bulunmak`
+- `literatür boşluğunu doldurmak` → `literatürdeki eksikliği gidermek`
+- `ışık tutmak` → `açıklığa kavuşturmak` / `aydınlatmak` / `incelemek`
+- `mercek altına almak` → `ayrıntılı incelemek` / `irdelenmek`
+- `masaya yatırmak` → `ayrıntılı tartışmak` / `incelemek`
+- `gözler önüne sermek` → `ortaya koymak` / `göstermek`
+
 ## İngilizce terim (yalnız kullanıcı isterse; teknik metinde DOKUNMA)
 
 > Teknik metinde ve kod çevresindeki düzyazıda bu terimleri otomatik değiştirme. Yalnız kullanıcı açıkça Türkçe karşılık istediğinde, bağlama göre kullan.

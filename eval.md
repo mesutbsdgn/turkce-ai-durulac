@@ -21,6 +21,7 @@ Düzenleme sonrasında her soruya **Evet/Hayır** de. Bir yanıt Hayır ise metn
 - Dolgu/bağlaç silince akışı yeniden bağladım mı; art arda kopuk kısa cümle (telgraf tonu) bırakmadım mı?
 - Gramer şahsını metin boyunca tutarlı tuttum mu (3. tekil ↔ 1. çoğul arası kaymadım mı)?
 - Bilgi taşıyan bir cümleyi/birimini tümüyle atmadım mı (sadeleştirme yaptım, özetleme değil)?
+- `scripts/bilgi_koruma.py` ile önce/sonra karşılaştırdım mı; kaybolan her sayı, alıntı, ad ve atıfı geri koydum ya da gerekçesini yazdım mı? Uzunluk sınırı varsa karşı açıklama, kaynak atfı, toplam sayı ve hedef/büyüklük bilgisini “ikincil ayrıntı” diye atmadım mı?
 - Niteliksel kısalma satırını ekledim mi; kelime sayısı verdiysem “yaklaşık” dedim mi (sayıyı uydurup kesin gibi sunmadım)?
 - Korumalı türde (resmî/akademik/hukuk) devre dışı kalıpları uygulamadım mı; bürokratik edatı başka edatla değiştirmedim mi?
 - Dosya hâlindeki metinde `scripts/tarama.py` ile önce ve sonra taradım mı; kalan her bulguyu gerekçelendirdim ya da düzelttim mi (özellikle `--onceki` karşılaştırmasında ↑ çıkanları)?
