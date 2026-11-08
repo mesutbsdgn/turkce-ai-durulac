@@ -1,5 +1,7 @@
 # Lisans ve kaynak notları
 
+- **Lisans (8 Kasım 2026):** GNU AGPL-3.0'dan kullanım hakkı lisansına geçildi (kullan, kopyalama/dağıtma/değiştirme/eğitim yok). Gerekçe: Durulaç artık bir uygulamaya yerleşik beceri olarak gömülüyor; AGPL, kopyalanıp yeniden dağıtılmasını engellemiyordu ve tescilli uygulamayla ilişkisinde belirsizlik yaratıyordu. Telif hakkı tek sahiptedir (tüm commit'ler mesutbsdgn). Önceki lisanslarla edinilen kopyaların hakları sürer (v1.3'e kadar MIT; 9 Ekim - 8 Kasım 2026 arası AGPL). Üçüncü taraf MIT parçaların bildirimi korunur.
+
 - **Lisans (9 Ekim 2026):** MIT'ten GNU AGPL-3.0'a geçildi. `fe24416` dahil önceki commit'ler (son etiket `v1.3`) MIT ile yayımlanmıştı. MIT lisanslı kaynaklardan uyarlanan parçaların (aşağıda) kendi bildirimi [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) dosyasında korunur.
 
 - Yapı (iki mod, sesi koru/uydurma ilkeleri, "kesilecek kalıplar") petergyang/no-ai-slop (MIT) esinli; İngilizce içerik kopyalanmadı, Türkçeye özgün yazıldı.

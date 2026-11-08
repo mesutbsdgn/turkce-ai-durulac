@@ -6,7 +6,7 @@
 
 ### Yapay ve bürokratik Türkçeyi duru bir dile çevirir; ne anlamını bozar ne bir şey uydurur.
 
-![Lisans](https://img.shields.io/badge/lisans-AGPL--3.0-blue) ![Biçim](https://img.shields.io/badge/bi%C3%A7im-Claude%20skill-8A63D2) ![Model](https://img.shields.io/badge/model-ba%C4%9F%C4%B1ms%C4%B1z-brightgreen) ![Dil](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-e30a17) ![TDK](https://img.shields.io/badge/kurallar-TDK-informational)
+![Lisans](https://img.shields.io/badge/lisans-kullanım%20hakkı-lightgrey) ![Biçim](https://img.shields.io/badge/bi%C3%A7im-Claude%20skill-8A63D2) ![Model](https://img.shields.io/badge/model-ba%C4%9F%C4%B1ms%C4%B1z-brightgreen) ![Dil](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-e30a17) ![TDK](https://img.shields.io/badge/kurallar-TDK-informational)
 
 </div>
 
@@ -261,9 +261,9 @@ Yeni bir kalıp, sözlük eşlemesi ya da "şuna dokunmamalı" örneği önerece
 
 ## Lisans
 
-GNU Affero Genel Kamu Lisansı, sürüm 3 (AGPL-3.0-only). Tam metin: [LICENSE](LICENSE). Telif © 2026 mesutbsdgn.
+Kullanım hakkı lisansı: Durulaç'ı ajanlarınızla ve uygulamalarla **kullanabilirsiniz**; kopyalamak, yeniden dağıtmak, değiştirmek, satmak ve model eğitiminde kullanmak yasaktır. Tam metin: [LICENSE](LICENSE). Telif © 2026 mesutbsdgn.
 
-`fe24416` dahil önceki commit'ler (son etiket `v1.3`) MIT Lisansı ile yayımlanmıştı; o sürümleri edinenlerin MIT'in verdiği haklar sürer. AGPL, bu değişiklikten sonraki sürümler için geçerlidir. Değiştirme sözlüğünün seçildiği MIT lisanslı kaynağın bildirimi [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) dosyasındadır.
+Önceki sürümleri o günkü lisansla edinenlerin hakları sürer: `v1.3` etiketine kadar MIT, 9 Ekim 2026'dan bu lisansa geçişe kadar GNU AGPL-3.0. Bu lisans, onu getiren commit'ten itibaren yayımlanan sürümler içindir. MIT lisanslı çalışmalardan uyarlanan parçaların bildirimi [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) dosyasında durur ve korunur.
 
 Finans terim listesinin yapısı [sal-keskin/okunabilir](https://github.com/sal-keskin/okunabilir) (MIT) projesinden esinlendi; içerik kopyalanmadı. Okunabilirlik formülleri (Ateşman 1997, Bezirci–Yılmaz 2010) yayımlanmış hâllerinden sıfırdan yazıldı.
 

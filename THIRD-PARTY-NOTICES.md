@@ -1,6 +1,6 @@
 # Üçüncü taraf bildirimleri
 
-Durulaç, GNU AGPL-3.0 altında yayımlanır ([LICENSE](LICENSE)). Aşağıdaki MIT lisanslı çalışmadan uyarlanan parçaların telif ve izin bildirimi, MIT koşulu gereği korunur. MIT, bu parçaların AGPL altındaki bir bütüne katılmasına izin verir; bildirim kalır.
+Durulaç, kullanım hakkı lisansıyla sunulur ([LICENSE](LICENSE)); önceki sürümlerin lisansları LICENSE-NOTES.md dosyasında anlatılır. Aşağıdaki MIT lisanslı çalışmadan uyarlanan parçaların telif ve izin bildirimi, MIT koşulu gereği korunur. MIT, bu parçaların AGPL altındaki bir bütüne katılmasına izin verir; bildirim kalır.
 
 ## Denomas/Turkce-yazim-denetimi
 
