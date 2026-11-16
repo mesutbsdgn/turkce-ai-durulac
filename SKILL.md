@@ -1,6 +1,10 @@
 ---
 name: turkce-ai-durulac
 description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu gider veya yapay dili temizle; bürokratik/plaza Türkçesini düzelt; bu metin yapay mı tespit et. Use when the user wants Turkish text made clearer, more natural, less AI/bureaucratic-sounding, or asks whether Turkish text reads as AI-generated. Has a finance mode: recognizes bank/insurance/investment/corporate-finance text, keeps legal terms, figures and mandatory warnings intact, simplifies customer notices, flags prohibited return promises, and scores readability (Ateşman, Bezirci-Yılmaz). Also has a separate prompt-improvement mode (istem iyileştir) for tightening AI prompts locally, and an academic thesis mode (--tur tez: collocation errors, unsourced authority, citation-reference cross-check, Word tracked changes, sentence-free reports)."
+version: "1.0.0"
+metadata:
+  author: mesutbsdgn
+  tags: [turkish, writing, readability, finance]
 ---
 
 # Durulaç
