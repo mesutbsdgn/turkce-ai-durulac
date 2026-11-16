@@ -211,7 +211,7 @@ git clone https://github.com/mesutbsdgn/turkce-ai-durulac.git ~/.claude/skills/t
 
 Beceri dizinin farklıysa (örneğin `~/.agents/skills/`) oraya klonla. Claude bir sonraki oturumda beceriyi kendiliğinden tanır.
 
-**Başka bir modelde ya da araçta (ChatGPT, OpenCode, OpenClaw, Ollama…):** kurulum gerekmez. `SKILL.md` dosyasının içeriğini sistem yönergesi (system prompt / özel talimat) olarak yapıştır; ince ayar istiyorsan `references/degistirme-sozlugu.md` sözlüğünü, finans metni için `references/finans-terimleri.md` dosyasını da ekle. Okunabilirlik betiği Python 3 ister; betiği çalıştıramayan ortamda puan istenmez. Model bunları okuyup aynı kurallarla çalışır. Zayıf modeller kuralları daha eksik uygular; kurumsal/resmî metinde güçlü bir model tercih et.
+**Başka bir modelde ya da araçta (ChatGPT, OpenCode, OpenClaw, Ollama…):** kurulum gerekmez. `SKILL.md` dosyasının içeriğini sistem yönergesi (system prompt / özel talimat) olarak yapıştır. SKILL.md 1.1.0'dan beri kısadır; ayrıntı `references/` altındadır: tam kalıp kataloğu için `references/kaliplar.md`, finans metni için `references/finans.md` ve `references/finans-terimleri.md`, istem iyileştirme için `references/istem-iyilestirme.md`, tez için `references/tez-modu.md` dosyasını da ekle; ince ayar istiyorsan `references/degistirme-sozlugu.md` sözlüğünü ekle. Okunabilirlik betiği Python 3 ister; betiği çalıştıramayan ortamda puan istenmez. Model bunları okuyup aynı kurallarla çalışır. Zayıf modeller kuralları daha eksik uygular; kurumsal/resmî metinde güçlü bir model tercih et.
 
 ## Kullanım
 
