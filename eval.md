@@ -90,3 +90,16 @@ Her vakada **beklenen davranış** tutmalı. “Asla” satırı ihlal edilirse 
 10. **Sigorta bildirimi — bilgi düşmez.** “Poliçenizde 5.000 TL muafiyet bulunmakta olup bu tutarın altındaki hasarlar tarafınızca karşılanacaktır.” → “Poliçenizde 5.000 TL muafiyet var; bu tutarın altındaki hasarları siz ödersiniz.” (Tutarı ikinci kez yazmak sayı denetimini bozar.) Asla: muafiyet tutarını ya da koşulu atmak.
 11. **Kanıtsız performans iddiası — işaretle.** “Fonumuz, uzman portföy yöneticilerimizin özenli çalışmalarıyla istikrarlı bir performans sergilemektedir.” → övgü daralır (“Fonumuz … performans gösteriyor” gibi) ve “istikrarlı performans” ayrıca işaretlenir: dayanak (dönem, oran) yoksa TBB ilkesi açısından abartılı/yanıltıcı olabilir. Asla: iddiayı olduğu gibi işaretsiz bırakmak ya da rakam uydurmak.
 12. **Bilgisiz kapanış — atılır.** “Kredinizin yıllık maliyet oranı %52,80 olarak hesaplanmış olup tarafınıza bilgi verilmektedir.” → “Kredinizin yıllık maliyet oranı %52,80.” “Bilgi verilmektedir / Bilgilerinize sunarız” bilgi birimi değildir; yerine “Sizi bilgilendiriyoruz” gibi yeni bir dolgu konmaz.
+
+## `+seo` kipi (yalnız bu kip istendiyse)
+
+- Tür kapısına baktım mı; kapalı türde (resmî, hukuk, tez, edebî, sohbet, altyazı, sosyal medya) SEO müdahalesi yapmadım mı?
+- Ana sorgu başlıkta ve ilk paragrafta doğal biçimde (çekimli olabilir) geçiyor mu; aynı cümlede iki kez ya da title'da aynı ifade iki kez geçmiyor mu?
+- SEO için eklediğim yanıt paragrafı, ara başlık, liste, title, meta açıklama ve SSS'de girdide olmayan bir olgu, sayı, tarih, kampanya ya da "en iyi/ücretsiz/güncel" ifadesi var mı? Varsa çıkardım mı?
+- Bilgi kazancı eksiklerini uydurmak yerine soru olarak sordum mu (en çok 3)?
+- Sıralama vaadi ya da kaynaksız "Google şunu ister" cümlesi yazmadım mı; karakter eşiklerini sektör sezgisi diye sundum mu?
+- `seo_denetim.py --onceki` ile denetledim mi; çıkış 1 (doldurma) kalmadı mı; `bilgi_koruma.py` bilgi kaybı göstermiyor mu?
+- Title, meta ve SSS'deki her soru gövdede yanıtlanıyor mu; bağlantı hedefi belli değilken sayfa adı uydurmadım mı; sadeleştirdiğim aranan terimi ilk geçişte parantezde korudum mu?
+- Ana sorgu metnin olgusunu, kipini ya da kesinliğini değiştirmedi mi (önerge kabulü ≠ uygulama); haberde spotu, atfı ve karşı görüşü korudum mu?
+- Meta açıklama ve title gövdedeki koşulları ve zaman kipini aynen taşıyor mu ("üst üste", "-ebilir", "başlayacak")?
+- Yanıtı başa aldıysam aynı bilgiyi aşağıda tekrar etmedim ve boşta kalan "bu/şu" göndermesi bırakmadım mı?

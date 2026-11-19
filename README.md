@@ -22,6 +22,7 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 - [Finans metinleri](#finans-metinleri)
 - [Akademik tez modu](#akademik-tez-modu)
 - [Word izli değişiklik hattı](#word-izli-değişiklik-hattı)
+- [Google SEO kipi (+seo)](#google-seo-kipi-seo)
 - [Bilgi koruma denetimi](#bilgi-koruma-denetimi)
 - [Ne yapar, ne yapmaz](#ne-yapar-ne-yapmaz)
 - [Kurulum](#kurulum)
@@ -97,7 +98,7 @@ python3 scripts/okunabilirlik.py once.txt sonra.txt
 python3 scripts/tarama.py README.tr.md --onceki README.tr.eski.md
 ```
 
-Testler: `scripts/` içindeki her `test_*.py` dosyası tek başına çalışır (`python3 -B scripts/test_tarama.py` gibi); ek kenar durum testleri için `python3 -m pytest scripts/tests`. v1.4'te toplam 284 test vardır (193 unittest + 91 pytest) ve hepsi geçer.
+Testler: `scripts/` içindeki her `test_*.py` dosyası tek başına çalışır (`python3 -B scripts/test_tarama.py` gibi); ek kenar durum testleri için `python3 -m pytest scripts/tests`. Toplam 374 test vardır (283 unittest + 91 pytest) ve hepsi geçer.
 
 ## Akademik tez modu
 
@@ -173,6 +174,30 @@ Tez metnine dokunacak her şey Word'ün **izli değişikliği** olarak yazılır
 | `tez_ajan.py` | Yukarıdakileri tek kök dizinde, `ayar.json` ile yöneten görev koşturucu (`TEZ_AJAN_KOK`); adında “orijinal” geçen dosyayla çalışmayı reddeder |
 
 `yerlestir.py` gömme için yerel Ollama'da `bge-m3` kullanır. Betikler 127.0.0.1 dışına çıkmaz; tek istisna yukarıdaki açık `--uzak` bayrağıdır.
+
+## Google SEO kipi (+seo)
+
+"Bu yazıyı sadeleştir ve Google için SEO uyumlu yap" dendiğinde Durulaç önce her zamanki temizliği yapar, sonra metni arama için düzenler:
+
+- konuyu başlıkta ve ilk paragrafta açıkça adlandırır,
+- soruya yanıt veren metinde yanıtı başa alır,
+- uzun metne ara başlık koyar,
+- title, meta açıklama, slug ve görsel alt metni önerir.
+
+Metinde olmayan bilgiyi uydurmaz. Google'ın değer verdiği ama metinde bulunmayan özgün veri, tarih, yazar ya da deneyim gibi öğeleri en çok üç soruyla size sorar.
+
+Neyi yapmadığı da kuralın parçasıdır:
+
+- Sıralama vaadi vermez.
+- Anahtar sözcük yoğunluğu hedeflemez. Google'ın böyle bir hedefi yok; John Mueller: "Keyword density does not matter, but being explicit does matter".
+- Anahtar sözcüğü metne doldurmaz.
+- Resmî yazı, hukuk, tez, edebî metin, sohbet, altyazı ve sosyal medyada SEO uygulamaz.
+
+Kurallar kaynaklarıyla birlikte `references/seo.md` dosyasındadır. `scripts/seo_denetim.py` 20 maddelik bir denetçidir. Başlık, ilk paragraf, anahtar doldurma, title ve meta uzunluğu, başlık sırası, alt metin, slug ve çapa metnini Türkçe çekim eklerini tanıyarak denetler. Bulguları üç düzeyde verir: Google kuralı, sektör sezgisi, Durulaç kuralı.
+
+```bash
+python3 scripts/seo_denetim.py yazi.md --anahtar "asgari ödeme tutarı" --baslik "Title" --aciklama "Meta" --slug asgari-odeme-tutari
+```
 
 ## Bilgi koruma denetimi
 
