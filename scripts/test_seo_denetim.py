@@ -39,6 +39,12 @@ def dosya(icerik):
     return f.name
 
 
+class SlugKesme(unittest.TestCase):
+    def test_kesme_isareti_tire_olmaz(self):
+        self.assertEqual(s.slug_oner("1853 Kırım Savaşı'nı Kim Kazandı"), "1853-kirim-savasini-kim-kazandi")
+        self.assertEqual(s.slug_oner("Ankara’nın Kalesi"), "ankaranin-kalesi")
+
+
 class S19S20(unittest.TestCase):
     def test_s19_meta_govdede_olmayan_sayi(self):
         b = s.denetle("# Bot\n\nBot 2.899 TL.", aciklama="Bot 1.999 TL'den başlıyor, hızlı kargo ile gelir.")[0]

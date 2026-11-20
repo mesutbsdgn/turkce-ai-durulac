@@ -269,6 +269,7 @@ def _bloklar(satirlar: list[str]) -> list[dict]:
 def slug_oner(baslik: str, azami: int = SLUG_UST) -> str:
     """Türkçe başlığı ASCII URL slug'ına çevirir; 75 karakterde sözcük sınırından keser."""
     s = kucult(nfc(baslik)).translate(AKSAN)
+    s = re.sub(r"['\u2019\u2018`]", "", s)   # kesme işareti tire olmaz: "Savaşı'nı" → "savasini"
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
     if len(s) > azami:
         s = s[:azami]
