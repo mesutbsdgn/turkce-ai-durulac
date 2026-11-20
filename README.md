@@ -29,6 +29,7 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 - [Kullanım](#kullanım)
 - [Nasıl sınandı](#nasıl-sınandı)
 - [Sınırları](#sınırları)
+- [Sürüm geçmişi](#sürüm-geçmişi)
 - [Katkı](#katkı)
 - [Lisans](#lisans)
 
@@ -236,7 +237,7 @@ git clone https://github.com/mesutbsdgn/turkce-ai-durulac.git ~/.claude/skills/t
 
 Beceri dizinin farklıysa (örneğin `~/.agents/skills/`) oraya klonla. Claude bir sonraki oturumda beceriyi kendiliğinden tanır.
 
-**Başka bir modelde ya da araçta (ChatGPT, OpenCode, OpenClaw, Ollama…):** kurulum gerekmez. `SKILL.md` dosyasının içeriğini sistem yönergesi (system prompt / özel talimat) olarak yapıştır. SKILL.md 1.1.0'dan beri kısadır; ayrıntı `references/` altındadır: tam kalıp kataloğu için `references/kaliplar.md`, finans metni için `references/finans.md` ve `references/finans-terimleri.md`, istem iyileştirme için `references/istem-iyilestirme.md`, tez için `references/tez-modu.md` dosyasını da ekle; ince ayar istiyorsan `references/degistirme-sozlugu.md` sözlüğünü ekle. Okunabilirlik betiği Python 3 ister; betiği çalıştıramayan ortamda puan istenmez. Model bunları okuyup aynı kurallarla çalışır. Zayıf modeller kuralları daha eksik uygular; kurumsal/resmî metinde güçlü bir model tercih et.
+**Başka bir modelde ya da araçta (ChatGPT, OpenCode, OpenClaw, Ollama…):** kurulum gerekmez. `SKILL.md` dosyasının içeriğini sistem yönergesi (system prompt / özel talimat) olarak yapıştır. SKILL.md 1.5'ten beri kısadır; ayrıntı `references/` altındadır: tam kalıp kataloğu için `references/kaliplar.md`, finans metni için `references/finans.md` ve `references/finans-terimleri.md`, istem iyileştirme için `references/istem-iyilestirme.md`, tez için `references/tez-modu.md` dosyasını da ekle; ince ayar istiyorsan `references/degistirme-sozlugu.md` sözlüğünü ekle. Okunabilirlik betiği Python 3 ister; betiği çalıştıramayan ortamda puan istenmez. Model bunları okuyup aynı kurallarla çalışır. Zayıf modeller kuralları daha eksik uygular; kurumsal/resmî metinde güçlü bir model tercih et.
 
 ## Kullanım
 
@@ -279,6 +280,20 @@ Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Ö
 - Tez modu bir danışman ya da jüri yerine geçmez. Bulduğu şey kural ihlali ve olası çeviri kokusudur, bilimsel değerlendirme değil. Eş dizim kuralları derlenmiş bir listedir (`korpus_pmi.py` onu bir korpusla genişletmek içindir, listedeki kurallar yayımlanmış bir korpusa dayanmaz); her kuralın örneği var ama kapsam dar, bulmadığı hatayı yok sayma.
 - Yerel küçük bir modelin (7-8 milyar parametre) akademik cümleyi yeniden yazması denendi; bu sürümde modelin kalitesi ölçülmedi, bu yüzden model önerisi **isteğe bağlı bir ek** olarak bırakıldı. Asıl denetim 0-token betiklerdedir; bir modeli tezde kullanmadan önce kendi örneklerinle ölç.
 - Okunabilirlik formülleri sözcük ve hece uzunluğuna bakar, anlamı ölçmez. Kısa metinde puan oynaktır; puanı tek başına başarı ölçüsü sayma.
+
+## Sürüm geçmişi
+
+| Sürüm | Tarih | Değişiklik |
+|---|---|---|
+| v1.1 | 29 Eyl 2026 | Model bağımsız kullanım, yeni tür kapıları |
+| v1.2 | 3 Eki 2026 | İstem iyileştir modu |
+| v1.3 | 3 Eki 2026 | Finans eklentisi |
+| v1.4 | 8 Kas 2026 | Akademik tez modu, bilgi koruma, Word izli değişiklik |
+| v1.5 | 17 Kas 2026 | SKILL.md küçültüldü (51 KB → 16 KB), ayrıntı `references/` altına taşındı |
+| v1.6 | 20 Kas 2026 | Google SEO kipi (`+seo`) |
+| v1.6.1 | 20 Kas 2026 | Slug önerisinde kesme işareti düzeltmesi |
+
+Not: v1.5 ve v1.6 commit iletilerinde yanlışlıkla "1.1.0" ve "1.2.0" yazıyor; doğru numaralar bu tablodakilerdir.
 
 ## Katkı
 
