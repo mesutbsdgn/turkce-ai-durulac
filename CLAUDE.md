@@ -3,18 +3,22 @@
 Durulaç bir Claude becerisidir (skill): Türkçe metni anlamını bozmadan ve bilgi uydurmadan sadeleştirir. Kullanıcıya
 dönük açıklama `README.md`'de, ajanın uyduğu kurallar `SKILL.md`'dedir. Bu dosya depoyu **geliştiren** ajan içindir.
 
-## Sekiz kip (değiştirirken üçünü birlikte güncelle: `SKILL.md` tablosu, `README.md` "Sekiz kip", `eval.md`)
+## Yapı: iş × tür + ek (değiştirirken üçünü birlikte güncelle: `SKILL.md` "Üç seçim", `README.md` "Nasıl çalışır", `eval.md`)
 
-| Kip | Türü | Zorunlu okuma | Denetçi betik |
+| Eksen | Seçenek | Zorunlu okuma | Denetçi betik |
 |---|---|---|---|
-| Temizle | ana, varsayılan | `SKILL.md`, `references/kaliplar.md` | `scripts/tarama.py`, `scripts/bilgi_koruma.py` |
-| Tespit | ana | `SKILL.md` | `scripts/tarama.py` |
-| İstem iyileştir | ana | `references/istem-iyilestirme.md` | — |
-| Özet | ana | `SKILL.md` | `scripts/bilgi_koruma.py` |
-| Finans | ek | `references/finans.md`, `references/finans-terimleri.md` | `scripts/okunabilirlik.py` |
-| Tez (`--tur tez`) | ek | `references/tez-modu.md` | `scripts/tez_analiz.py`, `scripts/tez_onar.py` … |
-| +seo | ek | `references/seo.md` | `scripts/seo_denetim.py` |
-| +ogretim | ek | `references/ogretim.md` | `scripts/ogretim_denetim.py` + `references/ogretim-alanlari.json` |
+| İş | Temizle (varsayılan) | `SKILL.md`, `references/kaliplar.md` | `scripts/tarama.py`, `scripts/bilgi_koruma.py` |
+| İş | Tespit | `SKILL.md` | `scripts/tarama.py` |
+| İş | Özet | `SKILL.md` | `scripts/bilgi_koruma.py` |
+| İş | İstem iyileştir | `references/istem-iyilestirme.md` | — |
+| Tür (derin) | Finans | `references/finans.md`, `references/finans-terimleri.md` | `scripts/okunabilirlik.py` |
+| Tür (derin) | Tez (`--tur tez`) | `references/tez-modu.md` | `scripts/tez_analiz.py`, `scripts/tez_onar.py` … |
+| Tür (genel) | resmî, hukuk, akademik, haber, sohbet… | `references/tur-kapisi.md` | `scripts/tarama.py --tur` |
+| Ek | +seo | `references/seo.md` | `scripts/seo_denetim.py` |
+
+Yeni bir yetenek eklemeden önce sor: metne yapılan yeni bir **iş** mi, yeni bir **tür** mü, yoksa bir **ek** mi? Hiçbiri
+değilse (ör. içerik kalite denetimi, alan bilgisi doğrulaması) ayrı beceri olmalı. Öğretim kalitesi denetimi bu yüzden
+v2.0'da `ogretim-denetci` becerisine taşındı.
 
 ## Değişmez kurallar
 
@@ -22,8 +26,6 @@ dönük açıklama `README.md`'de, ajanın uyduğu kurallar `SKILL.md`'dedir. Bu
   ölçümü (`pdftotext`, `pdfimages`) isteğe bağlıdır; yoksa betik "ölçülmedi" der, puan uydurmaz.
 - Metne ya da kurala kaynağında olmayan olgu, sayı, kaynak eklenmez. Kalıp, eşik ya da alan kuralı eklerken dayanağı
   yazılır; kaynağı doğrulanamayan kural en çok **UYARI** ya da elle madde olur, **HATA** olamaz.
-- `+ogretim` sağlık kuralları en sıkı kısımdır: HATA olanlar (doz yazımı, hasta kimliği, TC kimlik no) ancak birincil
-  kaynakla (ISMP, FDA, yönetmelik) değiştirilir. Betik dozun klinik doğruluğunu denetlemez; bunu iddia eden metin yazma.
 - Korumalı türlerde (resmî, hukuk belgesi, akademik, edebî) kalıp listesi kapalıdır; `references/tur-kapisi.md`.
 - Kişisel veri, gerçek hasta bilgisi, özel sunucu adı ya da yerel dosya yolu depoya girmez (depo herkese açıktır).
 - `YOL_HARITASI.md` yerel kalır (`.git/info/exclude`); tikleri `yol-haritasi.py` atar.
@@ -38,16 +40,7 @@ for t in scripts/test_*.py; do python3 -B "$t" || echo "KIRMIZI: $t"; done
 Her yeni kontrol için olumlu ve olumsuz test yaz; testi kasten bozup (eşiği kapat, deseni boşalt) kırmızıya döndüğünü
 gör, geri al. README'deki test sayısını güncelle.
 
-## Yeni `+ogretim` alanı eklemek
-
-1. `references/ogretim-alanlari.json`: `ad`, `sozcukler` (4 harf ve kısası yalnız tam sözcük eşleşir; genel sözcük
-   koyma: "plan", "baz", "tür" başka alanları çalar), isteğe bağlı `ust`, `kontroller` (`@saglik`, `@fen`, `@kaynak`,
-   `@sayisal` grupları), `elle`, `sinama_oneri`.
-2. Yeni kontrol gerekiyorsa `scripts/ogretim_denetim.py` içinde `k_…` işlevi + `KONTROLLER` kaydı; eşik dosya başında sabit.
-3. `references/ogretim.md` alan tablosuna satır ve dayanak; kanıtı `docs/ogretim-alan-kanitlari.md`'ye.
-4. `scripts/test_ogretim_denetim.py`: tespit testi (`ALAN_ORNEKLERI`) ve kontrol testi.
-
 ## Sürüm
 
 `SKILL.md` `version` alanı, `README.md` sürüm geçmişi ve git etiketi aynı numarayı taşır. Commit iletisi Türkçe ve
-kısa: `1.9.0: …`.
+kısa: `2.0.0: …`.

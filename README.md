@@ -18,12 +18,12 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 
 - [Sorun: yapay dil Türkçede başka türlü görünür](#sorun-yapay-dil-türkçede-başka-türlü-görünür)
 - [Bir örnek](#bir-örnek)
-- [Sekiz kip: hangisi ne işe yarar](#sekiz-kip-hangisi-ne-işe-yarar)
+- [Nasıl çalışır: iş, tür, ek](#nasıl-çalışır-iş-tür-ek)
 - [Finans metinleri](#finans-metinleri)
 - [Akademik tez modu](#akademik-tez-modu)
 - [Word izli değişiklik hattı](#word-izli-değişiklik-hattı)
 - [Google SEO kipi (+seo)](#google-seo-kipi-seo)
-- [Öğretim materyali kipi (+ogretim)](#öğretim-materyali-kipi-ogretim)
+- [Kardeş beceri: Öğretim Denetçisi](#kardeş-beceri-öğretim-denetçisi)
 - [Bilgi koruma denetimi](#bilgi-koruma-denetimi)
 - [Ne yapar, ne yapmaz](#ne-yapar-ne-yapmaz)
 - [Kurulum](#kurulum)
@@ -60,25 +60,31 @@ Durulaç'tan sonra:
 
 Klişe giriş, "önem arz etmektedir", boş sıfat dizisi ve "bu bağlamda" çıkarıldı. Edilgen cümleler tek ve tutarlı bir "biz" sesine döndü; kopuk kalanlar bağlaçla birbirine bağlandı.
 
-## Sekiz kip: hangisi ne işe yarar
+## Nasıl çalışır: iş, tür, ek
 
-Durulaç'ın 8 kipi var. **Ana kipler** metne ne yapılacağını seçer. **Ek kipler** ana kipin üstüne bir alanın
-kurallarını ekler. Kip adını söylemen gerekmez; istekten anlaşılır. Her kipin zorunlu okuma dosyası `SKILL.md`'deki
-tabloda yazılıdır.
+Durulaç her istekte üç şey seçer. Hiçbirinin adını söylemen gerekmez; istekten anlar.
 
-| # | Kip | Türü | Ne yapar | Ne yapmaz | Nasıl çağrılır | Araç |
-|---|---|---|---|---|---|---|
-| 1 | **Temizle** | ana, varsayılan | Metni en az müdahaleyle yeniden yazar; tam metin + "Ne değiştirdim" listesi verir | Bilgi atmaz, olgu uydurmaz, doğal cümleye dokunmaz | "sadeleştir", "düzelt", "insanlaştır" | `tarama.py`, `bilgi_koruma.py` |
-| 2 | **Tespit** | ana | Yapay/bürokratik kalıpları adıyla ve alıntısıyla gösterir | Yeniden yazmaz; yazar tahmini, yüzde ya da olasılık vermez | "AI mı yazdı?", "kalıpları göster" | `tarama.py` |
-| 3 | **İstem iyileştir** | ana | Yapay zekâ istemine rol, bağlam, kısıt, çıktı biçimi ve doğrulama ekler; boşlukları `${değişken}` ile işaretler | Amacı değiştirmez, sahte örnek uydurmaz, metni dışarı göndermez | "bu promptu iyileştir" | — |
-| 4 | **Özet** | ana | Sözcük/karakter sınırına uyar; korunacak sayıları ve sınırları tek tek arayıp geri koyar | Sınırı aşmaz, girdide olmayanı eklemez | "200 sözcükte özetle" | `bilgi_koruma.py` |
-| 5 | **Finans** | ek | Banka, sigorta, yatırım ve şirket finansı metnini dört alt türe ayırır; rakamı, yasal terimi ve risk uyarısını korur; yasak getiri vaadini işaretler; okunabilirlik puanı verir | Uyum kararı vermez, hukuk görüşü değildir | "bu banka SMS'ini sadeleştir" | `okunabilirlik.py` |
-| 6 | **Tez** (`--tur tez`) | ek | Eş dizim hatası, kaynaksız otorite, ad tamlaması zinciri, atıf–kaynakça uyumu ve kılavuz biçimini denetler; düzeltmeyi Word izli değişikliği olarak yazar; rapor cümlesizdir | Bilimsel değerlendirme yapmaz; jüri ya da danışman yerine geçmez | "tezimi denetle" | `tez_analiz.py`, `tez_onar.py` ve 8 yardımcı |
-| 7 | **+seo** | ek | Temizledikten sonra konuyu başlığa ve ilk paragrafa koyar, yanıtı başa alır; title, meta, slug ve alt metin önerir | Sıralama vaadi, anahtar doldurma, uydurma veri yok; resmî, hukuk, tez, edebî, sohbet, altyazı ve sosyal medyada kapalı | "SEO uyumlu yap" | `seo_denetim.py` |
-| 8 | **+ogretim** | ek | Ders notu, rehber ve PDF'i 32 bilim dalını ve görsel/sözel biçimi tanıyarak 8 boyutta puanlar (/16); yayınlanabilir mi diye karar verir | İçeriğin doğruluğunu ve dozun klinik doğruluğunu kanıtlamaz (elle madde kalır) | "ders notumu denetle", "bu PDF öğretir mi" | `ogretim_denetim.py` |
+**1. İş: metne ne yapılacak** (tam olarak biri)
 
-Metin türü kapısı her kipten önce çalışır. Resmî yazı, hukuk belgesi, akademik metin, haber, altyazı, sosyal medya ve
-edebî metinde bazı kalıplar bilinçlidir ve dokunulmaz (ayrıntı: `references/tur-kapisi.md`).
+| İş | Ne yapar | Ne yapmaz | Örnek istek | Araç |
+|---|---|---|---|---|
+| **Temizle** (varsayılan) | Metni en az müdahaleyle yeniden yazar; tam metin + "Ne değiştirdim" listesi | Bilgi atmaz, olgu uydurmaz, doğal cümleye dokunmaz | "sadeleştir", "insanlaştır" | `tarama.py`, `bilgi_koruma.py` |
+| **Tespit** | Yapay/bürokratik kalıpları adıyla ve alıntısıyla gösterir | Yeniden yazmaz; yazar tahmini, yüzde vermez | "AI mı yazdı?" | `tarama.py` |
+| **Özet** | Sözcük/karakter sınırına uyar; ana sayıları ve çekinceleri tek tek arayıp korur | Sınırı aşmaz, girdide olmayanı eklemez | "200 sözcükte özetle" | `bilgi_koruma.py` |
+| **İstem iyileştir** | Yapay zekâ istemine rol, bağlam, kısıt, çıktı biçimi ve doğrulama ekler | Amacı değiştirmez, sahte örnek uydurmaz; tür ve ek uygulanmaz | "bu promptu güçlendir" | — |
+
+**2. Tür: metin ne** (kuralları belirler)
+
+Resmî yazı, hukuk belgesi, akademik metin, haber, teknik doküman, sohbet, sosyal medya, altyazı, pazarlama, edebî
+metin ve öğretim materyali; her birinde neyin korunacağı ve hangi kalıpların kapalı olduğu ayrıdır
+(`references/tur-kapisi.md`). İki türün derin kural seti ve kendi aracı vardır: **Finans** ve **Tez** (aşağıda).
+
+**3. Ek: isteğe bağlı**
+
+- **+seo**: temizlenmiş metni Google araması için düzenler (aşağıda).
+
+Böylece "banka SMS'ini sadeleştir" = Temizle × Finans; "tezimdeki yapay kalıpları göster" = Tespit × Tez;
+"blog yazımı Google için düzenle" = Temizle × pazarlama + seo.
 
 ## Finans metinleri
 
@@ -112,7 +118,7 @@ python3 scripts/okunabilirlik.py once.txt sonra.txt
 python3 scripts/tarama.py README.tr.md --onceki README.tr.eski.md
 ```
 
-Testler: `scripts/` içindeki her `test_*.py` dosyası tek başına çalışır (`python3 -B scripts/test_tarama.py` gibi); ek kenar durum testleri için `python3 -m pytest scripts/tests`. Toplam 436 test vardır (345 unittest + 91 pytest) ve hepsi geçer.
+Testler: `scripts/` içindeki her `test_*.py` dosyası tek başına çalışır (`python3 -B scripts/test_tarama.py` gibi); ek kenar durum testleri için `python3 -m pytest scripts/tests`. Toplam 375 test vardır (284 unittest + 91 pytest) ve hepsi geçer.
 
 ## Akademik tez modu
 
@@ -213,82 +219,13 @@ Kurallar kaynaklarıyla birlikte `references/seo.md` dosyasındadır. `scripts/s
 python3 scripts/seo_denetim.py yazi.md --anahtar "asgari ödeme tutarı" --baslik "Title" --aciklama "Meta" --slug asgari-odeme-tutari
 ```
 
-## Öğretim materyali kipi (+ogretim)
+## Kardeş beceri: Öğretim Denetçisi
 
-Öğrenciye giden belgeyi (ders notu, konu anlatımı, rehber, ezber kitapçığı, kelime listesi, PDF) kanıta dayalı bir
-ölçekle denetler. Tek kiptir ama **belgenin alanını tanır**: tıp notunu yabancı dil ölçeğiyle, görsel bir anatomi
-atlasını düz metin ölçeğiyle değerlendirmez.
-
-**8 boyut** (her biri 0 hata · 1 uyarı · 2 temiz; toplam /16): doğruluk, hedefle uyum, seviye, ezber ve kavrama,
-okunaklılık, sıra ve akış, kendini sınama, verimlilik. Otomatik denetimde **HATA** varsa karar "yayınlanamaz"dır.
-
-**Her alanda aynı kalan çekirdek:** yabancı alfabe harfi karışması, bitmemiş yer işareti, geçerli TC kimlik numarası,
-başlık numarası sırası, sayfa göndermesi, kendini sınama bölümü, görselde alt metin, PDF'te yazı boyu (8 pt altı
-hata), boş ve yarım sayfa, sayfa tavanı. Dayanağı Sweller (bilişsel yük), Mayer (çoklu ortam), Dunlosky (kendini
-sınama ve aralıklı tekrar).
-
-**32 alan profili:**
-
-| Grup | Alanlar |
-|---|---|
-| Sağlık (en ayrıntılı) | tıp; alt alanları diş hekimliği, hemşirelik ve ebelik, eczacılık, veteriner, beslenme, fizyoterapi, acil tıp; ayrıca psikoloji |
-| Sayısal ve fen | matematik, istatistik, fen, fizik, kimya, biyoloji, yer bilimleri, ziraat, mühendislik, bilgisayar, mimarlık |
-| Sosyal ve beşerî | hukuk, iktisat ve işletme, tarih, coğrafya, sosyal bilgiler, ilahiyat, edebiyat, felsefe, sanat ve müzik, eğitim bilimleri |
-| Dil ve genel | yabancı dil (fr, en, de, es, it), genel |
-
-**Sağlıkta neler denetlenir:**
-
-- **Yayını durdurur:** dozda sondaki sıfır ("5,0 mg") ve baştaki sıfırsız ondalık (",5 mg"), hasta adı ya da protokol
-  numarası.
-- **Uyarı verir:**
-  - ISMP'nin karıştırılmaya açık kısaltmaları (U, IU, cc, q.d., μg, SC, TIW, D/C, OD/OS/OU, doz önünde > <);
-  - zaman birimi yazılmamış "mg/kg" dozu;
-  - harfli gebelik kategorisi (FDA bunu 2015'te kaldırdı);
-  - aynı analitin dönüşüm yazılmadan iki birimle verilmesi;
-  - kaynaksız referans aralığı;
-  - yılsız ya da 5 yıldan eski kılavuz;
-  - DSM-IV;
-  - yanlış yazılmış tür adı;
-  - tanımsız kısaltma.
-- **Alt alanlara özgü:**
-  - veteriner: türü yazılmamış doz, gıda hayvanında arınma süresinin olmaması;
-  - beslenme: "kalori" yazımı, besine hastalık tedavi etme özelliği yükleme;
-  - hemşirelik: bakım planında eksik aşama;
-  - fizyoterapi: FITT öğesi eksik egzersiz reçetesi.
-- **Elle kontrol listesi:** her sağlık alanına ayrıca 10 madde eklenir. Örnekleri: yüksek riskli ilaçlarda çift
-  kontrol, benzer adlı ilaçlar, çocuk dozu, kimliksizleştirme ve onam, kılavuz sürümü.
-
-**Öteki alanlardan örnekler:**
-
-- SI birim yazımı ("Kg" → "kg", "5kg" → "5 kg");
-- deney föyünde güvenlik notu;
-- "p = 0,000" yazımı;
-- Python 2 ve sürümsüz kod örneği;
-- yürürlükten kalkmış kanun (818, 1086 ve 6762 sayılı kanunlar yayını durdurur);
-- künyesiz Yargıtay kararı;
-- kaynaksız hadis ve numarasız âyet meali;
-- kaynaksız doğrudan alıntı;
-- künyesiz eser görseli;
-- ölçeksiz teknik çizim;
-- haritada lejant, ölçek, kuzey oku ya da kaynak eksikliği;
-- yılsız istatistik.
-
-```bash
-python3 scripts/ogretim_denetim.py ders-notu.md                    # alanı kendisi bulur
-python3 scripts/ogretim_denetim.py not.md --pdf not.pdf --alan tip # PDF ölçümü ve alanı zorla
-python3 scripts/ogretim_denetim.py not.md --json                   # makine okur
-```
-
-**Kanıt:** üç quoteproof araştırması yapıldı (toplam 23 başlık, 872 bulgu, 567'si kaynağında otomatik doğrulandı).
-Kurala giren kritik bilgiler ayrıca elle açıldı. Kaynağı açılamayan hiçbir bilgi HATA kuralı yapılmadı. Bunlar en çok
-UYARI olabildi; örneğin 765 sayılı TCK ve PSNet vakası. Ayrıntı:
-
-- [`references/ogretim.md`](references/ogretim.md): ölçek, eşikler, alan tabloları;
-- [`references/ogretim-alanlari.json`](references/ogretim-alanlari.json): profiller; yeni alan bu dosyaya eklenir;
-- [`docs/ogretim-alan-kanitlari.md`](docs/ogretim-alan-kanitlari.md): alıntılı kanıt ve açılamayanlar.
-
-**Sınırı:** betik yazımı ve yapıyı denetler; dozun, tanının, kanun yorumunun ya da tarihsel bilginin doğru olduğunu
-kanıtlamaz. Bunlar her alanın elle listesinde kalır.
+Ders notu, öğrenci PDF'i ya da kelime listesinin **öğretim kalitesini** denetlemek (32 bilim dalını tanır; sağlıkta doz
+yazımı, hasta kimliği, kılavuz yaşı; 8 boyutta puan ve yayın kararı) Durulaç'ın işi değildir. Bu iş v2.0'da ayrı bir
+beceriye, **`ogretim-denetci`**'ye taşındı (Durulaç v1.7–1.9'da `+ogretim` kipiydi). İkisi birlikte kuruluysa denetçi,
+Türkçe açıklamayı sadeleştirmek için Durulaç'ın Temizle işini çağırır; Durulaç da öğretim materyalinde formüle, doza ve
+yabancı dildeki örnek cümleye dokunmaz.
 
 ## Bilgi koruma denetimi
 
@@ -328,7 +265,7 @@ git clone https://github.com/mesutbsdgn/turkce-ai-durulac.git ~/.claude/skills/t
 
 Beceri dizinin farklıysa (örneğin `~/.agents/skills/`) oraya klonla. Claude bir sonraki oturumda beceriyi kendiliğinden tanır.
 
-**Başka bir modelde ya da araçta (ChatGPT, OpenCode, OpenClaw, Ollama…):** kurulum gerekmez. `SKILL.md` dosyasının içeriğini sistem yönergesi (system prompt / özel talimat) olarak yapıştır. SKILL.md 1.5'ten beri kısadır; ayrıntı `references/` altındadır: tam kalıp kataloğu için `references/kaliplar.md`, finans metni için `references/finans.md` ve `references/finans-terimleri.md`, istem iyileştirme için `references/istem-iyilestirme.md`, tez için `references/tez-modu.md`, SEO için `references/seo.md`, öğretim materyali için `references/ogretim.md` dosyasını da ekle; ince ayar istiyorsan `references/degistirme-sozlugu.md` sözlüğünü ekle. Okunabilirlik betiği Python 3 ister; betiği çalıştıramayan ortamda puan istenmez. Model bunları okuyup aynı kurallarla çalışır. Zayıf modeller kuralları daha eksik uygular; kurumsal/resmî metinde güçlü bir model tercih et.
+**Başka bir modelde ya da araçta (ChatGPT, OpenCode, OpenClaw, Ollama…):** kurulum gerekmez. `SKILL.md` dosyasının içeriğini sistem yönergesi (system prompt / özel talimat) olarak yapıştır. SKILL.md 1.5'ten beri kısadır; ayrıntı `references/` altındadır: tam kalıp kataloğu için `references/kaliplar.md`, finans metni için `references/finans.md` ve `references/finans-terimleri.md`, istem iyileştirme için `references/istem-iyilestirme.md`, tez için `references/tez-modu.md`, SEO için `references/seo.md` dosyasını da ekle; ince ayar istiyorsan `references/degistirme-sozlugu.md` sözlüğünü ekle. Okunabilirlik betiği Python 3 ister; betiği çalıştıramayan ortamda puan istenmez. Model bunları okuyup aynı kurallarla çalışır. Zayıf modeller kuralları daha eksik uygular; kurumsal/resmî metinde güçlü bir model tercih et.
 
 ## Kullanım
 
@@ -347,8 +284,7 @@ Birkaç örnek istek:
 - "Bu teknik yazıyı düzelt." Kodu ve terimleri bırakır, yalnız düzyazıyı toparlar.
 - "Bu banka SMS'ini sadeleştir." Rakamları ve yasal terimleri koruyarak sadeleştirir, okunabilirlik puanını verir.
 - "Bu fon tanıtımında sorun var mı?" Yasak vaatleri ve dayanaksız iddiaları uyum notunda gösterir.
-- "Bu farmakoloji notumu denetle." Tıp profilini seçer; doz yazımını, kısaltmaları ve hasta kimliğini denetler, yayın kararı verir.
-- "Hukuk ders notum güncel mi?" Mülga kanun, numarasız kanun adı ve künyesiz kararı işaretler.
+- "Bu ders notunun açıklamalarını sadeleştir." Yalnız Türkçe açıklamayı düzenler; formül, doz ve örnek cümle aynen kalır (öğretim kalitesi denetimi için `ogretim-denetci`).
 - "Bu promptu güçlendir." İstem iyileştir kipiyle çalışır, düzyazı kurallarını uygulamaz.
 
 ## Nasıl sınandı
@@ -373,7 +309,6 @@ Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Ö
 - Tarama betiği bağlamı bilmez: doğru kullanımı da işaretleyebilir ve bulmadığı kalıbı (anlam, ritim, fail) bulmaz. Bulguları gerekçeyle karara bağla.
 - Tez modu bir danışman ya da jüri yerine geçmez. Bulduğu şey kural ihlali ve olası çeviri kokusudur, bilimsel değerlendirme değil. Eş dizim kuralları derlenmiş bir listedir (`korpus_pmi.py` onu bir korpusla genişletmek içindir, listedeki kurallar yayımlanmış bir korpusa dayanmaz); her kuralın örneği var ama kapsam dar, bulmadığı hatayı yok sayma.
 - Yerel küçük bir modelin (7-8 milyar parametre) akademik cümleyi yeniden yazması denendi; bu sürümde modelin kalitesi ölçülmedi, bu yüzden model önerisi **isteğe bağlı bir ek** olarak bırakıldı. Asıl denetim 0-token betiklerdedir; bir modeli tezde kullanmadan önce kendi örneklerinle ölç.
-- `+ogretim` alanı sözcüklere bakarak tahmin eder; karma bir belgede yanılabilir. Belgenin başına `alan: tip` yazarak ya da `--alan` ile düzeltilir. Sağlıkta yazım güvenliğini denetler, klinik doğruluğu değil.
 - Okunabilirlik formülleri sözcük ve hece uzunluğuna bakar, anlamı ölçmez. Kısa metinde puan oynaktır; puanı tek başına başarı ölçüsü sayma.
 
 ## Sürüm geçmişi
@@ -388,8 +323,9 @@ Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Ö
 | v1.6 | 20 Kas 2026 | Google SEO kipi (`+seo`) |
 | v1.6.1 | 20 Kas 2026 | Slug önerisinde kesme işareti düzeltmesi |
 | v1.7.0 | 22 Kas 2026 | `+ogretim` kipi: öğretim materyali ölçeği (8 boyut, /16), `ogretim_denetim.py`, `references/ogretim.md` |
-| v1.9.0 | 22 Kas 2026 | `+ogretim` 32 alana çıktı (sağlıkta 8 alan ve ortak sağlık grubu, fen, mühendislik, bilgisayar, hukuk, iktisat, beşerî bilimler); TC kimlik ve hasta kimliği denetimi; README'de 8 kip tablosu |
 | v1.8.0 | 22 Kas 2026 | `+ogretim` alanı tanıyor: dil, tıp, diş, matematik, fen, tarih, coğrafya, sosyal, genel profilleri ve görsel/sözel biçim; `ogretim-alanlari.json`, alan kanıt özeti |
+| v1.9.0 | 22 Kas 2026 | `+ogretim` 32 alana çıktı (sağlıkta 8 alan ve ortak sağlık grubu, fen, mühendislik, bilgisayar, hukuk, iktisat, beşerî bilimler); TC kimlik ve hasta kimliği denetimi; README'de 8 kip tablosu |
+| v2.0.0 | 22 Kas 2026 | Yapı sadeleşti: 4 iş (Temizle, Tespit, Özet, İstem iyileştir) × metin türü (Finans ve Tez derin türler) + ek (+seo). `+ogretim` ayrı beceriye (`ogretim-denetci`) taşındı |
 
 Not: v1.5 ve v1.6 commit iletilerinde yanlışlıkla "1.1.0" ve "1.2.0" yazıyor; doğru numaralar bu tablodakilerdir.
 
