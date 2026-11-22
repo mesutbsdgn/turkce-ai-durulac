@@ -1,0 +1,1173 @@
+{
+ "_aciklama": "ogretim_denetim.py alan profilleri. Alan: ad, sozcukler (küçük harf, kök yeter), isteğe bağlı ust (alt alan: üst alanın sözcükleri de geçse daha özel olan seçilir), kontroller (betikteki KONTROLLER adları ya da '@grup'), elle_gruplar, elle, sinama_oneri. '_' ile başlayan anahtarlar profil değildir: _gruplar ve _elle_gruplar ortak listeler, _gorsel görsel biçim eki. Gerekçeler: references/ogretim.md ve docs/ogretim-alan-kanitlari.md.",
+ "_gruplar": {
+  "saglik": [
+   "tip_doz_yazimi",
+   "tip_tehlikeli_kisaltma",
+   "saglik_kisaltma_ek",
+   "doz_kg_belirsiz",
+   "kisaltma_tanimsiz",
+   "kilavuz_yilsiz",
+   "kilavuz_eski",
+   "hasta_kimlik",
+   "gebelik_kategorisi",
+   "lab_birim_karisik",
+   "referans_kaynaksiz",
+   "tur_adi_yazimi",
+   "tani_surumu_eski"
+  ],
+  "kaynak": [
+   "kaynaksiz_otorite",
+   "kaynakca_yok"
+  ],
+  "sayisal": [
+   "cozulmus_ornek",
+   "cevapsiz_alistirma"
+  ],
+  "fen": [
+   "si_birim",
+   "si_bosluk",
+   "cozulmus_ornek",
+   "cevapsiz_alistirma",
+   "kisaltma_tanimsiz",
+   "lab_guvenlik"
+  ]
+ },
+ "_elle_gruplar": {
+  "saglik": [
+   "Her doz, birim ve uygulama yolu güncel bir kaynakla (ulusal kılavuz, KÜB/KT, farmakoloji kitabı) karşılaştırıldı; kaynak ve yılı notta",
+   "Yüksek riskli ilaçlar (ISMP 2024 listesi: insülin, antikoagülan, opioid, konsantre potasyum klorür, nöromüsküler bloker, kemoterapi; 2024'te eklenen traneksamik asit enjeksiyonu) ayrıca işaretli ve doz iki kez kontrol edildi",
+   "Adı benzeyen ilaçlar (ISMP karıştırılan ilaç adları listesi) tam adıyla yazıldı; ilaç adı kısaltılmadı; etken madde adı (INN) esas",
+   "Gebelik/emzirmede harfli kategori (A/B/C/D/X) yerine güncel prospektüsün gebelik ve emzirme bölümü özetlendi (FDA PLLR, 30 Haziran 2015)",
+   "Kiloya göre dozda 'mg/kg/gün' ya da 'mg/kg/doz', sıklık ve en yüksek doz yazılı; çocuk dozu erişkin dozundan ayrı",
+   "Laboratuvar değerinde birim ve referans aralığının kaynağı yazılı; aralığın yaşa/cinsiyete/laboratuvara göre değiştiği belirtildi",
+   "Vaka ve görsellerde kimlik yok (ad, TC no, protokol no, tam tarih, yüz, dövme); fotoğraf için ayrı eğitim onamı var",
+   "Kılavuz adı, sürüm yılı ve son gözden geçirme tarihi yazılı; 5 yıldan eskiyse güncel sürüm kontrol edildi",
+   "Tartışmalı ya da kanıtı zayıf öneride kanıt düzeyi ya da 'uzman görüşü' notu var",
+   "Not 'kendi çalışmam içindir; tanı/tedavi kararı için değildir' sınırını taşıyor",
+   "Konu vaka/soru ile bağlanıyor ve kapalı kitap sınamayla bitiyor (aralıklı tekrar programı var)"
+  ]
+ },
+ "_gorsel": {
+  "ad": "Görsel ağırlıklı biçim (her alanda ek)",
+  "elle": [
+   "Etiket ve açıklama, gösterdiği parçanın yanında; altta toplu açıklama yok (mekânsal bitişiklik)",
+   "Bilgi yalnız renkle verilmiyor; desen, etiket ya da sayı da var (WCAG 1.4.1)",
+   "Metin kontrastı ≥ 4,5:1, anlam taşıyan grafik öğesi ≥ 3:1 (WCAG 1.4.3, 1.4.11)",
+   "Süs görsel yok; her görsel öğretilen konuyu gösteriyor (seductive details)",
+   "Karmaşık şema/infografik için kısa alt metin yetmiyor; metinde uzun açıklama var"
+  ]
+ },
+ "genel": {
+  "ad": "Genel",
+  "sozcukler": [],
+  "kontroller": [],
+  "elle": [],
+  "sinama_oneri": "Konu sonuna kapalı kitap sorular ekle; cevapları ayrı yere koy"
+ },
+ "dil": {
+  "ad": "Yabancı dil",
+  "sozcukler": [],
+  "kontroller": [
+   "dil_terim",
+   "dil_hedef_disi",
+   "dil_okunus_uzun",
+   "dil_okunussuz"
+  ],
+  "elle": [
+   "Yabancı cümle, okunuş ve çeviri bağımsız bir modele ya da ana dili konuşan birine okutuldu",
+   "Sınav görev tipleri ve kelime sınırı belgede açık (örnek: DELF A1 mesajı ≥ 40 kelime; 19 ve altı = 0 puan)",
+   "Kalıplar tek parça veriliyor ve her kalıba en az bir üretim turu var",
+   "Aynı cümle belgeler arasında aynı yazılıyor"
+  ],
+  "sinama_oneri": "Türkçe sütununu kapatıp yabancısını bakmadan yazdıran bir bölüm ekle"
+ },
+ "tip": {
+  "ad": "Tıp",
+  "sozcukler": [
+   "tanı",
+   "tedavi",
+   "hasta",
+   "semptom",
+   "klinik",
+   "ilaç",
+   "doz",
+   "patoloji",
+   "fizyoloji",
+   "farmakoloji",
+   "endikasyon",
+   "kontrendikasyon",
+   "enfeksiyon",
+   "sendrom",
+   "anamnez",
+   "etiyoloji",
+   "prognoz",
+   "mmhg",
+   "ayırıcı tanı",
+   "fizik muayene",
+   "lezyon",
+   "komplikasyon",
+   "yan etki",
+   "iv ",
+   "mg/kg",
+   "diagnosis",
+   "treatment",
+   "mikroorganizma",
+   "patogenez",
+   "fizik muayene bulgusu",
+   "laboratuvar bulgusu",
+   "biyokimya",
+   "hematoloji"
+  ],
+  "kontroller": [
+   "@saglik",
+   "cozulmus_ornek"
+  ],
+  "elle": [
+   "Konular klinik vaka ile bağlanıyor (vaka → ayırıcı tanı → tetkik → tedavi)",
+   "Ayırıcı tanı listeleri sıklık ve aciliyet sırasıyla; 'kaçırılmaması gereken' tanılar işaretli"
+  ],
+  "sinama_oneri": "Konu sonuna vaka sorusu ya da kapalı kitap soru (ör. ayırıcı tanı, doz hesabı) ekle; cevapları ayrı ver",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "dis": {
+  "ad": "Diş hekimliği",
+  "sozcukler": [
+   "diş",
+   "mine",
+   "dentin",
+   "pulpa",
+   "periodont",
+   "kavite",
+   "restorasyon",
+   "kanal tedavisi",
+   "oklüzyon",
+   "okluzyon",
+   "mandibula",
+   "maksilla",
+   "molar",
+   "premolar",
+   "kanin",
+   "insizör",
+   "gingiva",
+   "protez",
+   "ortodonti",
+   "endodonti",
+   "mezial",
+   "mesial",
+   "distal",
+   "bukkal",
+   "lingual",
+   "palatinal",
+   "çürük",
+   "fdi",
+   "periapikal",
+   "kuron"
+  ],
+  "kontroller": [
+   "dis_numara_karisik",
+   "@saglik"
+  ],
+  "elle": [
+   "Tek diş numaralama sistemi kullanıldı ve belgenin başında adı yazılı (FDI/ISO 3950, Universal ya da Palmer); öğrenmede üçü tanıtılabilir ama notta biri",
+   "Görsellerde yön (mezial/distal, bukkal/lingual, sağ/sol) ve gerekiyorsa ölçek belirtili; etiket ilgili yapının yanında",
+   "Radyografi ve klinik fotoğraflar kimliksizleştirildi; hasta onamı var",
+   "Görsel çalışmada her şeklin başlığı ve kısa açıklaması var; süs görsel yok"
+  ],
+  "sinama_oneri": "Görseldeki etiketleri kapatıp yapıları adlandırma testi ya da diş numarası sorusu ekle",
+  "ust": "tip",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "hemsirelik": {
+  "ad": "Hemşirelik ve ebelik",
+  "sozcukler": [
+   "hemşirelik",
+   "hemşire",
+   "bakım planı",
+   "hemşirelik tanısı",
+   "hemşirelik girişimi",
+   "nanda",
+   "vital bulgu",
+   "yaşam bulguları",
+   "ebelik",
+   "ebe",
+   "doğum eylemi",
+   "gebe izlemi",
+   "postpartum",
+   "lohusa",
+   "bası yarası",
+   "düşme riski",
+   "sıvı-elektrolit",
+   "ilaç uygulama",
+   "enjeksiyon",
+   "aseptik"
+  ],
+  "kontroller": [
+   "@saglik",
+   "bakim_plani"
+  ],
+  "elle": [
+   "Bakım planı hemşirelik sürecini izliyor: veri toplama → hemşirelik tanısı (güncel NANDA-I baskısı 2024–2026) → amaç → girişim → değerlendirme",
+   "İlaç uygulamada 'doğru hasta, ilaç, doz, yol, zaman, kayıt' denetimi yazılı",
+   "Beceri anlatımı numaralı adımlarla ve kontrol listesiyle (OSCE uyumlu); kritik adımlar işaretli",
+   "Ebelikte gebelik haftası, doğum eylemi evreleri ve izlem sıklığı kaynaklı"
+  ],
+  "sinama_oneri": "Konu sonuna vaka üzerinden bakım planı yazdıran ya da beceri kontrol listesini kapatıp adımları sıralatan bölüm ekle",
+  "ust": "tip",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "eczacilik": {
+  "ad": "Eczacılık",
+  "sozcukler": [
+   "eczacılık",
+   "eczacı",
+   "etken madde",
+   "farmakokinetik",
+   "farmakodinami",
+   "biyoyararlanım",
+   "yarılanma ömrü",
+   "eliminasyon",
+   "emilim",
+   "dağılım hacmi",
+   "ilaç etkileşimi",
+   "eczane",
+   "farmasötik",
+   "kapsül",
+   "süspansiyon",
+   "dozaj formu",
+   "jenerik",
+   "müstahzar",
+   "kübü",
+   "prospektüs"
+  ],
+  "kontroller": [
+   "@saglik"
+  ],
+  "elle": [
+   "Etken madde adı esas; ticari ad yalnız parantez içinde ve Türkiye'deki ruhsatlı adıyla",
+   "Farmakokinetik değerlerde birim (saat, L/kg, mL/dk) ve kaynak yazılı",
+   "Etkileşimlerde mekanizma ve klinik önem (kaçınılmalı / izlenmeli) ayrılmış",
+   "Hesap sorularında (doz, seyreltme, infüzyon hızı) birim analizi adım adım gösterilmiş"
+  ],
+  "sinama_oneri": "Doz hesabı, seyreltme ve etkileşim soruları ekle; çözüm adımlarını ayrı ver",
+  "ust": "tip",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "veteriner": {
+  "ad": "Veteriner hekimlik",
+  "sozcukler": [
+   "veteriner",
+   "köpek",
+   "kedi",
+   "sığır",
+   "koyun",
+   "keçi",
+   "kanatlı",
+   "at hastalık",
+   "buzağı",
+   "sürü",
+   "zoonoz",
+   "arınma süresi",
+   "hayvan sağlığı",
+   "ruminant",
+   "kuduz",
+   "şap",
+   "mastitis",
+   "hayvancılık"
+  ],
+  "kontroller": [
+   "@saglik",
+   "vet_tursuz_doz"
+  ],
+  "elle": [
+   "Her doz hayvan türüyle birlikte; türler arası toksisite uyarısı var (ör. kedide parasetamol 40–50 mg/kg'da, bazen 10 mg/kg'da toksik; Merck Veterinary Manual)",
+   "Gıda hayvanında arınma (bekleme) süresi et, süt ve yumurta için ayrı yazılı (AB 2019/6 tanımı; etikette sıfır olsa da yazılır)",
+   "Zoonoz konularında insan sağlığı ve bildirim yükümlülüğü belirtildi"
+  ],
+  "sinama_oneri": "Tür–doz eşleştirme ve arınma süresi soruları ekle",
+  "ust": "tip",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "beslenme": {
+  "ad": "Beslenme ve diyetetik",
+  "sozcukler": [
+   "beslenme",
+   "diyet",
+   "diyetisyen",
+   "besin",
+   "enerji gereksinimi",
+   "kcal",
+   "makro besin",
+   "mikro besin",
+   "protein alımı",
+   "karbonhidrat",
+   "yağ asidi",
+   "vitamin",
+   "mineral",
+   "porsiyon",
+   "beden kitle indeksi",
+   "bki",
+   "öğün",
+   "glisemik indeks",
+   "besin öğesi",
+   "antropometri"
+  ],
+  "kontroller": [
+   "@saglik",
+   "beslenme_birim",
+   "saglik_beyani"
+  ],
+  "elle": [
+   "Enerji kcal/kJ ile (1 kcal = 4,184 kJ); besin öğesi değerleri referansıyla (EFSA, TÜBER) ve yılıyla",
+   "Hastalıkta beslenme önerileri kılavuza dayanıyor; besine tedavi edici özellik atfedilmiyor",
+   "Porsiyon ölçüleri gram ve ev ölçüsüyle birlikte"
+  ],
+  "sinama_oneri": "Menü planlama, enerji hesabı ve etiket okuma soruları ekle",
+  "ust": "tip",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "fizyoterapi": {
+  "ad": "Fizyoterapi ve rehabilitasyon",
+  "sozcukler": [
+   "fizyoterapi",
+   "rehabilitasyon",
+   "egzersiz",
+   "eklem hareket açıklığı",
+   "eha",
+   "kas kuvveti",
+   "germe",
+   "denge",
+   "yürüme analizi",
+   "postür",
+   "manuel terapi",
+   "elektroterapi",
+   "ortez",
+   "protez",
+   "propriosepsiyon",
+   "izometrik",
+   "fonksiyonel"
+  ],
+  "kontroller": [
+   "@saglik",
+   "egzersiz_recetesi"
+  ],
+  "elle": [
+   "Egzersiz reçetesi FITT öğelerini taşıyor: sıklık, yoğunluk, süre (set × tekrar), tip; ilerleme ölçütü var",
+   "Kontrendikasyon ve dur ölçütleri (ağrı, vital bulgu) yazılı",
+   "Hareket anlatımı görsel adımlarla ve başlangıç–bitiş pozisyonuyla; değerlendirme ölçeklerinin adı ve geçerliği belirtili"
+  ],
+  "sinama_oneri": "Vaka üzerinden egzersiz programı yazdıran soru ekle",
+  "ust": "tip",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "acil": {
+  "ad": "Acil tıp ve paramedik",
+  "sozcukler": [
+   "acil",
+   "paramedik",
+   "triyaj",
+   "abcde",
+   "kpr",
+   "kardiyopulmoner",
+   "defibrilasyon",
+   "hava yolu",
+   "entübasyon",
+   "şok",
+   "travma",
+   "resüsitasyon",
+   "ambulans",
+   "olay yeri",
+   "glasgow",
+   "gks",
+   "anafilaksi",
+   "acil müdahale"
+  ],
+  "kontroller": [
+   "@saglik"
+  ],
+  "elle": [
+   "Algoritmalar (KPR, anafilaksi, travma) güncel kılavuz sürümüyle; ERC kılavuzları beş yılda bir yenilenir (son: 2025), yılı yazılı",
+   "Zaman kritik adımlar (dakika, döngü, doz aralığı) açık yazılı",
+   "Acil ilaç dozları erişkin ve çocuk için ayrı; hazırlama (seyreltme) bilgisi var"
+  ],
+  "sinama_oneri": "Senaryo üzerinden algoritma adımlarını sıralatan ya da doz soran bölüm ekle",
+  "ust": "tip",
+  "elle_gruplar": [
+   "saglik"
+  ]
+ },
+ "psikoloji": {
+  "ad": "Psikoloji ve psikiyatri",
+  "sozcukler": [
+   "psikoloji",
+   "psikolojik",
+   "bilişsel",
+   "davranışçı",
+   "kişilik",
+   "bellek",
+   "algı",
+   "dsm",
+   "psikoterapi",
+   "terapi",
+   "bağlanma",
+   "psikopatoloji",
+   "depresyon",
+   "anksiyete",
+   "kaygı",
+   "şizofreni",
+   "nöropsikoloji",
+   "gelişim psikolojisi",
+   "deney grubu",
+   "kontrol grubu",
+   "örneklem"
+  ],
+  "kontroller": [
+   "tani_surumu_eski",
+   "p_degeri",
+   "hasta_kimlik",
+   "kaynaksiz_otorite",
+   "kilavuz_eski",
+   "tip_doz_yazimi"
+  ],
+  "elle": [
+   "Tanı ölçütleri güncel sürümden (DSM-5-TR 2022; ICD-11 2022'de yürürlükte, ICD-10 kullanan ülkede hangisinin esas alındığı yazılı); ölçütler kendi kendine tanı için değil",
+   "Kuram ve bulgu ayrılıyor; klasik deneylerin (ör. Milgram, Stanford) eleştirisi ve tekrarlanabilirlik durumu belirtildi",
+   "İstatistik sonuçlarında etki büyüklüğü ve güven aralığı var; korelasyon nedensellik gibi sunulmuyor",
+   "Vaka örnekleri kimliksiz",
+   "İstatistik APA 7 biçiminde: p iki-üç ondalık, baştaki sıfırsız (p = .03), .001 altı 'p < .001'; etki büyüklüğü ve güven aralığı her testte"
+  ],
+  "sinama_oneri": "Kavram–kuramcı eşleştirme ve vaka yorumu soruları ekle"
+ },
+ "matematik": {
+  "ad": "Matematik",
+  "sozcukler": [
+   "teorem",
+   "ispat",
+   "lemma",
+   "önerme",
+   "fonksiyon",
+   "türev",
+   "integral",
+   "limit",
+   "denklem",
+   "matris",
+   "vektör",
+   "küme",
+   "olasılık",
+   "eşitsizlik",
+   "polinom",
+   "logaritma",
+   "\\frac",
+   "\\int",
+   "∫",
+   "∑",
+   "√",
+   "tümevarım",
+   "dizi",
+   "seri"
+  ],
+  "kontroller": [
+   "@sayisal"
+  ],
+  "elle": [
+   "Her sembol ilk kullanıldığı yerde tanımlı; notasyon belge boyunca aynı",
+   "Sıra: tanım → teorem/kural → çözülmüş örnek → yarım çözümlü → kendin çöz",
+   "Alıştırmaların cevabı ya da çözüm adımları ayrı yerde",
+   "Alıştırmaların bir kısmı karışık (farklı konu türleri bir arada) ve düzeltme geri bildirimi var"
+  ],
+  "sinama_oneri": "Konu sonuna çözümsüz alıştırma ekle; cevap/çözüm adımlarını ayrı ver"
+ },
+ "istatistik": {
+  "ad": "İstatistik ve veri bilimi",
+  "sozcukler": [
+   "istatistik",
+   "p değeri",
+   "hipotez",
+   "anlamlılık",
+   "güven aralığı",
+   "regresyon",
+   "korelasyon",
+   "varyans",
+   "standart sapma",
+   "örneklem",
+   "dağılım",
+   "t testi",
+   "ki-kare",
+   "anova",
+   "etki büyüklüğü",
+   "olasılık dağılımı",
+   "veri seti"
+  ],
+  "kontroller": [
+   "@sayisal",
+   "p_degeri",
+   "kod_ornegi"
+  ],
+  "elle": [
+   "p değeri doğru yorumlanıyor (hipotezin doğru olma olasılığı değil); etki büyüklüğü ve güven aralığı veriliyor",
+   "Korelasyon nedensellik gibi sunulmuyor; varsayımlar (normallik, bağımsızlık) yazılı",
+   "Kullanılan yazılım ve sürümü belirtili; veri setinin kaynağı var"
+  ],
+  "sinama_oneri": "Çıktı yorumlama ve test seçme soruları ekle; çözümleri ayrı ver",
+  "ust": "matematik"
+ },
+ "fen": {
+  "ad": "Fen (genel)",
+  "sozcukler": [
+   "atom",
+   "molekül",
+   "hücre",
+   "enerji",
+   "kuvvet",
+   "reaksiyon",
+   "deney",
+   "element",
+   "gen",
+   "protein",
+   "ivme",
+   "hız",
+   "elektron",
+   "çözelti",
+   "mol",
+   "fotosentez",
+   "enzim",
+   "newton",
+   "joule"
+  ],
+  "kontroller": [
+   "@fen"
+  ],
+  "elle": [
+   "Birimler SI ile ve her sayının yanında",
+   "Problem konularında çözülmüş örnek var",
+   "Şema ve deney düzeneği görsellerinde etiket ilgili parçanın yanında"
+  ],
+  "sinama_oneri": "Konu sonuna problem ya da kavram sorusu ekle; cevapları ayrı ver"
+ },
+ "fizik": {
+  "ad": "Fizik",
+  "sozcukler": [
+   "fizik",
+   "kuvvet",
+   "ivme",
+   "newton",
+   "joule",
+   "momentum",
+   "enerji korunumu",
+   "elektrik alan",
+   "manyetik",
+   "dalga",
+   "optik",
+   "termodinamik",
+   "kuantum",
+   "serbest cisim",
+   "sürtünme"
+  ],
+  "kontroller": [
+   "@fen"
+  ],
+  "elle": [
+   "Her problemde serbest cisim diyagramı ve birim analizi var",
+   "Vektör ve skaler notasyonu belge boyunca aynı; işaret (yön) kuralı baştan tanımlı",
+   "Sayısal sonuçlar anlamlı basamakla ve birimle"
+  ],
+  "sinama_oneri": "Problem setine birim analizi ve diyagram çizdiren sorular ekle; çözüm adımlarını ayrı ver",
+  "ust": "fen"
+ },
+ "kimya": {
+  "ad": "Kimya",
+  "sozcukler": [
+   "kimya",
+   "mol",
+   "molarite",
+   "tepkime",
+   "reaksiyon",
+   "asit",
+   "ph",
+   "çözelti",
+   "bileşik",
+   "organik",
+   "iyon",
+   "stokiyometri",
+   "titrasyon",
+   "katalizör",
+   "oksidasyon",
+   "indirgenme",
+   "periyodik"
+  ],
+  "kontroller": [
+   "@fen"
+  ],
+  "elle": [
+   "Formüller doğru alt simge ve yükle (H₂SO₄, SO₄²⁻); derişim mol/L (mol dm⁻³); adlandırma IUPAC'a uygun",
+   "Deney föyünde GHS tehlike piktogramı, sinyal sözcüğü, H/P ifadeleri (ör. P280 koruyucu eldiven/gözlük), kişisel koruyucu ve atık bertarafı var",
+   "Derişim birimleri (mol/L, %) ve sıcaklık koşulları açık"
+  ],
+  "sinama_oneri": "Stokiyometri ve denkleştirme soruları ekle; çözümleri ayrı ver",
+  "ust": "fen"
+ },
+ "biyoloji": {
+  "ad": "Biyoloji ve genetik",
+  "sozcukler": [
+   "biyoloji",
+   "hücre",
+   "gen",
+   "dna",
+   "protein",
+   "enzim",
+   "mitoz",
+   "mayoz",
+   "fotosentez",
+   "solunum",
+   "evrim",
+   "ekosistem",
+   "popülasyon",
+   "kromozom",
+   "mutasyon",
+   "organel",
+   "doku",
+   "metabolizma"
+  ],
+  "kontroller": [
+   "@fen",
+   "tur_adi_yazimi"
+  ],
+  "elle": [
+   "Tür adları italik; cins büyük, tür küçük harf (*Homo sapiens*, ICZN); bitkide güncel kod Madrid Kodu (2025); insan gen sembolü italik ve büyük harf (*BRCA1*), protein düz (HGNC)",
+   "Yaygın kavram yanılgıları (evrimde 'amaç', bitkilerin topraktan beslenmesi) açıkça düzeltildi",
+   "Şemalarda süreçlerin yönü ve aşamaları etiketli"
+  ],
+  "sinama_oneri": "Şema etiketleme ve süreç sıralama soruları ekle",
+  "ust": "fen"
+ },
+ "yer_bilimleri": {
+  "ad": "Yer bilimleri (jeoloji, meteoroloji)",
+  "sozcukler": [
+   "jeoloji",
+   "kayaç",
+   "mineral",
+   "fay",
+   "levha",
+   "deprem",
+   "volkan",
+   "tortul",
+   "magmatik",
+   "metamorfik",
+   "stratigrafi",
+   "jeolojik zaman",
+   "meteoroloji",
+   "atmosfer",
+   "cephe",
+   "hava kütlesi",
+   "fosil"
+  ],
+  "kontroller": [
+   "veri_yilsiz",
+   "harita_ogeleri",
+   "si_birim",
+   "@kaynak"
+  ],
+  "elle": [
+   "Jeolojik zamanlar güncel ICS kronostratigrafi çizelgesine göre (sürüm 2026/06) ve sürüm yılıyla; 'Ma' sayısal yaş birimi tanımlı",
+   "Harita ve kesitlerde ölçek, lejant ve yön var",
+   "Deprem/afet verileri kaynak (AFAD, KOERI) ve yılla"
+  ],
+  "sinama_oneri": "Kayaç tanıma, kesit yorumlama ve zaman çizelgesi soruları ekle"
+ },
+ "ziraat": {
+  "ad": "Ziraat ve tarım",
+  "sozcukler": [
+   "ziraat",
+   "tarım",
+   "toprak",
+   "sulama",
+   "gübre",
+   "pestisit",
+   "ilaçlama",
+   "hasat",
+   "ekim",
+   "tohum",
+   "verim",
+   "dekar",
+   "bitki koruma",
+   "zararlı",
+   "hastalık etmeni",
+   "sera",
+   "çeşit",
+   "üretim sezonu"
+  ],
+  "kontroller": [
+   "veri_yilsiz",
+   "si_birim",
+   "lab_guvenlik",
+   "tur_adi_yazimi",
+   "@kaynak"
+  ],
+  "elle": [
+   "Pestisit dozu etiketteki kullanım talimatına göre (yasal bağlayıcı), alan başına miktarla (yalnız yüzde değil), hasat öncesi bekleme süresi ve kişisel koruyucuyla; kılavuzun baskı yılı yazılı",
+   "Verim ve üretim verisi yıl, bölge ve kaynakla (TÜİK, Bakanlık)",
+   "Bitki ve zararlı adları bilimsel adla (italik)"
+  ],
+  "sinama_oneri": "Uygulama takvimi ve doz hesabı soruları ekle"
+ },
+ "bilgisayar": {
+  "ad": "Bilgisayar bilimleri ve yazılım",
+  "sozcukler": [
+   "algoritma",
+   "döngü",
+   "nesne",
+   "sınıf",
+   "derleyici",
+   "python",
+   "java",
+   "javascript",
+   "veri yapısı",
+   "karmaşıklık",
+   "yazılım",
+   "veritabanı",
+   "sql",
+   "api",
+   "github",
+   "hata ayıklama",
+   "kodu",
+   "kaynak kod",
+   "print(",
+   "def ",
+   "return"
+  ],
+  "kontroller": [
+   "kod_ornegi",
+   "cozulmus_ornek",
+   "cevapsiz_alistirma"
+  ],
+  "elle": [
+   "Kod örnekleri çalıştırıldı ve çıktısı gösterildi; dil ve kitaplık sürümü yazılı (Python 2 1 Ocak 2020'de destekten çıktı)",
+   "Örnekler alt hedef etiketleriyle (ör. '1. girdiyi oku', '2. döngüyle topla') adım adım açıklanıyor",
+   "Alıştırmalarda Parsons (karışık satırları sırala) ya da tamamlama soruları var; çözümler ayrı",
+   "Güvenlik açığı doğuran kalıp (SQL birleştirme, düz metin parola) iyi örnek gibi sunulmuyor"
+  ],
+  "sinama_oneri": "Kod okuma, satır sıralama (Parsons) ve hata bulma soruları ekle; çözümleri ayrı ver"
+ },
+ "muhendislik": {
+  "ad": "Mühendislik",
+  "sozcukler": [
+   "mühendislik",
+   "mukavemet",
+   "gerilme",
+   "moment",
+   "devre",
+   "akım",
+   "gerilim",
+   "direnç",
+   "statik",
+   "dinamik",
+   "akışkan",
+   "ısı transferi",
+   "kontrol sistemi",
+   "tolerans"
+  ],
+  "kontroller": [
+   "@fen",
+   "veri_yilsiz"
+  ],
+  "elle": [
+   "Birimler SI ile ve her ara sonuçta; birim analizi gösterildi",
+   "Standart ve yönetmeliklerin numarası ve yılı yazılı (TS, EN, ISO); güncel sürüm kontrol edildi",
+   "Güvenlik katsayısı ve varsayımlar açık"
+  ],
+  "sinama_oneri": "Tasarım hesabı ve birim analizi soruları ekle; çözümleri ayrı ver"
+ },
+ "mimarlik": {
+  "ad": "Mimarlık ve şehircilik",
+  "sozcukler": [
+   "mimarlık",
+   "mimari",
+   "kesit",
+   "görünüş",
+   "vaziyet planı",
+   "rölöve",
+   "restorasyon",
+   "cephe",
+   "imar",
+   "şehircilik",
+   "peyzaj",
+   "ölçek",
+   "maket",
+   "kat planı",
+   "mimar"
+  ],
+  "kontroller": [
+   "cizim_olcegi",
+   "eser_kunyesi",
+   "@kaynak"
+  ],
+  "elle": [
+   "Her çizimde ölçek (ISO 5455 ölçekleri: 1:50, 1:100…), kuzey, lejant ve çizim türü yazılı; çizim kuralları ISO 128'e uygun",
+   "Yapı örnekleri mimar, yıl ve yerle; görsellerin kaynağı ve kullanım izni belirtili",
+   "Yönetmelik atıfları (imar, deprem, otopark) güncel sürümle"
+  ],
+  "sinama_oneri": "Plan okuma ve çizim karşılaştırma soruları ekle"
+ },
+ "hukuk": {
+  "ad": "Hukuk",
+  "sozcukler": [
+   "kanun",
+   "fıkra",
+   "bent",
+   "yargıtay",
+   "danıştay",
+   "anayasa mahkemesi",
+   "içtihat",
+   "davacı",
+   "davalı",
+   "sözleşme",
+   "borçlar",
+   "ceza",
+   "hükmolunur",
+   "mülga",
+   "resmî gazete",
+   "yönetmelik",
+   "hukuk",
+   "mevzuat",
+   "tazminat",
+   "ihtiyati",
+   "maddesi",
+   "sayılı kanun",
+   "hukuku"
+  ],
+  "kontroller": [
+   "hukuk_mulga",
+   "hukuk_kanun_numarasiz",
+   "hukuk_karar_kunyesi",
+   "alinti_kaynaksiz",
+   "@kaynak"
+  ],
+  "elle": [
+   "Mevzuat mevzuat.gov.tr'deki güncel metinle karşılaştırıldı; değişiklik ve mülga hükümler işaretli, kontrol tarihi yazılı",
+   "Kanun numarası, madde-fıkra-bent gösterimi (TBK m. 49/1) belge boyunca aynı",
+   "Kararlar künyesiyle (daire, E., K., T.) ve yayımlandığı yerle",
+   "Olay çözümü sorun → kural → uygulama → sonuç düzeniyle; doktrindeki görüş ayrılıkları yazarıyla",
+   "Not hukuki görüş değildir; güncel uyuşmazlık için mevzuat ve içtihat yeniden kontrol edilir"
+  ],
+  "sinama_oneri": "Olay çözümü (sorun–kural–uygulama–sonuç) ve madde eşleştirme soruları ekle; çözümleri ayrı ver"
+ },
+ "iktisat": {
+  "ad": "İktisat, işletme ve muhasebe",
+  "sozcukler": [
+   "iktisat",
+   "ekonomi",
+   "enflasyon",
+   "gsyh",
+   "arz",
+   "talep",
+   "faiz",
+   "muhasebe",
+   "bilanço",
+   "gelir tablosu",
+   "hesap planı",
+   "yevmiye",
+   "işletme",
+   "pazarlama",
+   "finansman",
+   "piyasa",
+   "marjinal"
+  ],
+  "kontroller": [
+   "veri_yilsiz",
+   "cozulmus_ornek",
+   "cevapsiz_alistirma",
+   "@kaynak"
+  ],
+  "elle": [
+   "Ekonomik veride yıl, kaynak (TÜİK, TCMB), para birimi, nominal/reel ayrımı ve baz yılı yazılı (TÜFE 2026'dan beri 2025=100 tabanında)",
+   "Muhasebe kayıtları Tek Düzen Hesap Planı ve yürürlükteki TMS/TFRS setine (KGK 'Mavi Kitap', yılı) göre",
+   "Grafiklerde eksen adları, birimler ve kaydırmanın yönü açık"
+  ],
+  "sinama_oneri": "Grafik yorumlama, hesap ve yevmiye kaydı soruları ekle; çözümleri ayrı ver"
+ },
+ "tarih": {
+  "ad": "Tarih",
+  "sozcukler": [
+   "yüzyıl",
+   "padişah",
+   "imparatorluk",
+   "antlaşma",
+   "savaş",
+   "hanedan",
+   "ıslahat",
+   "ferman",
+   "osmanlı",
+   "inkılap",
+   "meclis",
+   "kronoloji",
+   "m.ö.",
+   "m.s.",
+   "selçuklu",
+   "sultan",
+   "fetih",
+   "isyan",
+   "dönemi",
+   "beylik",
+   "halife"
+  ],
+  "kontroller": [
+   "@kaynak",
+   "yuzyil_yazimi",
+   "alinti_kaynaksiz"
+  ],
+  "elle": [
+   "Birincil kaynak (belge, ferman, antlaşma metni) ile ikincil kaynak (yorum, ders kitabı) ayrılıyor",
+   "Yargılar kaynağa bağlı; tartışmalı konuda birden çok bakış açısı var",
+   "Önemli olaylar tarih sırasıyla ya da zaman çizelgesiyle veriliyor; tarihler tutarlı",
+   "Neden–sonuç bağları kaynakta olduğu kadar kuruluyor"
+  ],
+  "sinama_oneri": "Konu sonuna kapalı kitap soru ya da boş zaman çizelgesi (olayları sıraya diz) ekle"
+ },
+ "cografya": {
+  "ad": "Coğrafya",
+  "sozcukler": [
+   "iklim",
+   "harita",
+   "ölçek",
+   "enlem",
+   "boylam",
+   "rakım",
+   "nüfus",
+   "yağış",
+   "akarsu",
+   "ova",
+   "plato",
+   "erozyon",
+   "göç",
+   "lejant",
+   "km²",
+   "bölgesi",
+   "sıcaklık",
+   "toprak",
+   "yer şekilleri",
+   "levha",
+   "deprem"
+  ],
+  "kontroller": [
+   "veri_yilsiz",
+   "harita_ogeleri",
+   "kaynakca_yok"
+  ],
+  "elle": [
+   "Her haritada başlık, lejant, ölçek, yön (kuzey) ve kaynak var",
+   "Sayısal veriler (nüfus, üretim, yağış) yıl ve kaynakla veriliyor",
+   "Harita ve grafikte bilgi yalnız renkle verilmiyor; renk körü için desen/etiket var",
+   "Kavram, harita üzerinde ilgili yerin yanında anlatılıyor"
+  ],
+  "sinama_oneri": "Dilsiz harita üzerinde yer bulma ya da veri yorumlama sorusu ekle"
+ },
+ "sosyal": {
+  "ad": "Sosyal bilgiler",
+  "sozcukler": [
+   "vatandaşlık",
+   "toplum",
+   "demokrasi",
+   "anayasa",
+   "kültür",
+   "ekonomi",
+   "hak",
+   "özgürlük",
+   "sosyal",
+   "kurum",
+   "üretim",
+   "tüketim",
+   "nüfus",
+   "insan hakları"
+  ],
+  "kontroller": [
+   "kaynaksiz_otorite",
+   "veri_yilsiz",
+   "kaynakca_yok"
+  ],
+  "elle": [
+   "Yargılar ve sayılar kaynağa bağlı; tartışmalı konuda farklı görüşler var",
+   "Kavramlar günlük hayattan somut örnekle bağlanıyor"
+  ],
+  "sinama_oneri": "Konu sonuna kapalı kitap soru ya da kavram eşleştirme ekle"
+ },
+ "ilahiyat": {
+  "ad": "İlahiyat",
+  "sozcukler": [
+   "ayet",
+   "âyet",
+   "hadis",
+   "sure",
+   "tefsir",
+   "fıkıh",
+   "kelam",
+   "siyer",
+   "sünnet",
+   "mezhep",
+   "akaid",
+   "usul",
+   "rivayet",
+   "sahabe",
+   "peygamber",
+   "ibadet",
+   "namaz",
+   "oruç",
+   "zekât",
+   "kur'an"
+  ],
+  "kontroller": [
+   "hadis_kaynaksiz",
+   "ayet_kaynaksiz",
+   "alinti_kaynaksiz",
+   "@kaynak"
+  ],
+  "elle": [
+   "Âyetler sure adı ve numarasıyla (Bakara 2/255); meal kaynağı belirtili",
+   "Hadisler kaynak eser, kitap/bâb ve numarayla; sıhhat derecesi (sahih, hasen, zayıf) belirtili",
+   "Mezhepler arası görüş farkları kaynaklarıyla; tek görüş tek doğru gibi sunulmuyor",
+   "Terimler TDV İslâm Ansiklopedisi gibi bir başvuru kaynağıyla tanımlı"
+  ],
+  "sinama_oneri": "Kavram tanımı ve kaynak eşleştirme soruları ekle"
+ },
+ "edebiyat": {
+  "ad": "Edebiyat",
+  "sozcukler": [
+   "edebiyat",
+   "şiir",
+   "roman",
+   "hikâye",
+   "öykü",
+   "şair",
+   "yazar",
+   "nazım",
+   "aruz",
+   "hece ölçüsü",
+   "divan",
+   "tanzimat edebiyatı",
+   "servet-i fünun",
+   "edebi akım",
+   "metafor",
+   "mazmun",
+   "tiyatro",
+   "edebî"
+  ],
+  "kontroller": [
+   "alinti_kaynaksiz",
+   "@kaynak"
+  ],
+  "elle": [
+   "Eser–yazar–yıl künyesi doğru; dönem ve akım sınıflandırması kaynaklı",
+   "Alıntılar baskı ve sayfayla; şiir alıntısında dize bölünmesi korunmuş",
+   "Yorum ile metin bilgisi ayrılıyor"
+  ],
+  "sinama_oneri": "Eser–yazar–dönem eşleştirme ve metin yorumu soruları ekle"
+ },
+ "felsefe": {
+  "ad": "Felsefe",
+  "sozcukler": [
+   "felsefe",
+   "filozof",
+   "ontoloji",
+   "epistemoloji",
+   "etik",
+   "ahlak felsefesi",
+   "metafizik",
+   "mantık",
+   "önerme",
+   "akıl yürütme",
+   "varlık",
+   "bilgi kuramı",
+   "fenomenoloji",
+   "diyalektik",
+   "kant",
+   "platon",
+   "aristoteles"
+  ],
+  "kontroller": [
+   "alinti_kaynaksiz",
+   "@kaynak"
+  ],
+  "elle": [
+   "Kavramlar hangi filozofa ve esere ait olduğuyla; birincil metin ile yorum ayrılıyor",
+   "Argümanlar öncül–sonuç biçiminde açık",
+   "Karşı görüşler de veriliyor"
+  ],
+  "sinama_oneri": "Argüman çözümleme ve kavram–filozof eşleştirme soruları ekle"
+ },
+ "sanat": {
+  "ad": "Sanat, sanat tarihi ve müzik",
+  "sozcukler": [
+   "sanat",
+   "ressam",
+   "heykel",
+   "resim",
+   "üslup",
+   "rönesans",
+   "barok",
+   "empresyonizm",
+   "sanat tarihi",
+   "müze",
+   "müzik",
+   "nota",
+   "makam",
+   "armoni",
+   "beste",
+   "besteci",
+   "tını",
+   "sanatçı",
+   "makamı"
+  ],
+  "kontroller": [
+   "eser_kunyesi",
+   "alinti_kaynaksiz",
+   "@kaynak"
+  ],
+  "elle": [
+   "Her eserde sanatçı, eser adı, yıl, teknik, boyut ve bulunduğu yer yazılı (Getty CDWA çekirdek künyesi); görselin kaynağı ve telif durumu belirtili (FSEK: sahibinin ölümünden sonra 70 yıl)",
+   "Müzik notlarında nota yazımı ve terimler tutarlı; makam/usul adları doğru",
+   "Üslup ve dönem nitelemeleri örnek eserlerle"
+  ],
+  "sinama_oneri": "Eser tanıma (künyeyi kapat) ve dönem eşleştirme soruları ekle"
+ },
+ "egitim": {
+  "ad": "Eğitim bilimleri ve öğretmenlik",
+  "sozcukler": [
+   "öğretmen",
+   "kazanım",
+   "müfredat",
+   "öğretim programı",
+   "ders planı",
+   "ölçme ve değerlendirme",
+   "öğrenme kuramı",
+   "sınıf yönetimi",
+   "rehberlik",
+   "özel eğitim",
+   "pedagoji",
+   "bloom",
+   "yapılandırmacı"
+  ],
+  "kontroller": [
+   "kaynaksiz_otorite",
+   "@kaynak"
+  ],
+  "elle": [
+   "Kazanımlar güncel öğretim programının kodlarıyla (MEB, yılı)",
+   "Kuramlar kuramcı ve yılla; güncel araştırma bulgusu ile eski görüş ayrılıyor",
+   "'Öğrenme stilleri' gibi kanıtı zayıf görüşler kanıt düzeyiyle anılıyor"
+  ],
+  "sinama_oneri": "Ders planı yazdıran ve kuram–uygulama eşleştiren sorular ekle"
+ }
+}
