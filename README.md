@@ -222,7 +222,8 @@ python3 scripts/seo_denetim.py yazi.md --anahtar "asgari ödeme tutarı" --basli
 ## Kardeş beceri: Sınaç
 
 Ders notu, öğrenci PDF'i ya da kelime listesinin **öğretim kalitesini** denetlemek (32 bilim dalını tanır; sağlıkta doz
-yazımı, hasta kimliği, kılavuz yaşı; 8 boyutta puan ve yayın kararı) Durulaç'ın işi değildir. Bu iş v2.0'da ayrı bir
+yazımı ve doz hesabı, hasta kimliği, lab birim dönüşümü; 8 boyutta puan ve üç durumlu yayın kararı: engel var / denetim
+eksik / uygun) Durulaç'ın işi değildir. Bu iş v2.0'da ayrı bir
 beceriye, [Sınaç](https://github.com/mesutbsdgn/sinac)'a taşındı (Durulaç v1.7–1.9'da `+ogretim` kipiydi). *Ders notunu sınar: doğru mu, öğretir mi,
 yayınlanabilir mi?* İkisi birlikte kuruluysa Sınaç,
 Türkçe açıklamayı sadeleştirmek için Durulaç'ın Temizle işini çağırır; Durulaç da öğretim materyalinde formüle, doza ve
@@ -333,6 +334,7 @@ Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Ö
 | v1.8.0 | 22 Kas 2026 | `+ogretim` alanı tanıyor: dil, tıp, diş, matematik, fen, tarih, coğrafya, sosyal, genel profilleri ve görsel/sözel biçim; `ogretim-alanlari.json`, alan kanıt özeti |
 | v1.9.0 | 22 Kas 2026 | `+ogretim` 32 alana çıktı (sağlıkta 8 alan ve ortak sağlık grubu, fen, mühendislik, bilgisayar, hukuk, iktisat, beşerî bilimler); TC kimlik ve hasta kimliği denetimi; README'de 8 kip tablosu |
 | v2.0.0 | 22 Kas 2026 | Yapı sadeleşti: 4 iş (Temizle, Tespit, Özet, İstem iyileştir) × metin türü (Finans ve Tez derin türler) + ek (+seo). `+ogretim` ayrı beceriye taşındı |
+| v2.0.2 | 22 Kas 2026 | Kardeş beceri bölümü Sınaç v2.0.0'a göre güncellendi (üç durumlu karar, doz hesabı, lab dönüşümü) |
 | v2.0.1 | 22 Kas 2026 | Kardeş beceri Sınaç adıyla yayımlandı; göndermeler ve bağlantı güncellendi |
 
 Not: v1.5 ve v1.6 commit iletilerinde yanlışlıkla "1.1.0" ve "1.2.0" yazıyor; doğru numaralar bu tablodakilerdir.

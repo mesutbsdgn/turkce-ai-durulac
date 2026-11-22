@@ -1,7 +1,7 @@
 ---
 name: turkce-ai-durulac
 description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu ve bürokratik/plaza dilini temizle; anlamı bozmadan, bilgi uydurmadan. Dört iş: Temizle (varsayılan; yeniden yazar), Tespit (bu metin yapay mı: kalıpları alıntıyla gösterir, yazar tahmini yok), Özet (sözcük/karakter sınırlı), İstem iyileştir (AI promptunu güçlendir). Metin türünü tanır ve kuralını ona göre seçer: resmî, hukuk, akademik, haber, sohbet, sosyal medya, altyazı, edebî, teknik; Finans (banka/sigorta/yatırım: rakam, yasal ibare ve risk uyarısı korunur, yasak getiri vaadi işaretlenir, Ateşman okunabilirliği) ve Tez (--tur tez: eş dizim, kaynaksız otorite, atıf-kaynakça, Word izli değişiklik). Ek: +seo (Google uyumu, anahtar doldurma yok). Use when the user wants Turkish text clearer, more natural or less AI/bureaucratic, asks whether it reads as AI-generated, wants it summarized within a limit, or wants a prompt, finance text, thesis or web page cleaned."
-version: "2.0.1"
+version: "2.0.2"
 metadata:
   author: mesutbsdgn
   tags: [turkish, writing, readability, finance, seo]
