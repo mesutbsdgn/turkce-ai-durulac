@@ -18,7 +18,7 @@ dönük açıklama `README.md`'de, ajanın uyduğu kurallar `SKILL.md`'dedir. Bu
 
 Yeni bir yetenek eklemeden önce sor: metne yapılan yeni bir **iş** mi, yeni bir **tür** mü, yoksa bir **ek** mi? Hiçbiri
 değilse (ör. içerik kalite denetimi, alan bilgisi doğrulaması) ayrı beceri olmalı. Öğretim kalitesi denetimi bu yüzden
-v2.0'da `ogretim-denetci` becerisine taşındı.
+v2.0'da ayrı beceriye taşındı: Sınaç (`sinac`, https://github.com/mesutbsdgn/sinac).
 
 ## Değişmez kurallar
 

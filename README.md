@@ -23,7 +23,7 @@ Kuralları düz Markdown olduğu için tek bir modele bağlı değil. Claude Cod
 - [Akademik tez modu](#akademik-tez-modu)
 - [Word izli değişiklik hattı](#word-izli-değişiklik-hattı)
 - [Google SEO kipi (+seo)](#google-seo-kipi-seo)
-- [Kardeş beceri: Öğretim Denetçisi](#kardeş-beceri-öğretim-denetçisi)
+- [Kardeş beceri: Sınaç](#kardeş-beceri-sınaç)
 - [Bilgi koruma denetimi](#bilgi-koruma-denetimi)
 - [Ne yapar, ne yapmaz](#ne-yapar-ne-yapmaz)
 - [Kurulum](#kurulum)
@@ -219,11 +219,12 @@ Kurallar kaynaklarıyla birlikte `references/seo.md` dosyasındadır. `scripts/s
 python3 scripts/seo_denetim.py yazi.md --anahtar "asgari ödeme tutarı" --baslik "Title" --aciklama "Meta" --slug asgari-odeme-tutari
 ```
 
-## Kardeş beceri: Öğretim Denetçisi
+## Kardeş beceri: Sınaç
 
 Ders notu, öğrenci PDF'i ya da kelime listesinin **öğretim kalitesini** denetlemek (32 bilim dalını tanır; sağlıkta doz
 yazımı, hasta kimliği, kılavuz yaşı; 8 boyutta puan ve yayın kararı) Durulaç'ın işi değildir. Bu iş v2.0'da ayrı bir
-beceriye, **`ogretim-denetci`**'ye taşındı (Durulaç v1.7–1.9'da `+ogretim` kipiydi). İkisi birlikte kuruluysa denetçi,
+beceriye, [Sınaç](https://github.com/mesutbsdgn/sinac)'a taşındı (Durulaç v1.7–1.9'da `+ogretim` kipiydi). *Ders notunu sınar: doğru mu, öğretir mi,
+yayınlanabilir mi?* İkisi birlikte kuruluysa Sınaç,
 Türkçe açıklamayı sadeleştirmek için Durulaç'ın Temizle işini çağırır; Durulaç da öğretim materyalinde formüle, doza ve
 yabancı dildeki örnek cümleye dokunmaz.
 
@@ -263,6 +264,12 @@ Beceri klasörüne klonlamak yeterli:
 git clone https://github.com/mesutbsdgn/turkce-ai-durulac.git ~/.claude/skills/turkce-ai-durulac
 ```
 
+Ders notu denetimi de istiyorsan kardeş beceri Sınaç'ı yanına kur:
+
+```bash
+git clone https://github.com/mesutbsdgn/sinac.git ~/.claude/skills/sinac
+```
+
 Beceri dizinin farklıysa (örneğin `~/.agents/skills/`) oraya klonla. Claude bir sonraki oturumda beceriyi kendiliğinden tanır.
 
 **Başka bir modelde ya da araçta (ChatGPT, OpenCode, OpenClaw, Ollama…):** kurulum gerekmez. `SKILL.md` dosyasının içeriğini sistem yönergesi (system prompt / özel talimat) olarak yapıştır. SKILL.md 1.5'ten beri kısadır; ayrıntı `references/` altındadır: tam kalıp kataloğu için `references/kaliplar.md`, finans metni için `references/finans.md` ve `references/finans-terimleri.md`, istem iyileştirme için `references/istem-iyilestirme.md`, tez için `references/tez-modu.md`, SEO için `references/seo.md` dosyasını da ekle; ince ayar istiyorsan `references/degistirme-sozlugu.md` sözlüğünü ekle. Okunabilirlik betiği Python 3 ister; betiği çalıştıramayan ortamda puan istenmez. Model bunları okuyup aynı kurallarla çalışır. Zayıf modeller kuralları daha eksik uygular; kurumsal/resmî metinde güçlü bir model tercih et.
@@ -284,7 +291,7 @@ Birkaç örnek istek:
 - "Bu teknik yazıyı düzelt." Kodu ve terimleri bırakır, yalnız düzyazıyı toparlar.
 - "Bu banka SMS'ini sadeleştir." Rakamları ve yasal terimleri koruyarak sadeleştirir, okunabilirlik puanını verir.
 - "Bu fon tanıtımında sorun var mı?" Yasak vaatleri ve dayanaksız iddiaları uyum notunda gösterir.
-- "Bu ders notunun açıklamalarını sadeleştir." Yalnız Türkçe açıklamayı düzenler; formül, doz ve örnek cümle aynen kalır (öğretim kalitesi denetimi için `ogretim-denetci`).
+- "Bu ders notunun açıklamalarını sadeleştir." Yalnız Türkçe açıklamayı düzenler; formül, doz ve örnek cümle aynen kalır (öğretim kalitesi denetimi için [Sınaç](https://github.com/mesutbsdgn/sinac)).
 - "Bu promptu güçlendir." İstem iyileştir kipiyle çalışır, düzyazı kurallarını uygulamaz.
 
 ## Nasıl sınandı
@@ -325,7 +332,8 @@ Bütün deney kayıtları [`docs/deneyler.md`](docs/deneyler.md) dosyasında. Ö
 | v1.7.0 | 22 Kas 2026 | `+ogretim` kipi: öğretim materyali ölçeği (8 boyut, /16), `ogretim_denetim.py`, `references/ogretim.md` |
 | v1.8.0 | 22 Kas 2026 | `+ogretim` alanı tanıyor: dil, tıp, diş, matematik, fen, tarih, coğrafya, sosyal, genel profilleri ve görsel/sözel biçim; `ogretim-alanlari.json`, alan kanıt özeti |
 | v1.9.0 | 22 Kas 2026 | `+ogretim` 32 alana çıktı (sağlıkta 8 alan ve ortak sağlık grubu, fen, mühendislik, bilgisayar, hukuk, iktisat, beşerî bilimler); TC kimlik ve hasta kimliği denetimi; README'de 8 kip tablosu |
-| v2.0.0 | 22 Kas 2026 | Yapı sadeleşti: 4 iş (Temizle, Tespit, Özet, İstem iyileştir) × metin türü (Finans ve Tez derin türler) + ek (+seo). `+ogretim` ayrı beceriye (`ogretim-denetci`) taşındı |
+| v2.0.0 | 22 Kas 2026 | Yapı sadeleşti: 4 iş (Temizle, Tespit, Özet, İstem iyileştir) × metin türü (Finans ve Tez derin türler) + ek (+seo). `+ogretim` ayrı beceriye taşındı |
+| v2.0.1 | 22 Kas 2026 | Kardeş beceri Sınaç adıyla yayımlandı; göndermeler ve bağlantı güncellendi |
 
 Not: v1.5 ve v1.6 commit iletilerinde yanlışlıkla "1.1.0" ve "1.2.0" yazıyor; doğru numaralar bu tablodakilerdir.
 

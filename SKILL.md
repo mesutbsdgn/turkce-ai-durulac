@@ -1,7 +1,7 @@
 ---
 name: turkce-ai-durulac
 description: "Durulaç — Türkçe metni sadeleştir, insanlaştır, AI kokusunu ve bürokratik/plaza dilini temizle; anlamı bozmadan, bilgi uydurmadan. Dört iş: Temizle (varsayılan; yeniden yazar), Tespit (bu metin yapay mı: kalıpları alıntıyla gösterir, yazar tahmini yok), Özet (sözcük/karakter sınırlı), İstem iyileştir (AI promptunu güçlendir). Metin türünü tanır ve kuralını ona göre seçer: resmî, hukuk, akademik, haber, sohbet, sosyal medya, altyazı, edebî, teknik; Finans (banka/sigorta/yatırım: rakam, yasal ibare ve risk uyarısı korunur, yasak getiri vaadi işaretlenir, Ateşman okunabilirliği) ve Tez (--tur tez: eş dizim, kaynaksız otorite, atıf-kaynakça, Word izli değişiklik). Ek: +seo (Google uyumu, anahtar doldurma yok). Use when the user wants Turkish text clearer, more natural or less AI/bureaucratic, asks whether it reads as AI-generated, wants it summarized within a limit, or wants a prompt, finance text, thesis or web page cleaned."
-version: "2.0.0"
+version: "2.0.1"
 metadata:
   author: mesutbsdgn
   tags: [turkish, writing, readability, finance, seo]
@@ -42,7 +42,7 @@ Temizle, Tespit ve Özet her türde çalışır; tür neyin korunacağını ve h
 | "SEO uyumlu yap", "Google için", "+seo" (blog, ürün sayfası, haber, teknik doküman) | **+seo**: yalnız Temizle ile; arama uyumu, tam metin, SEO paketi (title, meta, slug), en çok 3 bilgi kazancı sorusu. Sıralama vaadi, yoğunluk hedefi, anahtar doldurma ve uydurma deneyim/veri YOK. Resmî, hukuk, tez, edebî, sohbet, altyazı, sosyal medyada kapalı; Finans türüyle birleşebilir | **`references/seo.md` (zorunlu)**; denetçi `scripts/seo_denetim.py` |
 
 **Bu becerinin işi olmayan:** ders notu, öğrenci PDF'i ya da kelime listesinin **öğretim kalitesini** denetlemek (doz
-yazımı, kendini sınama, okunaklılık, yayın kararı). Bu `ogretim-denetci` becerisinin işidir; Durulaç orada yalnız
+yazımı, kendini sınama, okunaklılık, yayın kararı). Bu kardeş beceri **Sınaç**'ın (`sinac`) işidir; Durulaç orada yalnız
 Türkçe açıklamayı sadeleştirmek için çağrılır.
 
 Tespit işinde nitel işaretleri (cümle uzunluğu tekdüzeliği, bağlaç yoğunluğu, düşük sözcük çeşitliliği, paragrafların aynı bağlaçla açılması) gözlem olarak not edebilirsin; perplexity/burstiness gibi ölçütlere dayanma. Tespit kesin değildir; çıktı "şu kalıplar görülüyor" demeli, "bu metin yapaydır" değil. İstersen ardından temizlemeyi teklif et.
@@ -77,7 +77,7 @@ Bazı "kalıplar" belirli türlerde doğru kullanımdır. Korumalı türlerde (r
 - **Altyazı / dublaj:** Kısa kesik cümle zorunlu; cümle birleştirme kapalı.
 - **Sosyal medya:** Hashtag, @kullanıcı, bağlantı, emoji, "çoook/yaa/aynen" korunur; kalıp 8 ve 30 kapalı.
 - **Haber:** Spot, kaynak atfı ve tarafsız aktarım fiili ("açıklandı") korunur; kalıp 39–46 kapalı.
-- **Öğretim materyali (ders notu, rehber, kelime listesi):** Türkçe açıklama Temizle'yle sadeleşir; yabancı dildeki örnek cümle, okunuş (`/…/`), formül, ilaç adı/doz, diş numarası, kanun numarası, tarih ve sayısal veri, tablo ve kutu simgeleri aynen kalır. Kasıtlı tekrar eden iskelet ("Je m'appelle … / J'habite …") dolgu değildir, birleştirme. Öğretim kalitesi denetimi istenirse `ogretim-denetci` becerisi.
+- **Öğretim materyali (ders notu, rehber, kelime listesi):** Türkçe açıklama Temizle'yle sadeleşir; yabancı dildeki örnek cümle, okunuş (`/…/`), formül, ilaç adı/doz, diş numarası, kanun numarası, tarih ve sayısal veri, tablo ve kutu simgeleri aynen kalır. Kasıtlı tekrar eden iskelet ("Je m'appelle … / J'habite …") dolgu değildir, birleştirme. Öğretim kalitesi denetimi istenirse Sınaç (`sinac`) becerisi.
 - **Edebî metin / şiir:** Neredeyse hiç dokunma.
 - **Finans:** derin tür; yukarıdaki tablo ve `references/finans.md`.
 
